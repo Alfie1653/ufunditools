@@ -28,9 +28,9 @@ limiter = Limiter (
 with open("products.json") as file:
     products = json.load(file)
 
-INTASEND_TOKEN = os.environ["INTASEND_API_TOKEN"]
-INTASEND_PUBLISHABLE_KEY = os.environ["INTASEND_PUBLISHABLE_KEY"]
-INTASEND_WEBHOOK_CHALLENGE = os.environ["INTASEND_WEBHOOK_CHALLENGE"]
+INTASEND_TOKEN = os.getenv("INTASEND_API_TOKEN")
+INTASEND_PUBLISHABLE_KEY = os.getenv("INTASEND_PUBLISHABLE_KEY")
+INTASEND_WEBHOOK_CHALLENGE = os.getenv("INTASEND_WEBHOOK_CHALLENGE")
 
 service = APIService(
     token=INTASEND_TOKEN,
