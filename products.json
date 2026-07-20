@@ -1,0 +1,25 @@
+{
+    "ebook1": {
+        "name": "SHORTHAND NOTES WS",
+        "price": 1,
+        "telegram_file_id": "BQACAgQAAyEFAAT7S9BIAAMEalcilzYImktSVbYECrMoMheYPrgAAtwgAAJvu7hStUoB3bNeqnU9BA"
+    },
+
+    "ebook2": {
+        "name": "TRAFFIC ENGINEERING",
+        "price": 1,
+        "telegram_file_id": "BQACAgQAAyEFAAT7S9BIAAMFalcoM4daXWOqOhJklXGpc59COTEAAt8gAAJvu7hSLKgmSf8j_Js9BA"
+    },
+
+    "ebook3": {
+        "name": "Past Papers",
+        "price": 1,
+        "telegram_file_id": "BQACAgQAAyEFAAT7S9BIAAMHaldJFLCI7d-BV2GJi6I1vdqSZT4AAvsgAAJvu7hSwfnxqfEF5qU9BA"
+    },
+
+    "ebook4": {
+        "name": "Sickle Cell Disease",
+        "price": 1,
+        "telegram_file_id": "BQACAgQAAyEFAAT7S9BIAAMIaldKTaH0_R4-Ze5ImX84HQVEDd0AAvwgAAJvu7hSwRGYmcC9b-U9BA"
+    }
+}

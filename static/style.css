@@ -1,0 +1,299 @@
+/* ===== UFUNDI TOOLS — GRADED PAPER STYLE ===== */
+
+:root{
+  --kraft: #EAE0C7;
+  --card: #F8F2E1;
+  --ink: #1F3D2B;
+  --ink-deep: #14291C;
+  --pencil: #6E6552;
+  --stamp: #A6342A;
+  --stamp-soft: #A6342A1A;
+}
+
+/* Reset */
+* {
+  box-sizing: border-box;
+  max-width: 100vw;
+}
+
+body {
+  font-family: 'Lora', Georgia, serif;
+  background: var(--kraft);
+  background-image:
+    repeating-linear-gradient(135deg, #00000006 0px, #00000006 1px, transparent 1px, transparent 14px);
+  margin: 0;
+  padding: 56px 24px 80px;
+  color: var(--ink-deep);
+}
+
+
+/* ===== HEADER ===== */
+
+h1 {
+  color: var(--ink-deep);
+  text-align: center;
+  margin-bottom: 30px;
+  font-family: 'Roboto Slab', serif;
+  font-weight: 800;
+  font-size: 34px;
+  text-transform: uppercase;
+  letter-spacing: -0.5px;
+}
+
+
+/* ===== GRID ===== */
+
+.products-container {
+  width: 100%;
+  max-width: 1200px;
+  margin: auto;
+}
+
+.product-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 24px;
+}
+
+
+/* ===== PRODUCT CARD ===== */
+
+.product-card {
+  background: var(--card);
+  border: 1px solid var(--ink-deep)26;
+  border-radius: 4px;
+  overflow: hidden;
+  box-shadow: 0 3px 0 var(--ink-deep)14;
+  transition: transform 0.15s ease, box-shadow 0.15s ease;
+  position: relative;
+}
+
+.product-card:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 6px 14px var(--ink-deep)22;
+}
+
+/* stamp corner */
+.product-card::before{
+  content: "checked";
+  position: absolute;
+  top: 10px;
+  right: -30px;
+  background: var(--stamp);
+  color: var(--card);
+  font-family: 'Roboto Slab', serif;
+  font-size: 10px;
+  font-weight: 700;
+  padding: 3px 34px;
+  transform: rotate(38deg);
+  letter-spacing: 1px;
+}
+
+
+/* ===== PREVIEW ===== */
+
+.preview {
+  height:180px;
+  background: var(--ink-deep);
+  position:relative;
+  cursor:pointer;
+  overflow:hidden;
+  border-bottom: 1px dashed var(--ink-deep)55;
+}
+
+.preview img {
+  width:100%;
+  height:100%;
+  object-fit:cover;
+  opacity:0.92;
+}
+
+.preview::before {
+  content:"";
+  position:absolute;
+  inset:0;
+  background: var(--ink-deep)66;
+  opacity:0;
+  transition:opacity .25s ease;
+}
+
+.preview::after {
+  content: "view sample";
+  position:absolute;
+  bottom:12px;
+  left:14px;
+  color: var(--card);
+  font-family: 'Roboto Slab', serif;
+  font-size:11px;
+  text-transform: uppercase;
+  opacity:0;
+  transform: translateY(6px);
+  transition: .25s ease;
+}
+
+.preview:hover::before {
+  opacity:1;
+}
+
+.preview:hover::after {
+  opacity:1;
+  transform: translateY(0);
+}
+
+
+/* ===== INFO ===== */
+
+.product-info {
+  padding: 16px;
+  display:flex;
+  justify-content:space-between;
+  align-items:flex-start;
+  gap: 10px;
+}
+
+.description {
+  font-size:15px;
+  font-weight:500;
+}
+
+.price {
+  font-family: 'Roboto Slab', serif;
+  font-weight:700;
+  font-size: 13px;
+  color: var(--stamp);
+  padding: 3px 8px;
+  border: 1px solid var(--stamp);
+  border-radius: 3px;
+  background: var(--stamp-soft);
+}
+
+
+/* ===== BUTTON ===== */
+
+.buy-btn {
+  background-color: var(--ink-deep);
+  color: var(--card);
+
+  padding:12px;
+  margin-top:12px;
+
+  font-family: 'Roboto Slab', serif;
+  font-size:13px;
+  font-weight:700;
+  text-transform: uppercase;
+
+  border:none;
+  border-radius:3px;
+  cursor:pointer;
+
+  transition:0.2s ease;
+}
+
+.buy-btn:hover {
+  background-color: var(--stamp);
+}
+
+.buy-btn:disabled {
+  opacity:.5;
+  cursor:not-allowed;
+}
+
+
+/* ===== STATUS ===== */
+
+#status {
+  text-align:center;
+  margin-top:30px;
+  font-style: italic;
+  color: var(--ink-deep);
+}
+
+
+/* ===== POPUP ===== */
+
+.overlay {
+  display:none;
+  position:fixed;
+  inset:0;
+  background: var(--ink-deep)AA;
+  align-items:center;
+  justify-content:center;
+  padding:24px;
+}
+
+.overlay.open {
+  display:flex;
+}
+
+.modal {
+  background: var(--card);
+  width:100%;
+  max-width:380px;
+  padding:32px;
+  border-radius:4px;
+  border:1px solid var(--ink-deep)33;
+}
+
+.modal h2 {
+  font-family:'Roboto Slab', serif;
+  margin-bottom:10px;
+}
+
+.modal p {
+  color: var(--pencil);
+  font-style: italic;
+}
+
+.modal label {
+  font-size:11px;
+  text-transform: uppercase;
+  margin-bottom:6px;
+  display:block;
+}
+
+.modal input {
+  width:100%;
+  padding:12px;
+  margin-bottom:18px;
+  border:1px solid var(--ink-deep)55;
+  background: var(--kraft);
+}
+
+.modal-actions {
+  display:flex;
+  gap:10px;
+}
+
+.modal-actions button {
+  flex:1;
+  padding:12px;
+  background: var(--ink-deep);
+  color: var(--card);
+  border:none;
+  cursor:pointer;
+}
+
+.modal-actions button:hover {
+  background: var(--stamp);
+}
+
+.btn-cancel {
+  background: transparent !important;
+  border:1px solid var(--ink-deep)55 !important;
+  color: var(--ink-deep) !important;
+}
+
+
+/* ===== RESPONSIVE ===== */
+
+@media(max-width:1000px){
+  .product-grid {
+    grid-template-columns:repeat(2,1fr);
+  }
+}
+
+@media(max-width:600px){
+  .product-grid {
+    grid-template-columns:1fr;
+  }
+}
