@@ -12,6 +12,7 @@ from flask_limiter import Limiter
 from flask_limiter.util import get_remote_address
 from flask import jsonify
 import re
+import requests
 
 load_dotenv()
 
@@ -31,6 +32,9 @@ with open("products.json") as file:
 INTASEND_TOKEN = os.getenv("INTASEND_API_TOKEN")
 INTASEND_PUBLISHABLE_KEY = os.getenv("INTASEND_PUBLISHABLE_KEY")
 INTASEND_WEBHOOK_CHALLENGE = os.getenv("INTASEND_WEBHOOK_CHALLENGE")
+TELEGRAM_BOT_TOKEN = os.getenv("TELEGRAM_BOT_TOKEN")
+TELEGRAM_WEBHOOK_SECRET = os.getenv("TELEGRAM_WEBHOOK_SECRET")
+TELEGRAM_API_URL = f"https://api.telegram.org/bot{TELEGRAM_BOT_TOKEN}"
 
 service = APIService(
     token=INTASEND_TOKEN,
@@ -62,7 +66,11 @@ def init_db():
             email TEXT,
             invoice_id TEXT,
             status TEXT DEFAULT 'pending',
-            expires_at TEXT
+            expires_at TEXT,
+            used INTEGER DEFAULT 0,
+            telegram_user_id TEXT,
+            username TEXT,
+            downloaded_at TEXT
         )
     """)
     conn.commit()
@@ -71,11 +79,101 @@ def init_db():
 
 init_db()
 
+def send_telegram_message(chat_id, text):
+    requests.post(
+        f"{TELEGRAM_API_URL}/sendMessage",
+        json={
+            "chat_id": chat_id,
+            "text": text
+        }
+    )
+
+def send_telegram_file(chat_id, file_path, caption):
+    requests.post(
+        f"{TELEGRAM_API_URL}/sendDocument",
+        json={
+            "chat_id": chat_id,
+            "document": file_path,
+            "caption": caption,
+        }
+    )
 
 def is_valid_phone_number(phone_number):
     """Expects the normalized format the frontend sends: 254XXXXXXXXX"""
     return bool(re.match(r"^254[71]\d{8}$", phone_number))
 
+@app.route("/telegram-webhook", methods=["POST"])
+def telegram_webhook():
+
+    # Verify this request actually came from Telegram, not a spoofed source
+    incoming_secret = request.headers.get("X-Telegram-Bot-Api-Secret-Token")
+    if incoming_secret != TELEGRAM_WEBHOOK_SECRET:
+        print("TELEGRAM WEBHOOK REJECTED: bad or missing secret token")
+        return jsonify({"ok": False}), 401
+
+    update = request.get_json(force=True, silent=True) or {}
+    message = update.get("message")
+
+    if not message or "text" not in message:
+        return jsonify({"ok": True})
+
+    chat_id = message["chat"]["id"]
+    text = message["text"]
+
+    if not text.startswith("/start"):
+        return jsonify({"ok": True})
+
+    parts = text.split(maxsplit=1)
+    if len(parts) < 2:
+        send_telegram_message(chat_id, "No download token found.")
+        return jsonify({"ok": True})
+
+    token = parts[1].strip()
+
+    conn = get_db()
+    row = conn.execute(
+        "SELECT product_id, used, expires_at FROM purchases WHERE token = ?",
+        (token,)
+    ).fetchone()
+
+    if not row:
+        conn.close()
+        send_telegram_message(chat_id, "Invalid download link.")
+        return jsonify({"ok": True})
+
+    if row["used"] == 1:
+        conn.close()
+        send_telegram_message(chat_id, "This download link has already been used!")
+        return jsonify({"ok": True})
+
+    if row["expires_at"]:
+        expiry_time = datetime.fromisoformat(row["expires_at"])
+        if datetime.now() > expiry_time:
+            conn.close()
+            send_telegram_message(chat_id, "⏳ This download link has expired.")
+            return jsonify({"ok": True})
+
+    product = products[row["product_id"]]
+    file_id = product["telegram_file_id"]
+
+    send_telegram_file(chat_id, file_id, product["name"])
+
+    from_user = message.get("from", {})
+    telegram_user_id = str(from_user.get("id", ""))
+    username = from_user.get("username") or f"{from_user.get('first_name','')} {from_user.get('last_name','')}".strip()
+
+    conn.execute(
+        """
+        UPDATE purchases
+        SET used = 1, telegram_user_id = ?, username = ?, downloaded_at = ?
+        WHERE token = ?
+        """,
+        (telegram_user_id, username, datetime.now().isoformat(), token)
+    )
+    conn.commit()
+    conn.close()
+
+    return jsonify({"ok": True})
 
 @app.errorhandler(429)
 def ratelimit_handler(e):
