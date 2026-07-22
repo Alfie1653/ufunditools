@@ -17,7 +17,8 @@ import requests
 load_dotenv()
 
 app = Flask(__name__)
-CORS(app)
+allowed_origins = os.environ.get("ALLOWED_ORIGINS", "http://127.0.0.1:5000").split(",")
+CORS(app, origins=allowed_origins)
 
 limiter = Limiter (
     get_remote_address,
