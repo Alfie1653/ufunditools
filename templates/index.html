@@ -663,6 +663,10 @@ if(data.status==="paid"){
   const link = document.getElementById("telegram-link");
   link.href = data.telegram_link;
   link.style.display = "inline-block";  // Show the link
+
+  setTimeout(() => {
+    link.style.display = "none";  // Hide the link after 10 seconds
+  }, 10000);
 }
 
 
