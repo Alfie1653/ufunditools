@@ -232,19 +232,6 @@ h1 {
   animation:popupOpen 0.25s ease;
 }
 
-#telegram-link {
-  display: inline-block;
-  margin-top: 15px;
-  background-color: #00796b;
-  color: white;
-  padding: 10px 20px;
-  border-radius: 6px;
-  text-decoration: none;
-  font-size: 16px;
-}
-#telegram-link:hover {
-  background-color: #004d40;
-}
 
 @keyframes popupOpen {
 
@@ -560,13 +547,8 @@ function normalizePhone(raw) {
   return phone;
 }
 
-function setStatusTemporary(text, ms=5000){
-  setStatus(text);
-  setTimeout(()=>{
-    if(document.getElementById("status").innerText === text){
-      setStatus("");
-    }
-  }, ms);
+function setStatus(text) {
+  document.getElementById("status").innerText = text;
 }
 
 function setButtonsDisabled(disabled) {
@@ -624,7 +606,7 @@ function submitCheckout() {
     }
 
 
-    setStatusTemporary(data.message || "Enter your M-Pesa PIN on your phone.");
+    setStatus(data.message || "Enter your M-Pesa PIN on your phone.");
 
     pollOrderStatus(data.token);
 
