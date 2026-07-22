@@ -546,10 +546,17 @@ function normalizePhone(raw) {
   if (phone.startsWith("0")) phone = "254" + phone.slice(1);
   return phone;
 }
-
-function setStatus(text) {
-  document.getElementById("status").innerText = text;
-}
+function setStatusTemporary(text, ms=5000) {
+    setStatus(text);
+    setTimeout(() => {
+        if (document.getElementById("status").innerText === text) {
+            setStatus("");
+        }
+    }, ms);
+  }
+  function setStatus(text) {
+    document.getElementById("status").innerText = text;
+  }
 
 function setButtonsDisabled(disabled) {
   document.querySelectorAll("button").forEach(btn => btn.disabled = disabled);
@@ -649,7 +656,7 @@ fetch(`/order-status/${token}`)
 
 if(data.status==="paid"){
   clearInterval(interval);
-  setStatus("Payment confirmed! Redirecting...");
+  setStatusTemporary("Payment confirmed! Redirecting...");
   window.open(data.telegram_link, "_blank");
   setButtonsDisabled(false);
 
