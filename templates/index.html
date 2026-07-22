@@ -647,13 +647,10 @@ fetch(`/order-status/${token}`)
 
 
 if(data.status==="paid"){
-
-clearInterval(interval);
-
-setStatus("Payment confirmed! Redirecting...");
-
-window.location.href=data.telegram_link;
-
+  clearInterval(interval);
+  setStatus("Payment confirmed! Redirecting...");
+  window.open(data.telegram_link, "_blank");
+  setButtonsDisabled(false);
 }
 
 
@@ -663,22 +660,18 @@ setStatus("Waiting for payment confirmation...");
 
 
 if(attempts>=maxAttempts){
-
-clearInterval(interval);
-
-setStatus("Still waiting on payment.");
-
+  clearInterval(interval);
+  setStatus("Still waiting on payment.");
+  setButtonsDisabled(false);  // add this
 }
 
 }
 
 
 else if(data.status==="failed"){
-
-clearInterval(interval);
-
-setStatus("Payment failed. Try again.");
-
+  clearInterval(interval);
+  setStatus("Payment failed. Try again.");
+  setButtonsDisabled(false);
 }
 
 
