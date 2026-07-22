@@ -40,7 +40,7 @@ TELEGRAM_API_URL = f"https://api.telegram.org/bot{TELEGRAM_BOT_TOKEN}"
 service = APIService(
     token=INTASEND_TOKEN,
     publishable_key=INTASEND_PUBLISHABLE_KEY,
-    test=False,  # flip to False (or remove) when you go live
+    test=True,  # flip to False (or remove) when you go live
 )
 
 DB_PATH = "database.db"
