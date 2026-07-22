@@ -232,6 +232,19 @@ h1 {
   animation:popupOpen 0.25s ease;
 }
 
+#telegram-link {
+  display: inline-block;
+  margin-top: 15px;
+  background-color: #00796b;
+  color: white;
+  padding: 10px 20px;
+  border-radius: 6px;
+  text-decoration: none;
+  font-size: 16px;
+}
+#telegram-link:hover {
+  background-color: #004d40;
+}
 
 @keyframes popupOpen {
 
@@ -503,6 +516,7 @@ BUY
 </div>
 
 <p id="status"></p>
+<a id="telegram-link" href="#" target="_blank" style="display:none;">Get your file on Telegram</a>
 
 <!-- SAME POPUP -->
 <div class="overlay" id="overlay">
@@ -546,8 +560,13 @@ function normalizePhone(raw) {
   return phone;
 }
 
-function setStatus(text) {
-  document.getElementById("status").innerText = text;
+function setStatusTemporary(text, ms=5000){
+  setStatus(text);
+  setTimeout(()=>{
+    if(document.getElementById("status").innerText === text){
+      setStatus("");
+    }
+  }, ms);
 }
 
 function setButtonsDisabled(disabled) {
@@ -605,7 +624,7 @@ function submitCheckout() {
     }
 
 
-    setStatus(data.message || "Enter your M-Pesa PIN on your phone.");
+    setStatusTemporary(data.message || "Enter your M-Pesa PIN on your phone.");
 
     pollOrderStatus(data.token);
 
@@ -651,6 +670,10 @@ if(data.status==="paid"){
   setStatus("Payment confirmed! Redirecting...");
   window.open(data.telegram_link, "_blank");
   setButtonsDisabled(false);
+
+  const link = document.getElementById("telegram-link");
+  link.href = data.telegram_link;
+  link.style.display = "inline-block";  // Show the link
 }
 
 
