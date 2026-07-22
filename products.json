@@ -1,8 +1,8 @@
 {
     "ebook1": {
-        "name": "SHORTHAND NOTES WS",
+        "name": "TRANSPORT ENGINEERING",
         "price": 1,
-        "telegram_file_id": "BQACAgQAAyEFAAT7S9BIAAMEalcilzYImktSVbYECrMoMheYPrgAAtwgAAJvu7hStUoB3bNeqnU9BA"
+        "telegram_file_id": "BQACAgQAAyEFAAT7S9BIAAMLamDP4sbQBOY6HiMRS5u9ku8Gq5kAApwbAAIPPghTLmvxhXjvfCo9BA"
     },
 
     "ebook2": {
@@ -12,14 +12,14 @@
     },
 
     "ebook3": {
-        "name": "Past Papers",
+        "name": "OPERATION RESEARCH 1",
         "price": 1,
-        "telegram_file_id": "BQACAgQAAyEFAAT7S9BIAAMHaldJFLCI7d-BV2GJi6I1vdqSZT4AAvsgAAJvu7hSwfnxqfEF5qU9BA"
+        "telegram_file_id": "BQACAgQAAyEFAAT7S9BIAAMMamDQaHGRtKtK_ncT4PldyAjNy3UAAp0bAAIPPghTpWs05JOGgC09BA"
     },
 
     "ebook4": {
-        "name": "Sickle Cell Disease",
+        "name": "PAST PAPERS",
         "price": 1,
-        "telegram_file_id": "BQACAgQAAyEFAAT7S9BIAAMIaldKTaH0_R4-Ze5ImX84HQVEDd0AAvwgAAJvu7hSwRGYmcC9b-U9BA"
+        "telegram_file_id": "BQACAgQAAyEFAAT7S9BIAAMHaldJFLCI7d-BV2GJi6I1vdqSZT4AAvsgAAJvu7hSwfnxqfEF5qU9BA"
     }
 }
