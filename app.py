@@ -105,30 +105,35 @@ def is_valid_phone_number(phone_number):
 @app.route("/telegram-webhook", methods=["POST"])
 def telegram_webhook():
 
-    # Verify this request actually came from Telegram, not a spoofed source
     incoming_secret = request.headers.get("X-Telegram-Bot-Api-Secret-Token")
     if incoming_secret != TELEGRAM_WEBHOOK_SECRET:
         print("TELEGRAM WEBHOOK REJECTED: bad or missing secret token")
         return jsonify({"ok": False}), 401
 
     update = request.get_json(force=True, silent=True) or {}
+    print("TELEGRAM UPDATE:", update)
+
     message = update.get("message")
 
     if not message or "text" not in message:
+        print("TELEGRAM: no message/text in update, ignoring")
         return jsonify({"ok": True})
 
     chat_id = message["chat"]["id"]
     text = message["text"]
 
     if not text.startswith("/start"):
+        print("TELEGRAM: not a /start command, ignoring")
         return jsonify({"ok": True})
 
     parts = text.split(maxsplit=1)
     if len(parts) < 2:
+        print("TELEGRAM: /start with no token")
         send_telegram_message(chat_id, "No download token found.")
         return jsonify({"ok": True})
 
     token = parts[1].strip()
+    print("TELEGRAM: token received:", token)
 
     conn = get_db()
     row = conn.execute(
@@ -137,11 +142,15 @@ def telegram_webhook():
     ).fetchone()
 
     if not row:
+        print("TELEGRAM: token not found in database:", token)
         conn.close()
         send_telegram_message(chat_id, "Invalid download link.")
         return jsonify({"ok": True})
 
+    print("TELEGRAM: found row -- product_id:", row["product_id"], "used:", row["used"], "expires_at:", row["expires_at"])
+
     if row["used"] == 1:
+        print("TELEGRAM: token already used")
         conn.close()
         send_telegram_message(chat_id, "This download link has already been used!")
         return jsonify({"ok": True})
@@ -149,6 +158,7 @@ def telegram_webhook():
     if row["expires_at"]:
         expiry_time = datetime.fromisoformat(row["expires_at"])
         if datetime.now() > expiry_time:
+            print("TELEGRAM: token expired")
             conn.close()
             send_telegram_message(chat_id, "⏳ This download link has expired.")
             return jsonify({"ok": True})
@@ -156,7 +166,13 @@ def telegram_webhook():
     product = products[row["product_id"]]
     file_id = product["telegram_file_id"]
 
-    send_telegram_file(chat_id, file_id, product["name"])
+    print("TELEGRAM: sending document, file_id:", file_id)
+    send_result = requests.post(f"{TELEGRAM_API_URL}/sendDocument", json={
+        "chat_id": chat_id,
+        "document": file_id,
+        "caption": product["name"],
+    })
+    print("TELEGRAM SEND RESPONSE:", send_result.status_code, send_result.text)
 
     from_user = message.get("from", {})
     telegram_user_id = str(from_user.get("id", ""))
