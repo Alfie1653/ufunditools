@@ -503,6 +503,7 @@ BUY
 </div>
 
 <p id="status"></p>
+<a id="telegram-link" href="#" target="_blank" style="display:none;">Open Telegram</a>
 
 <!-- SAME POPUP -->
 <div class="overlay" id="overlay">
@@ -648,7 +649,7 @@ fetch(`/order-status/${token}`)
 
 if(data.status==="paid"){
   clearInterval(interval);
-  setStatus("Payment confirmed! Redirecting. Click the <a href='"+data.telegram_link+"' target='_blank'>link</a> below if it doesn't open automatically.");
+  setStatus("Payment confirmed! Redirecting...");
   window.open(data.telegram_link, "_blank");
   setButtonsDisabled(false);
 
