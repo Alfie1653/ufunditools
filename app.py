@@ -31,7 +31,7 @@ with open("products.json") as file:
     products = json.load(file)
 
 INTASEND_TOKEN = os.getenv("INTASEND_API_TOKEN")
-INTASEND_PUBLISHABLE_KEY = os.getenv("INTASEND_PUBLISHABLE_KEY")
+INTASEND_API_KEY = os.getenv("INTASEND_API_KEY")
 INTASEND_WEBHOOK_CHALLENGE = os.getenv("INTASEND_WEBHOOK_CHALLENGE")
 TELEGRAM_BOT_TOKEN = os.getenv("TELEGRAM_BOT_TOKEN")
 TELEGRAM_WEBHOOK_SECRET = os.getenv("TELEGRAM_WEBHOOK_SECRET")
@@ -39,8 +39,8 @@ TELEGRAM_API_URL = f"https://api.telegram.org/bot{TELEGRAM_BOT_TOKEN}"
 
 service = APIService(
     token=INTASEND_TOKEN,
-    publishable_key=INTASEND_PUBLISHABLE_KEY,
-    test=True,  # flip to False (or remove) when you go live
+    publishable_key=INTASEND_API_KEY,
+    test=False,  # flip to False (or remove) when you go live
 )
 
 DB_PATH = "database.db"
