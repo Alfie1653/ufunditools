@@ -73,6 +73,11 @@ h1::after {
   gap: 28px;
 }
 
+.product-grid > div {
+  display: flex;
+  flex-direction: column;
+}
+
 /* ============================================
    Product Card
    ============================================ */
@@ -80,6 +85,7 @@ h1::after {
 .product-card {
   flex: 1;
   display: flex;
+  height: 100%;
   flex-direction: column;
   border-radius: var(--radius-lg);
   overflow: hidden;
@@ -112,9 +118,7 @@ h1::after {
   transition: transform 0.4s ease, opacity 0.3s ease;
 }
 
-.product-card:hover .preview img {
-  transform: scale(1.06);
-}
+
 
 .preview::after {
   content: "";
