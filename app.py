@@ -53,7 +53,8 @@ def get_db():
 
 def init_db():
     conn = get_db()
-    conn.execute("""
+    cur = conn.cursor()
+    cur.execute("""
         CREATE TABLE IF NOT EXISTS purchases (
             id INTEGER PRIMARY KEY AUTOINCREMENT,
             token TEXT UNIQUE,
@@ -342,7 +343,7 @@ def intasend_webhook():
 
         conn = get_db()
         cur = conn.cursor()
-        result = conn.execute(
+        cur.execute(
             """
             UPDATE purchases
             SET status = 'paid'
@@ -352,7 +353,7 @@ def intasend_webhook():
         )
 
         conn.commit()
-        print("ROWS UPDATED:", result.rowcount)
+        print("ROWS UPDATED:", cur.rowcount)
         cur.close()
         conn.close()
 
