@@ -56,7 +56,7 @@ def init_db():
     cur = conn.cursor()
     cur.execute("""
         CREATE TABLE IF NOT EXISTS purchases (
-            id INTEGER PRIMARY KEY AUTOINCREMENT,
+            id SERIAL PRIMARY KEY,
             token TEXT UNIQUE,
             product_id TEXT,
             phone_number TEXT,
