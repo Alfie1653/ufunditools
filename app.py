@@ -1,7 +1,6 @@
 import os
 import json
 import secrets
-import sqlite3
 from datetime import datetime, timedelta
 from flask import render_template
 from flask import Flask, request, jsonify
@@ -13,6 +12,8 @@ from flask_limiter.util import get_remote_address
 from flask import jsonify
 import re
 import requests
+import psycopg2
+import psycopg2.extras
 
 load_dotenv()
 
@@ -30,6 +31,7 @@ limiter = Limiter (
 with open("products.json") as file:
     products = json.load(file)
 
+DATABASE_URL = os.getenv("DATABASE_URL")
 INTASEND_TOKEN = os.getenv("INTASEND_API_TOKEN")
 INTASEND_PUBLISHABLE_KEY = os.getenv("INTASEND_PUBLISHABLE_KEY")
 INTASEND_WEBHOOK_CHALLENGE = os.getenv("INTASEND_WEBHOOK_CHALLENGE")
@@ -43,16 +45,9 @@ service = APIService(
     test=True,  # flip to False (or remove) when you go live
 )
 
-DB_PATH = "database.db"
-sqlite3.connect(DB_PATH).execute("PRAGMA journal_mode=WAL")  # improves concurrency
-
 
 def get_db():
-    conn = sqlite3.connect(
-        DB_PATH,
-        timeout=10.0,
-        check_same_thread=False)
-    conn.row_factory = sqlite3.Row
+    conn = psycopg2.connect(DATABASE_URL, cursor_factory=psycopg2.extras.RealDictCursor)
     return conn
 
 
@@ -75,6 +70,7 @@ def init_db():
         )
     """)
     conn.commit()
+    cur.close()
     conn.close()
 
 
@@ -137,10 +133,12 @@ def telegram_webhook():
     print("TELEGRAM: token received:", token)
 
     conn = get_db()
-    row = conn.execute(
-        "SELECT product_id, used, expires_at FROM purchases WHERE token = ?",
+    cur = conn.cursor()
+    cur.execute(
+        "SELECT product_id, used, expires_at FROM purchases WHERE token = %s",
         (token,)
-    ).fetchone()
+    )
+    row = cur.fetchone()
 
     if not row:
         print("TELEGRAM: token not found in database:", token)
@@ -179,15 +177,16 @@ def telegram_webhook():
     telegram_user_id = str(from_user.get("id", ""))
     username = from_user.get("username") or f"{from_user.get('first_name','')} {from_user.get('last_name','')}".strip()
 
-    conn.execute(
+    cur.execute(
         """
         UPDATE purchases
-        SET used = 1, telegram_user_id = ?, username = ?, downloaded_at = ?
-        WHERE token = ?
+        SET used = 1, telegram_user_id = %s, username = %s, downloaded_at = %s
+        WHERE token = %s
         """,
         (telegram_user_id, username, datetime.now().isoformat(), token)
     )
     conn.commit()
+    cur.close()
     conn.close()
 
     return jsonify({"ok": True})
@@ -267,14 +266,16 @@ def buy():
             })
 
         conn = get_db()
-        conn.execute(
+        cur = conn.cursor()
+        cur.execute(
             """
             INSERT INTO purchases (token, product_id, phone_number, email, invoice_id, status, expires_at)
-            VALUES (?, ?, ?, ?, ?, 'pending', ?)
+            VALUES (%s, %s, %s, %s, %s, 'pending', %s)
             """,
             (order_token, product_id, phone_number, email, invoice_id, expiry_time.isoformat()),
         )
         conn.commit()
+        cur.close()
         conn.close()
 
         # no telegram_link yet -- payment hasn't happened
@@ -302,9 +303,12 @@ def order_status(order_token):
     the order paid. Once it's paid, this is what hands back the Telegram
     link -- not /buy."""
     conn = get_db()
-    row = conn.execute(
-        "SELECT * FROM purchases WHERE token = ?", (order_token,)
-    ).fetchone()
+    cur = conn.cursor()
+    cur.execute(
+        "SELECT * FROM purchases WHERE token = %s", (order_token,)
+    )
+    row = cur.fetchone()
+    cur.close()
     conn.close()
 
     if not row:
@@ -337,20 +341,19 @@ def intasend_webhook():
     if state == "COMPLETE" and invoice_id:
 
         conn = get_db()
-
+        cur = conn.cursor()
         result = conn.execute(
             """
             UPDATE purchases
             SET status = 'paid'
-            WHERE invoice_id = ?
+            WHERE invoice_id = %s
             """,
             (invoice_id,)
         )
 
         conn.commit()
-
         print("ROWS UPDATED:", result.rowcount)
-
+        cur.close()
         conn.close()
 
     return jsonify({"status": "received"})
