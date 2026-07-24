@@ -74,52 +74,30 @@ BUY
 
 <!-- PAST PAPERS -->
 <div>
-  <div class="product-card">
-    
-    <div class="preview">
-      <img src="{{ url_for('static', filename='images/Past Papers.png') }}" alt="Past Papers">
-    </div>
-
-    <div class="product-info">
-      <div class="description">
-        {{ products["ebook4"]["name"] }}
-      </div>
-
-      <div class="price">
-        KES {{ products["ebook4"]["price"] }}
-      </div>
-    </div>
-
-  </div>
-
-  <button class="buy-btn" onclick="openCheckout('ebook4')">
-    BUY
-  </button>
+<div class="product-card">
+<div class="preview">
+  <img src="{{ url_for('static', filename='images/Past Papers.png') }}" alt="Past Papers">
+</div>
+<div class="product-info">
+<div class="description">
+{{ products["ebook4"]["name"] }}
+</div>
+<div class="price">
+KES {{ products["ebook4"]["price"] }}
+</div>
+</div>
+</div>
+<button class="buy-btn" onclick="openCheckout('ebook4')">
+BUY
+</button>
+</div>
+</div>
 </div>
 
 <p id="status"></p>
 <div class="telegram-wrapper">
   <a id="telegram-link" href="#" target="_blank" style="display:none;">Open Telegram</a>
 </div>
-
-<div class="request-section">
-  <h2>Don't see your unit?</h2>
-  <p>Tell us what topic you need notes for — we'll research it and let you know once it's ready.</p>
-  <form id="request-form" onsubmit="submitRequest(event)">
-    <label for="topic">Topic / Unit name *</label>
-    <input type="text" id="topic" placeholder="e.g. Foundation Engineering 2" required maxlength="200">
-
-    <label for="details">Details (optional)</label>
-    <textarea id="details" placeholder="Anything specific you want covered?" maxlength="1000"></textarea>
-
-    <label for="contact">Phone or Telegram username (optional)</label>
-    <input type="text" id="contact" placeholder="So we can notify you when it's ready" maxlength="200">
-
-    <button type="submit">Submit Request</button>
-  </form>
-  <p id="request-status"></p>
-</div>
-
 
 <!-- SAME POPUP -->
 <div class="overlay" id="overlay">
@@ -322,42 +300,6 @@ setStatus("Error checking payment status.");
 
 },3000);
 
-}
-
-function submitRequest(event) {
-  event.preventDefault();
-
-  const topic = document.getElementById("topic").value.trim();
-  const details = document.getElementById("details").value.trim();
-  const contact = document.getElementById("contact").value.trim();
-  const statusEl = document.getElementById("request-status");
-  const submitBtn = event.target.querySelector("button");
-
-  if (!topic) {
-    statusEl.innerText = "Please enter a topic.";
-    return;
-  }
-
-  submitBtn.disabled = true;
-  statusEl.innerText = "Sending...";
-
-  fetch("/request-note", {
-    method: "POST",
-    headers: { "Content-Type": "application/json" },
-    body: JSON.stringify({ topic, details, contact })
-  })
-    .then(res => res.json())
-    .then(data => {
-      statusEl.innerText = data.message;
-      submitBtn.disabled = false;
-      if (data.status === "ok") {
-        document.getElementById("request-form").reset();
-      }
-    })
-    .catch(() => {
-      statusEl.innerText = "Something went wrong. Please try again.";
-      submitBtn.disabled = false;
-    });
 }
 </script>
 

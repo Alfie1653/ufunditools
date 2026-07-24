@@ -359,46 +359,6 @@ def intasend_webhook():
 
     return jsonify({"status": "received"})
 
-ADMIN_TELEGRAM_CHAT_ID = os.environ["ADMIN_TELEGRAM_CHAT_ID"]
-
-
-@app.route("/request-note", methods=["POST"])
-@limiter.limit("5 per minute")
-def request_note():
-    data = request.json or {}
-
-    topic = (data.get("topic") or "").strip()
-    details = (data.get("details") or "").strip()
-    contact = (data.get("contact") or "").strip()
-
-    if not topic:
-        return jsonify({"status": "error", "message": "Please tell us what topic you need."}), 400
-
-    if len(topic) > 200 or len(details) > 1000 or len(contact) > 200:
-        return jsonify({"status": "error", "message": "That's too long -- please shorten it."}), 400
-
-    conn = get_db()
-    try:
-        cur = conn.cursor()
-        cur.execute(
-            "INSERT INTO note_requests (topic, details, contact) VALUES (%s, %s, %s)",
-            (topic, details, contact)
-        )
-        conn.commit()
-    finally:
-        cur.close()
-        conn.close()
-
-    notification = f"📩 New note request:\n\nTopic: {topic}"
-    if details:
-        notification += f"\nDetails: {details}"
-    if contact:
-        notification += f"\nContact: {contact}"
-
-    send_telegram_message(ADMIN_TELEGRAM_CHAT_ID, notification)
-
-    return jsonify({"status": "ok", "message": "Thanks! We'll be in touch once it's ready."})
-
 
 if __name__ == "__main__":
     app.run(debug=False)
