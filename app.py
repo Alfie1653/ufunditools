@@ -18,7 +18,7 @@ import psycopg2.extras
 load_dotenv()
 
 app = Flask(__name__)
-allowed_origins = os.environ.get("ALLOWED_ORIGINS", "http://127.0.0.1:5000").split(",")
+allowed_origins = os.environ["ALLOWED_ORIGINS"].split(",")
 CORS(app, origins=allowed_origins)
 
 limiter = Limiter (
@@ -31,12 +31,12 @@ limiter = Limiter (
 with open("products.json") as file:
     products = json.load(file)
 
-DATABASE_URL = os.getenv("DATABASE_URL")
-INTASEND_TOKEN = os.getenv("INTASEND_API_TOKEN")
-INTASEND_PUBLISHABLE_KEY = os.getenv("INTASEND_PUBLISHABLE_KEY")
-INTASEND_WEBHOOK_CHALLENGE = os.getenv("INTASEND_WEBHOOK_CHALLENGE")
-TELEGRAM_BOT_TOKEN = os.getenv("TELEGRAM_BOT_TOKEN")
-TELEGRAM_WEBHOOK_SECRET = os.getenv("TELEGRAM_WEBHOOK_SECRET")
+DATABASE_URL = os.environ["DATABASE_URL"]
+INTASEND_TOKEN = os.environ["INTASEND_API_TOKEN"]
+INTASEND_PUBLISHABLE_KEY = os.environ["INTASEND_PUBLISHABLE_KEY"]
+INTASEND_WEBHOOK_CHALLENGE = os.environ["INTASEND_WEBHOOK_CHALLENGE"]
+TELEGRAM_BOT_TOKEN = os.environ["TELEGRAM_BOT_TOKEN"]
+TELEGRAM_WEBHOOK_SECRET = os.environ["TELEGRAM_WEBHOOK_SECRET"]
 TELEGRAM_API_URL = f"https://api.telegram.org/bot{TELEGRAM_BOT_TOKEN}"
 
 service = APIService(
@@ -86,21 +86,12 @@ def send_telegram_message(chat_id, text):
         }
     )
 
-def send_telegram_file(chat_id, file_path, caption):
-    requests.post(
-        f"{TELEGRAM_API_URL}/sendDocument",
-        json={
-            "chat_id": chat_id,
-            "document": file_path,
-            "caption": caption,
-        }
-    )
-
 def is_valid_phone_number(phone_number):
     """Expects the normalized format the frontend sends: 254XXXXXXXXX"""
     return bool(re.match(r"^254[71]\d{8}$", phone_number))
 
 @app.route("/telegram-webhook", methods=["POST"])
+@limiter.limit("60 per minute")  # Limit to 60 requests per minute per IP
 def telegram_webhook():
 
     incoming_secret = request.headers.get("X-Telegram-Bot-Api-Secret-Token")
@@ -134,61 +125,63 @@ def telegram_webhook():
     print("TELEGRAM: token received:", token)
 
     conn = get_db()
-    cur = conn.cursor()
-    cur.execute(
-        "SELECT product_id, used, expires_at FROM purchases WHERE token = %s",
-        (token,)
-    )
-    row = cur.fetchone()
+    try:
+        cur = conn.cursor()
+        cur.execute(
+            "SELECT product_id, used, expires_at FROM purchases WHERE token = %s",
+            (token,)
+        )
+        row = cur.fetchone()
 
-    if not row:
-        print("TELEGRAM: token not found in database:", token)
-        conn.close()
-        send_telegram_message(chat_id, "Invalid download link.")
-        return jsonify({"ok": True})
-
-    print("TELEGRAM: found row -- product_id:", row["product_id"], "used:", row["used"], "expires_at:", row["expires_at"])
-
-    if row["used"] == 1:
-        print("TELEGRAM: token already used")
-        conn.close()
-        send_telegram_message(chat_id, "This download link has already been used!")
-        return jsonify({"ok": True})
-
-    if row["expires_at"]:
-        expiry_time = datetime.fromisoformat(row["expires_at"])
-        if datetime.now() > expiry_time:
-            print("TELEGRAM: token expired")
+        if not row:
+            print("TELEGRAM: token not found in database:", token)
             conn.close()
-            send_telegram_message(chat_id, "⏳ This download link has expired.")
+            send_telegram_message(chat_id, "Invalid download link.")
             return jsonify({"ok": True})
 
-    product = products[row["product_id"]]
-    file_id = product["telegram_file_id"]
+        print("TELEGRAM: found row -- product_id:", row["product_id"], "used:", row["used"], "expires_at:", row["expires_at"])
 
-    print("TELEGRAM: sending document, file_id:", file_id)
-    send_result = requests.post(f"{TELEGRAM_API_URL}/sendDocument", json={
-        "chat_id": chat_id,
-        "document": file_id,
-        "caption": product["name"],
-    })
-    print("TELEGRAM SEND RESPONSE:", send_result.status_code, send_result.text)
+        if row["used"] == 1:
+            print("TELEGRAM: token already used")
+            conn.close()
+            send_telegram_message(chat_id, "This download link has already been used!")
+            return jsonify({"ok": True})
 
-    from_user = message.get("from", {})
-    telegram_user_id = str(from_user.get("id", ""))
-    username = from_user.get("username") or f"{from_user.get('first_name','')} {from_user.get('last_name','')}".strip()
+        if row["expires_at"]:
+            expiry_time = datetime.fromisoformat(row["expires_at"])
+            if datetime.now() > expiry_time:
+                print("TELEGRAM: token expired")
+                conn.close()
+                send_telegram_message(chat_id, "⏳ This download link has expired.")
+                return jsonify({"ok": True})
 
-    cur.execute(
-        """
-        UPDATE purchases
-        SET used = 1, telegram_user_id = %s, username = %s, downloaded_at = %s
-        WHERE token = %s
-        """,
-        (telegram_user_id, username, datetime.now().isoformat(), token)
-    )
-    conn.commit()
-    cur.close()
-    conn.close()
+        product = products[row["product_id"]]
+        file_id = product["telegram_file_id"]
+
+        print("TELEGRAM: sending document, file_id:", file_id)
+        send_result = requests.post(f"{TELEGRAM_API_URL}/sendDocument", json={
+            "chat_id": chat_id,
+            "document": file_id,
+            "caption": product["name"],
+        })
+        print("TELEGRAM SEND RESPONSE:", send_result.status_code, send_result.text)
+
+        from_user = message.get("from", {})
+        telegram_user_id = str(from_user.get("id", ""))
+        username = from_user.get("username") or f"{from_user.get('first_name','')} {from_user.get('last_name','')}".strip()
+
+        cur.execute(
+            """
+            UPDATE purchases
+            SET used = 1, telegram_user_id = %s, username = %s, downloaded_at = %s
+            WHERE token = %s
+            """,
+            (telegram_user_id, username, datetime.now().isoformat(), token)
+        )
+        conn.commit()
+    finally:
+        cur.close()
+        conn.close()
 
     return jsonify({"ok": True})
 
@@ -267,17 +260,19 @@ def buy():
             })
 
         conn = get_db()
-        cur = conn.cursor()
-        cur.execute(
+        try:
+            cur = conn.cursor()
+            cur.execute(
             """
             INSERT INTO purchases (token, product_id, phone_number, email, invoice_id, status, expires_at)
             VALUES (%s, %s, %s, %s, %s, 'pending', %s)
             """,
             (order_token, product_id, phone_number, email, invoice_id, expiry_time.isoformat()),
         )
-        conn.commit()
-        cur.close()
-        conn.close()
+            conn.commit()
+        finally:
+            cur.close()
+            conn.close()
 
         # no telegram_link yet -- payment hasn't happened
         return jsonify({
@@ -293,7 +288,7 @@ def buy():
 
         return jsonify({
             "status": "error",
-            "message": str(e)
+            "message": "Something went wrong on the server. Please try again later."
         }), 500
 
 
@@ -304,13 +299,15 @@ def order_status(order_token):
     the order paid. Once it's paid, this is what hands back the Telegram
     link -- not /buy."""
     conn = get_db()
-    cur = conn.cursor()
-    cur.execute(
-        "SELECT * FROM purchases WHERE token = %s", (order_token,)
-    )
-    row = cur.fetchone()
-    cur.close()
-    conn.close()
+    try:
+        cur = conn.cursor()
+        cur.execute(
+            "SELECT * FROM purchases WHERE token = %s", (order_token,)
+        )
+        row = cur.fetchone()
+    finally:
+        cur.close()
+        conn.close()
 
     if not row:
         return jsonify({"status": "error", "message": "Order not found"}), 404
@@ -323,6 +320,7 @@ def order_status(order_token):
 
 
 @app.route("/webhook/intasend", methods=["POST"])
+@limiter.limit("60 per minute")  # Limit to 60 requests per minute per IP
 def intasend_webhook():
 
     data = request.get_json(force=True, silent=True) or {}
@@ -342,20 +340,22 @@ def intasend_webhook():
     if state == "COMPLETE" and invoice_id:
 
         conn = get_db()
-        cur = conn.cursor()
-        cur.execute(
-            """
-            UPDATE purchases
-            SET status = 'paid'
-            WHERE invoice_id = %s
-            """,
-            (invoice_id,)
-        )
+        try:
+            cur = conn.cursor()
+            cur.execute(
+                """
+                UPDATE purchases
+                SET status = 'paid'
+                WHERE invoice_id = %s
+                """,
+                (invoice_id,)
+            )
 
-        conn.commit()
-        print("ROWS UPDATED:", cur.rowcount)
-        cur.close()
-        conn.close()
+            conn.commit()
+            print("ROWS UPDATED:", cur.rowcount)
+        finally:
+            cur.close()
+            conn.close()
 
     return jsonify({"status": "received"})
 
