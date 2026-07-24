@@ -99,6 +99,37 @@ BUY
   <a id="telegram-link" href="#" target="_blank" style="display:none;">Open Telegram</a>
 </div>
 
+<div class="request-btn-wrapper">
+  <button class="request-trigger-btn" onclick="openRequestModal()">
+    Request a Topic
+  </button>
+</div>
+
+<!-- REQUEST TOPIC POPUP -->
+<div class="overlay" id="request-overlay">
+<div class="modal">
+<h2>Don't see your unit?</h2>
+<p>Tell us what topic you need — we'll research it and let you know once it's ready.</p>
+
+<label for="topic">Topic / Unit name *</label>
+<input type="text" id="topic" placeholder="e.g. Foundation Engineering 2" maxlength="200">
+
+<label for="details">Details (optional)</label>
+<textarea id="details" placeholder="Anything specific you want covered?" maxlength="1000"></textarea>
+
+<label for="contact">Phone or Telegram username (optional)</label>
+<input type="text" id="contact" placeholder="So we can notify you when it's ready" maxlength="200">
+
+<p id="request-status"></p>
+
+<div class="modal-actions">
+<button class="btn-cancel" onclick="closeRequestModal()">Cancel</button>
+<button onclick="submitRequest()">Submit</button>
+</div>
+</div>
+</div>
+
+
 <!-- SAME POPUP -->
 <div class="overlay" id="overlay">
 <div class="modal">
@@ -154,6 +185,48 @@ function setStatusTemporary(text, ms=5000) {
 
 function setButtonsDisabled(disabled) {
   document.querySelectorAll("button").forEach(btn => btn.disabled = disabled);
+}
+
+function openRequestModal() {
+  document.getElementById("topic").value = "";
+  document.getElementById("details").value = "";
+  document.getElementById("contact").value = "";
+  document.getElementById("request-status").innerText = "";
+  document.getElementById("request-overlay").classList.add("open");
+}
+
+function closeRequestModal() {
+  document.getElementById("request-overlay").classList.remove("open");
+}
+
+function submitRequest() {
+  const topic = document.getElementById("topic").value.trim();
+  const details = document.getElementById("details").value.trim();
+  const contact = document.getElementById("contact").value.trim();
+  const statusEl = document.getElementById("request-status");
+
+  if (!topic) {
+    statusEl.innerText = "Please enter a topic.";
+    return;
+  }
+
+  statusEl.innerText = "Sending...";
+
+  fetch("/request-note", {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({ topic, details, contact })
+  })
+    .then(res => res.json())
+    .then(data => {
+      statusEl.innerText = data.message;
+      if (data.status === "ok") {
+        setTimeout(closeRequestModal, 1800);
+      }
+    })
+    .catch(() => {
+      statusEl.innerText = "Something went wrong. Please try again.";
+    });
 }
 
 function submitCheckout() {
