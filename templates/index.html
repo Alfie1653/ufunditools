@@ -321,6 +321,11 @@ function submitCheckout() {
 
 
 
+function pollOrderStatus(token){
+
+let attempts=0;
+const maxAttempts=40;
+
 const interval=setInterval(()=>{
 
 attempts++;
@@ -371,6 +376,8 @@ else if(data.status==="failed"){
 });
 
 },3000);
+
+}
 
 
 function openRecoverModal() {
