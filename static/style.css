@@ -347,6 +347,7 @@ h1::after {
   display: flex;
   justify-content: center;
   margin-top: 40px;
+  gap: 40px;
 }
 
 .request-trigger-btn {
