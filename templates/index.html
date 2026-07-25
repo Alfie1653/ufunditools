@@ -358,8 +358,13 @@ else if(data.status==="pending"){
   setStatus("Waiting for payment confirmation...");
   if(isFinalAttempt){
     clearInterval(interval);
-    setStatus("Still waiting on payment.");
+    setStatus("Still waiting on payment. If you have paid, please message us on Telegram and we'll sort it out.");
     setButtonsDisabled(false);
+
+    const link = document.getElementById("telegram-link");
+    link.href = "https://t.me/UfundiToolsBot";
+    link.textContent = "Message us on Telegram";
+    link.style.display = "inline-block";
   }
 }
 
