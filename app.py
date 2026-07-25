@@ -38,6 +38,7 @@ INTASEND_WEBHOOK_CHALLENGE = os.environ["INTASEND_WEBHOOK_CHALLENGE"]
 TELEGRAM_BOT_TOKEN = os.environ["TELEGRAM_BOT_TOKEN"]
 TELEGRAM_WEBHOOK_SECRET = os.environ["TELEGRAM_WEBHOOK_SECRET"]
 TELEGRAM_API_URL = f"https://api.telegram.org/bot{TELEGRAM_BOT_TOKEN}"
+ADMIN_TELEGRAM_CHAT_ID = os.environ["ADMIN_TELEGRAM_CHAT_ID"]
 
 service = APIService(
     token=INTASEND_TOKEN,
@@ -358,8 +359,6 @@ def intasend_webhook():
             conn.close()
 
     return jsonify({"status": "received"})
-
-ADMIN_TELEGRAM_CHAT_ID = os.environ["ADMIN_TELEGRAM_CHAT_ID"]
 
 
 @app.route("/request-note", methods=["POST"])
