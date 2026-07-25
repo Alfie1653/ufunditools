@@ -103,13 +103,34 @@ BUY
   <button class="request-trigger-btn" onclick="openRequestModal()">
     Request a Topic
   </button>
+  <button class="request-trigger-btn" onclick="openRecoverModal()">
+    Lost Your Link?
+  </button>
+</div>
+
+<!-- RECOVER LINK POPUP -->
+<div class="overlay" id="recover-overlay">
+<div class="modal">
+<h2>Recover Your Download Link</h2>
+<p>Enter the phone number you paid with, and we'll find your order.</p>
+
+<label for="recover-phone">Phone number</label>
+<input type="tel" id="recover-phone" placeholder="07XXXXXXXX">
+
+<p id="recover-status"></p>
+
+<div class="modal-actions">
+<button class="btn-cancel" onclick="closeRecoverModal()">Cancel</button>
+<button onclick="submitRecover()">Find My Order</button>
+</div>
+</div>
 </div>
 
 <!-- REQUEST TOPIC POPUP -->
 <div class="overlay" id="request-overlay">
 <div class="modal">
-<h2>Don't see your unit?</h2>
-<p>Tell us what topic you need — we'll research it and let you know once it's ready.</p>
+<h2>Don't see a topic you need?</h2>
+<p>Request a topic and we'll research, curate, and upload it to the site. Check back to see when it's ready.</p>
 
 <label for="topic">Topic / Unit name *</label>
 <input type="text" id="topic" placeholder="e.g. Foundation Engineering 2" maxlength="200">
@@ -117,7 +138,7 @@ BUY
 <label for="details">Details (optional)</label>
 <textarea id="details" placeholder="Anything specific you want covered?" maxlength="1000"></textarea>
 
-<label for="contact">Phone or Telegram username (optional)</label>
+<label for="contact">Phone or Telegram username (optional, in case we need to contact you)</label>
 <input type="text" id="contact" placeholder="So we can notify you when it's ready" maxlength="200">
 
 <p id="request-status"></p>
@@ -374,6 +395,50 @@ setStatus("Error checking payment status.");
 },3000);
 
 }
+
+function openRecoverModal() {
+  document.getElementById("recover-phone").value = "";
+  document.getElementById("recover-status").innerText = "";
+  document.getElementById("recover-overlay").classList.add("open");
+}
+
+function closeRecoverModal() {
+  document.getElementById("recover-overlay").classList.remove("open");
+}
+
+function submitRecover() {
+  const phoneRaw = document.getElementById("recover-phone").value;
+  const statusEl = document.getElementById("recover-status");
+
+  if (!phoneRaw) {
+    statusEl.innerText = "Enter your phone number first.";
+    return;
+  }
+
+  const phone_number = normalizePhone(phoneRaw);
+  statusEl.innerText = "Searching...";
+
+  fetch("/recover-link", {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({ phone_number })
+  })
+    .then(res => res.json())
+    .then(data => {
+      if (data.status === "ok") {
+        statusEl.innerText = "Order found! Opening Telegram...";
+        window.open(data.telegram_link, "_blank");
+        setTimeout(closeRecoverModal, 1500);
+      } else {
+        statusEl.innerText = data.message;
+      }
+    })
+    .catch(() => {
+      statusEl.innerText = "Something went wrong. Please try again.";
+    });
+}
+
+
 </script>
 
 </body>

@@ -361,6 +361,60 @@ def intasend_webhook():
     return jsonify({"status": "received"})
 
 
+@app.route("/recover-link", methods=["POST"])
+@limiter.limit("5 per minute")
+def recover_link():
+    data = request.json or {}
+    phone_number = (data.get("phone_number") or "").strip()
+
+    if not is_valid_phone_number(phone_number):
+        return jsonify({
+            "status": "error",
+            "message": "Enter a valid Kenyan phone number (e.g. 07XXXXXXXX)."
+        }), 400
+
+    conn = get_db()
+    try:
+        cur = conn.cursor()
+        cur.execute(
+            """
+            SELECT token, expires_at, used
+            FROM purchases
+            WHERE phone_number = %s AND status = 'paid'
+            ORDER BY id DESC
+            LIMIT 1
+            """,
+            (phone_number,)
+        )
+        row = cur.fetchone()
+    finally:
+        cur.close()
+        conn.close()
+
+    if not row:
+        return jsonify({
+            "status": "error",
+            "message": "No paid order found for that number."
+        }), 404
+
+    if row["used"] == 1:
+        return jsonify({
+            "status": "error",
+            "message": "That order's file has already been delivered on Telegram."
+        }), 400
+
+    if row["expires_at"]:
+        expiry_time = datetime.fromisoformat(row["expires_at"])
+        if datetime.now() > expiry_time:
+            return jsonify({
+                "status": "error",
+                "message": "That order's link has expired. Please contact us for help."
+            }), 400
+
+    telegram_link = "https://t.me/UfundiToolsBot?start=" + row["token"]
+    return jsonify({"status": "ok", "telegram_link": telegram_link})
+
+
 @app.route("/request-note", methods=["POST"])
 @limiter.limit("5 per minute")
 def request_note():
@@ -396,7 +450,7 @@ def request_note():
 
     send_telegram_message(ADMIN_TELEGRAM_CHAT_ID, notification)
 
-    return jsonify({"status": "ok", "message": "Thanks! We'll be in touch once it's ready."})
+    return jsonify({"status": "ok", "message": "Thanks! We'll get to work on it and upload it once it's ready."})
 
 if __name__ == "__main__":
     app.run(debug=False)
