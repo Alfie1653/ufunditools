@@ -321,26 +321,18 @@ function submitCheckout() {
 
 
 
-function pollOrderStatus(token){
-
-let attempts=0;
-
-const maxAttempts=40;
-
-
 const interval=setInterval(()=>{
 
 attempts++;
 
+const isFinalAttempt = attempts >= maxAttempts;
+const url = isFinalAttempt
+  ? `/order-status/${token}?check=1`
+  : `/order-status/${token}`;
 
-fetch(`/order-status/${token}`)
-
-
+fetch(url)
 .then(res=>res.json())
-
-
 .then(data=>{
-
 
 if(data.status==="paid"){
   clearInterval(interval);
@@ -350,27 +342,21 @@ if(data.status==="paid"){
 
   const link = document.getElementById("telegram-link");
   link.href = data.telegram_link;
-  link.style.display = "inline-block";  // Show the link
+  link.style.display = "inline-block";
 
   setTimeout(() => {
-    link.style.display = "none";  // Hide the link after 10 seconds
+    link.style.display = "none";
   }, 10000);
 }
 
-
 else if(data.status==="pending"){
-
-setStatus("Waiting for payment confirmation...");
-
-
-if(attempts>=maxAttempts){
-  clearInterval(interval);
-  setStatus("Still waiting on payment.");
-  setButtonsDisabled(false);  // add this
+  setStatus("Waiting for payment confirmation...");
+  if(isFinalAttempt){
+    clearInterval(interval);
+    setStatus("Still waiting on payment.");
+    setButtonsDisabled(false);
+  }
 }
-
-}
-
 
 else if(data.status==="failed"){
   clearInterval(interval);
@@ -378,23 +364,14 @@ else if(data.status==="failed"){
   setButtonsDisabled(false);
 }
 
-
-
 })
-
-
 .catch(()=>{
-
-clearInterval(interval);
-
-setStatus("Error checking payment status.");
-
+  clearInterval(interval);
+  setStatus("Error checking payment status.");
 });
-
 
 },3000);
 
-}
 
 function openRecoverModal() {
   document.getElementById("recover-phone").value = "";

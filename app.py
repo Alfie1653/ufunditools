@@ -298,7 +298,12 @@ def buy():
 def order_status(order_token):
     """The frontend polls this after /buy, waiting for the webhook to mark
     the order paid. Once it's paid, this is what hands back the Telegram
-    link -- not /buy."""
+    link -- not /buy.
+
+    On the frontend's final poll attempt (?check=1), if the order is still
+    pending, we directly ask IntaSend for the real status instead of just
+    giving up -- this catches cases where the webhook was missed or delayed.
+    """
     conn = get_db()
     try:
         cur = conn.cursor()
@@ -306,12 +311,53 @@ def order_status(order_token):
             "SELECT * FROM purchases WHERE token = %s", (order_token,)
         )
         row = cur.fetchone()
+
+        if not row:
+            return jsonify({"status": "error", "message": "Order not found"}), 404
+
+        # Only reconcile with IntaSend if still pending AND the frontend
+        # flagged this as the final check -- avoids hammering IntaSend's
+        # API on every 3-second poll.
+        do_reconcile = request.args.get("check") == "1"
+
+        if row["status"] == "pending" and do_reconcile and row["invoice_id"]:
+            try:
+                status_response = service.collect.status(invoice_id=row["invoice_id"])
+                print("RECONCILE CHECK:", status_response)
+
+                real_state = None
+                if isinstance(status_response, dict):
+                    real_state = status_response.get("invoice", {}).get("state")
+
+                if real_state == "COMPLETE":
+                    cur.execute(
+                        "UPDATE purchases SET status = 'paid' WHERE token = %s",
+                        (order_token,)
+                    )
+                    conn.commit()
+                    row = dict(row)
+                    row["status"] = "paid"
+                    print("RECONCILE: order updated to paid via direct check")
+
+                elif real_state == "FAILED":
+                    cur.execute(
+                        "UPDATE purchases SET status = 'failed' WHERE token = %s",
+                        (order_token,)
+                    )
+                    conn.commit()
+                    row = dict(row)
+                    row["status"] = "failed"
+                    print("RECONCILE: order updated to failed via direct check")
+
+            except Exception as e:
+                # If the reconciliation check itself fails (network issue,
+                # IntaSend downtime), don't crash -- just fall through and
+                # report whatever status we already have.
+                print("RECONCILE CHECK ERROR:", str(e))
+
     finally:
         cur.close()
         conn.close()
-
-    if not row:
-        return jsonify({"status": "error", "message": "Order not found"}), 404
 
     if row["status"] == "paid":
         telegram_link = "https://t.me/UfundiToolsBot?start=" + row["token"]
