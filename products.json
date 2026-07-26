@@ -21,5 +21,11 @@
         "name": "PAST PAPERS",
         "price": 1,
         "telegram_file_id": "BQACAgQAAyEFAAT7S9BIAAMHaldJFLCI7d-BV2GJi6I1vdqSZT4AAvsgAAJvu7hSwfnxqfEF5qU9BA"
+    },
+
+    "ebook5": {
+        "name": "CALCULUS 1",
+        "price": 1,
+        "telegram_file_id": ""
     }
 }
