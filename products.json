@@ -27,5 +27,11 @@
         "name": "CALCULUS 1",
         "price": 1,
         "telegram_file_id": "BQACAgQAAyEFAAT7S9BIAAMNamXRNZl38S-tDDFSlnyJZsMGs5wAAqUeAAJnoShT2OZ18hkaVM49BA"
+    },
+
+    "ebook6": {
+        "name": "CALCULUS 2",
+        "price": 1,
+        "telegram_file_id": "BQACAgQAAyEFAAT7S9BIAAMPamXVP3vLYASYKDNQCU59dfoVhe8AAq0eAAJnoShTCSeLMUcMy4Y9BA"
     }
 }
