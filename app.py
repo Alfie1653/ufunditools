@@ -113,7 +113,20 @@ def telegram_webhook():
     text = message["text"]
 
     if not text.startswith("/start"):
-        print("TELEGRAM: not a /start command, ignoring")
+        print("TELEGRAM: forwarding support message to admin")
+
+        from_user = message.get("from", {})
+        sender_username = from_user.get("username")
+        sender_name = f"{from_user.get('first_name','')} {from_user.get('last_name','')}".strip()
+        sender_id = from_user.get("id")
+
+        contact_line = f"@{sender_username}" if sender_username else sender_name
+        notification = (
+            f"💬 Support message from {contact_line} (id: {sender_id}):\n\n{text}"
+        )
+        send_telegram_message(ADMIN_TELEGRAM_CHAT_ID, notification)
+
+        send_telegram_message(chat_id, "Thanks! We've received your message and will get back to you shortly.")
         return jsonify({"ok": True})
 
     parts = text.split(maxsplit=1)
