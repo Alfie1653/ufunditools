@@ -180,6 +180,14 @@ def telegram_webhook():
         })
         print("TELEGRAM SEND RESPONSE:", send_result.status_code, send_result.text)
 
+        thank_you_message = (
+            "Thanks for your purchase! 🎓\n\n"
+            "Happy studying, and all the best.\n\n"
+            "If these notes helped, tell a classmate about Ufundi Tools -- "
+            "it genuinely helps us keep curating more units."
+        )
+        send_telegram_message(chat_id, thank_you_message)
+
         from_user = message.get("from", {})
         telegram_user_id = str(from_user.get("id", ""))
         username = from_user.get("username") or f"{from_user.get('first_name','')} {from_user.get('last_name','')}".strip()
