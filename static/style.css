@@ -197,11 +197,28 @@ h1::after {
    ============================================ */
 
 #status {
-  color: #ffffff;
+  position: fixed;
+  top: 20px;
+  left: 50%;
+  transform: translateX(-50%) translateY(-12px);
+  opacity: 0;
+  pointer-events: none;
+  max-width: 90%;
+  background: rgba(20,26,31,0.95);
+  color: white;
+  padding: 13px 22px;
+  border-radius: 10px;
+  font-size: 14px;
   text-align: center;
-  margin-top: 32px;
-  font-size: 15px;
-  min-height: 20px;
+  z-index: 2000;
+  box-shadow: 0 8px 28px rgba(0,0,0,0.35);
+  transition: opacity 0.25s ease, transform 0.25s ease;
+}
+
+#status.visible {
+  opacity: 1;
+  transform: translateX(-50%) translateY(0);
+  pointer-events: auto;
 }
 
 /* ============================================
