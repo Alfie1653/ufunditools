@@ -1,12 +1,12 @@
 {
     "ebook1": {
-        "name": "TRANSPORT ENGINEERING",
+        "name": "TRANSPORT ENGINEERING I",
         "price": 1,
         "telegram_file_id": "BQACAgQAAyEFAAT7S9BIAAMLamDP4sbQBOY6HiMRS5u9ku8Gq5kAApwbAAIPPghTLmvxhXjvfCo9BA"
     },
 
     "ebook2": {
-        "name": "TRAFFIC ENGINEERING",
+        "name": "TRAFFIC ENGINEERING I",
         "price": 1,
         "telegram_file_id": "BQACAgQAAyEFAAT7S9BIAAMJamDNxX6iII5RhYjuAhN-R1Y5kT4AApkbAAIPPghT_hJpwngV3fs9BA"
     },
@@ -24,13 +24,13 @@
     },
 
     "ebook5": {
-        "name": "CALCULUS 1",
+        "name": "CALCULUS I",
         "price": 1,
         "telegram_file_id": "BQACAgQAAyEFAAT7S9BIAAMQanPTb92xr6Hodr-spRk1dbCtq6EAAk0cAAIZ-qBTSR-kmydShIo9BA"
     },
 
     "ebook6": {
-        "name": "CALCULUS 2",
+        "name": "CALCULUS II",
         "price": 1,
         "telegram_file_id": "BQACAgQAAyEFAAT7S9BIAAMPamXVP3vLYASYKDNQCU59dfoVhe8AAq0eAAJnoShTCSeLMUcMy4Y9BA"
     }
