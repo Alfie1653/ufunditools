@@ -254,6 +254,135 @@ h1::after {
 }
 
 /* ============================================
+    Support Floating Action Button & Panel
+   ============================================ */
+
+.support-fab {
+  position: fixed;
+  bottom: 24px;
+  right: 24px;
+  background: var(--color-primary);
+  color: white;
+  border: none;
+  border-radius: 50px;
+  padding: 14px 22px;
+  font-size: 15px;
+  font-weight: 600;
+  cursor: pointer;
+  box-shadow: 0 8px 24px rgba(0,0,0,0.3);
+  z-index: 1500;
+  transition: background 0.25s ease, transform 0.2s ease;
+}
+
+.support-fab:hover {
+  background: var(--color-primary-dark);
+  transform: translateY(-2px);
+}
+
+.support-panel {
+  position: fixed;
+  bottom: 90px;
+  right: 24px;
+  width: 320px;
+  max-width: calc(100vw - 48px);
+  background: var(--color-card-bg);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-modal);
+  padding: 20px;
+  z-index: 1600;
+  display: none;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.support-panel.open {
+  display: flex;
+}
+
+.support-panel-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-weight: 700;
+  font-size: 17px;
+  color: var(--color-text-dark);
+}
+
+.support-close {
+  background: none;
+  border: none;
+  font-size: 16px;
+  cursor: pointer;
+  color: var(--color-text-muted);
+}
+
+.support-panel-sub {
+  font-size: 13.5px;
+  color: var(--color-text-muted);
+  margin: 0;
+}
+
+.support-panel textarea,
+.support-panel input {
+  width: 100%;
+  padding: 11px 12px;
+  font-size: 14px;
+  border: 1.5px solid #d1d5db;
+  border-radius: var(--radius-md);
+  background: #f9fafb;
+  font-family: var(--font-base);
+  resize: vertical;
+}
+
+.support-panel textarea {
+  min-height: 70px;
+}
+
+.support-panel textarea:focus,
+.support-panel input:focus {
+  outline: none;
+  border-color: var(--color-primary);
+  background: #ffffff;
+}
+
+.support-send-btn {
+  background: var(--color-primary);
+  color: white;
+  border: none;
+  border-radius: var(--radius-md);
+  padding: 11px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.25s ease;
+}
+
+.support-send-btn:hover {
+  background: var(--color-primary-dark);
+}
+
+#support-status {
+  font-size: 13px;
+  color: var(--color-text-muted);
+  margin: 0;
+  text-align: center;
+  min-height: 16px;
+}
+
+@media (max-width: 480px) {
+  .support-fab {
+    bottom: 16px;
+    right: 16px;
+    padding: 12px 18px;
+    font-size: 14px;
+  }
+  .support-panel {
+    bottom: 76px;
+    right: 16px;
+  }
+}
+
+
+/* ============================================
    Checkout Popup
    ============================================ */
 

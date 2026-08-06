@@ -213,6 +213,22 @@ Pay
 </div>
 </div>
 
+<button class="support-fab" onclick="openSupportPanel()">💬 Support</button>
+
+<div class="support-panel" id="support-panel">
+  <div class="support-panel-header">
+    <span>Need help?</span>
+    <button class="support-close" onclick="closeSupportPanel()">✕</button>
+  </div>
+  <p class="support-panel-sub">Send us a message and we'll get back to you.</p>
+
+  <textarea id="support-message" placeholder="What's going on?" maxlength="1000"></textarea>
+  <input type="text" id="support-contact" placeholder="Phone or Telegram username (optional)" maxlength="200">
+
+  <button class="support-send-btn" onclick="submitSupportMessage()">Send</button>
+  <p id="support-status"></p>
+</div>
+
 <script>
 let pollTimer = null;
 let currentProductId = null;
@@ -469,6 +485,45 @@ function submitRecover() {
         setTimeout(closeRecoverModal, 1500);
       } else {
         statusEl.innerText = data.message;
+      }
+    })
+    .catch(() => {
+      statusEl.innerText = "Something went wrong. Please try again.";
+    });
+}
+
+function openSupportPanel() {
+  document.getElementById("support-panel").classList.add("open");
+}
+
+function closeSupportPanel() {
+  document.getElementById("support-panel").classList.remove("open");
+}
+
+function submitSupportMessage() {
+  const message = document.getElementById("support-message").value.trim();
+  const contact = document.getElementById("support-contact").value.trim();
+  const statusEl = document.getElementById("support-status");
+
+  if (!message) {
+    statusEl.innerText = "Please enter a message.";
+    return;
+  }
+
+  statusEl.innerText = "Sending...";
+
+  fetch("/support-message", {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({ message, contact })
+  })
+    .then(res => res.json())
+    .then(data => {
+      statusEl.innerText = data.message;
+      if (data.status === "ok") {
+        document.getElementById("support-message").value = "";
+        document.getElementById("support-contact").value = "";
+        setTimeout(closeSupportPanel, 1800);
       }
     })
     .catch(() => {

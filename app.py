@@ -214,6 +214,42 @@ def index():
 
     return render_template("index.html", products=products)
 
+
+@app.route("/support-message", methods=["POST"])
+@limiter.limit("5 per minute")
+def support_message():
+    data = request.json or {}
+
+    message = (data.get("message") or "").strip()
+    contact = (data.get("contact") or "").strip()
+
+    if not message:
+        return jsonify({"status": "error", "message": "Please enter a message."}), 400
+
+    if len(message) > 1000 or len(contact) > 200:
+        return jsonify({"status": "error", "message": "That's too long -- please shorten it."}), 400
+
+    conn = get_db()
+    try:
+        cur = conn.cursor()
+        cur.execute(
+            "INSERT INTO support_messages (message, contact) VALUES (%s, %s)",
+            (message, contact)
+        )
+        conn.commit()
+    finally:
+        cur.close()
+        conn.close()
+
+    notification = f"🆘 New support message:\n\n{message}"
+    if contact:
+        notification += f"\n\nContact: {contact}"
+
+    send_telegram_message(ADMIN_TELEGRAM_CHAT_ID, notification)
+
+    return jsonify({"status": "ok", "message": "Thanks! We'll get back to you shortly."})
+
+
 @app.route("/buy", methods=["POST"])
 @limiter.limit("5 per minute")  # Limit to 5 requests per minute per IP
 def buy():
