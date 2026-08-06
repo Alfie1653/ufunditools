@@ -225,7 +225,8 @@ def support_message():
 
     if not message:
         return jsonify({"status": "error", "message": "Please enter a message."}), 400
-
+    if not contact:
+        return jsonify({"status": "error", "message": "Please provide a phone number or Telegram username."}), 400
     if len(message) > 1000 or len(contact) > 200:
         return jsonify({"status": "error", "message": "That's too long -- please shorten it."}), 400
 

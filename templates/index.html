@@ -510,6 +510,11 @@ function submitSupportMessage() {
     return;
   }
 
+  if (!contact) {
+    statusEl.innerText = "Please provide a phone number or Telegram username.";
+    return;
+  }
+
   statusEl.innerText = "Sending...";
 
   fetch("/support-message", {
