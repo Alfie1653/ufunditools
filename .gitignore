@@ -46,3 +46,6 @@ Thumbs.db
 ngrok.exe
 ngrok
 *.exe
+
+# Local-only admin tool, not part of the deployed app
+uploads.py
