@@ -657,23 +657,22 @@ BUY
 </button>
 </div>
 
-<!-- COMING SOON: NUMERICAL ANALYSIS -->
+<!-- NUMERICAL ANALYSIS -->
 <div>
-<div class="product-card coming-soon">
+<div class="product-card">
 <div class="preview">
   <img src="{{ url_for('static', filename='images/Numerical Analysis.png') }}" alt="NUMERICAL ANALYSIS">
-  <span class="coming-soon-badge">Coming Soon</span>
 </div>
 <div class="product-info">
 <div class="description">
-NUMERICAL ANALYSIS
+{{ products["ebook7"]["name"] }}
 </div>
 <div class="price">
---
+{{ products["ebook7"]["price"] }}
 </div>
 </div>
 </div>
-<button class="buy-btn" disabled>
+<button class="buy-btn" onclick="openCheckout('ebook7')">
 BUY
 </button>
 </div>
