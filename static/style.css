@@ -56,6 +56,90 @@ h1::after {
   margin: 18px auto 0;
   border-radius: 2px;
 }
+/* ============================================
+    Store Layout Sidebar and Products
+   ============================================ */
+.store-layout {
+  display: flex;
+  align-items: flex-start;
+  gap: 36px;
+  max-width: 1500px;
+  margin: 48px auto 0;
+}
+
+.sidebar {
+  width: 220px;
+  flex-shrink: 0;
+  background: var(--color-card-bg);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-card);
+  padding: 24px 20px;
+  position: sticky;
+  top: 24px;
+}
+
+.sidebar h3 {
+  font-size: 13px;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: var(--color-text-muted);
+  margin: 0 0 10px;
+}
+
+.sidebar h3:not(:first-child) {
+  margin-top: 24px;
+}
+
+#search-input {
+  width: 100%;
+  padding: 10px 12px;
+  font-size: 14px;
+  border: 1.5px solid #d1d5db;
+  border-radius: var(--radius-md);
+  background: #f9fafb;
+  font-family: var(--font-base);
+}
+
+#search-input:focus {
+  outline: none;
+  border-color: var(--color-primary);
+  background: #ffffff;
+}
+
+.sort-btn {
+  display: block;
+  width: 100%;
+  text-align: left;
+  background: none;
+  border: none;
+  padding: 9px 10px;
+  font-size: 14px;
+  color: var(--color-text-dark);
+  border-radius: var(--radius-md);
+  cursor: pointer;
+  transition: background 0.2s ease;
+}
+
+.sort-btn:hover {
+  background: rgba(0,137,123,0.08);
+}
+
+.sort-btn.active {
+  background: var(--color-primary);
+  color: white;
+  font-weight: 600;
+}
+
+.products-container {
+  margin: 0;
+  flex: 1;
+  min-width: 0;
+}
+
+/* Remove the old top margin since .store-layout now controls it */
+.products-container {
+  margin-top: 0;
+}
 
 /* ============================================
    Product Grid
@@ -596,6 +680,31 @@ h1::after {
     object-fit: cover;
     object-position: center;
     display: block;
+  }
+  .store-layout {
+    flex-direction: column;
+  }
+  .sidebar {
+    width: 100%;
+    position: static;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 10px 16px;
+  }
+  .sidebar h3 {
+    width: 100%;
+    margin: 0;
+  }
+  .sidebar h3:not(:first-child) {
+    margin-top: 8px;
+  }
+  #search-input {
+    flex: 1;
+    min-width: 180px;
+  }
+  .sort-btn {
+    width: auto;
   }
 }
 

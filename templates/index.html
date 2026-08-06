@@ -9,6 +9,19 @@
 </head>
 <body>
 <h1>Ufundi Tools</h1>
+
+<div class="store-layout">
+
+  <aside class="sidebar">
+    <h3>Search</h3>
+    <input type="text" id="search-input" placeholder="Search for a topic..." oninput="filterProducts()">
+
+    <h3>Sort By</h3>
+    <button class="sort-btn active" data-sort="default" onclick="setSort('default', this)">Default</button>
+    <button class="sort-btn" data-sort="name-asc" onclick="setSort('name-asc', this)">Name A–Z</button>
+    <button class="sort-btn" data-sort="price-asc" onclick="setSort('price-asc', this)">Price: Low to High</button>
+    <button class="sort-btn" data-sort="price-desc" onclick="setSort('price-desc', this)">Price: High to Low</button>
+  </aside>
 <div class="products-container">
 <div class="product-grid">
 
@@ -701,6 +714,8 @@ BUY
 </div>
 </div>
 
+</div>
+
 <p id="status"></p>
 <div class="telegram-wrapper">
   <a id="telegram-link" href="#" target="_blank" style="display:none;">Open Telegram</a>
@@ -1101,7 +1116,49 @@ function submitSupportMessage() {
     });
 }
 
+let currentSort = "default";
 
+function setSort(sortType, btn) {
+  currentSort = sortType;
+  document.querySelectorAll(".sort-btn").forEach(b => b.classList.remove("active"));
+  btn.classList.add("active");
+  filterAndSortProducts();
+}
+
+function filterAndSortProducts() {
+  const searchTerm = document.getElementById("search-input").value.trim().toLowerCase();
+  const grid = document.getElementById("product-grid");
+  const items = Array.from(grid.children);
+
+  items.forEach(item => {
+    const name = item.querySelector(".description")?.innerText.toLowerCase() || "";
+    const matches = name.includes(searchTerm);
+    item.style.display = matches ? "" : "none";
+  });
+
+  if (currentSort !== "default") {
+    const sorted = items.slice().sort((a, b) => {
+      if (currentSort === "name-asc") {
+        const nameA = a.querySelector(".description")?.innerText.trim().toLowerCase() || "";
+        const nameB = b.querySelector(".description")?.innerText.trim().toLowerCase() || "";
+        return nameA.localeCompare(nameB);
+      }
+
+      const getPrice = el => {
+        const text = el.querySelector(".price")?.innerText || "";
+        const num = parseFloat(text.replace(/[^0-9.]/g, ""));
+        return isNaN(num) ? Infinity : num; // "Coming soon" (--) sinks to the bottom
+      };
+
+      const priceA = getPrice(a);
+      const priceB = getPrice(b);
+
+      return currentSort === "price-asc" ? priceA - priceB : priceB - priceA;
+    });
+
+    sorted.forEach(item => grid.appendChild(item));
+  }
+}
 </script>
 
 </body>
