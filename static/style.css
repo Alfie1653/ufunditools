@@ -155,6 +155,22 @@ h1::after {
   flex-direction: column;
 }
 
+.no-results {
+  text-align: center;
+  padding: 50px 20px;
+  color: var(--color-text-muted);
+}
+
+.no-results p {
+  font-size: 15px;
+  margin-bottom: 16px;
+}
+
+.no-results span {
+  font-weight: 600;
+  color: var(--color-text-dark);
+}
+
 /* ============================================
    Product Card
    ============================================ */

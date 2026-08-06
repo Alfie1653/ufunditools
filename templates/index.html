@@ -712,6 +712,11 @@ BUY
 </div>
 
 </div>
+
+<div class="no-results" id="no-results" style="display:none;">
+  <p>No products match your search.</p>
+  <button class="request-trigger-btn" onclick="openRequestModal()">Request a Topic</button>
+</div>
 </div>
 
 </div>
@@ -1158,6 +1163,37 @@ function filterAndSortProducts() {
 
     sorted.forEach(item => grid.appendChild(item));
   }
+}
+
+function filterProducts() {
+  const searchTerm = document.getElementById("search-input").value.trim().toLowerCase();
+  const grid = document.getElementById("product-grid");
+  const items = Array.from(grid.children);
+  const noResultsEl = document.getElementById("no-results");
+
+  let visibleCount = 0;
+
+  items.forEach(item => {
+    const name = item.querySelector(".description")?.innerText.toLowerCase() || "";
+    const matches = name.includes(searchTerm);
+    item.style.display = matches ? "" : "none";
+    if (matches) visibleCount++;
+  });
+
+  if (searchTerm && visibleCount === 0) {
+    document.getElementById("no-results-term").innerText = document.getElementById("search-input").value.trim();
+    noResultsEl.style.display = "block";
+    grid.style.display = "none";
+  } else {
+    noResultsEl.style.display = "none";
+    grid.style.display = "grid";
+  }
+}
+
+function openRequestModalWithTopic() {
+  const searchTerm = document.getElementById("search-input").value.trim();
+  openRequestModal();
+  document.getElementById("topic").value = searchTerm;
 }
 </script>
 
