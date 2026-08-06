@@ -193,6 +193,42 @@ h1::after {
 }
 
 /* ============================================
+    Coming Soon Badge
+   ============================================ */
+   .product-card.coming-soon {
+  opacity: 0.72;
+}
+
+.product-card.coming-soon .preview img {
+  filter: grayscale(35%);
+}
+
+.coming-soon-badge {
+  position: absolute;
+  top: 12px;
+  right: 12px;
+  background: rgba(20,26,31,0.85);
+  color: white;
+  font-size: 11.5px;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  padding: 5px 10px;
+  border-radius: 20px;
+  z-index: 2;
+}
+
+.buy-btn:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+  background-color: #9ca3af;
+}
+
+.buy-btn:disabled:hover {
+  background-color: #9ca3af;
+}
+
+/* ============================================
    Status text
    ============================================ */
 
