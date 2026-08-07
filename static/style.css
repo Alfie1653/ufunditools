@@ -189,7 +189,7 @@ h1::after {
 }
 
 .product-card:hover {
-  transform: translateY(-6px);
+  transform: translateY(0px);
   box-shadow: var(--shadow-card-hover);
 }
 
