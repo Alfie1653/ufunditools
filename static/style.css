@@ -168,7 +168,7 @@ h1::after {
 
 .no-results span {
   font-weight: 600;
-  color: var(--color-text-dark);
+  color: var(--color-text-bg);
 }
 
 /* ============================================
