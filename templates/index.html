@@ -1181,7 +1181,6 @@ function filterProducts() {
   });
 
   if (searchTerm && visibleCount === 0) {
-    document.getElementById("no-results-term").innerText = document.getElementById("search-input").value.trim();
     noResultsEl.style.display = "block";
     grid.style.display = "none";
   } else {
