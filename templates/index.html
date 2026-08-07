@@ -714,7 +714,7 @@ BUY
 </div>
 
 <div class="no-results" id="no-results" style="display:none;">
-  <p>No products match your search.</p>
+  <p>No products found for <span id="no-results-term"></span>.</p>
   <button class="request-trigger-btn" onclick="openRequestModal()">Request a Topic</button>
 </div>
 </div>
@@ -1181,6 +1181,7 @@ function filterProducts() {
   });
 
   if (searchTerm && visibleCount === 0) {
+    document.getElementById("no-results-term").innerText = document.getElementById("search-input").value.trim();
     noResultsEl.style.display = "block";
     grid.style.display = "none";
   } else {
