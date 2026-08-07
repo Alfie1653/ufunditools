@@ -14,7 +14,7 @@
 
   <aside class="sidebar">
     <h3>Search</h3>
-    <input type="text" id="search-input" placeholder="Search for a topic..." oninput="filterAndSortProducts()">
+    <input type="text" id="search-input" placeholder="Search for a topic..." oninput="filterProducts()">
 
     <h3>Sort By</h3>
     <button class="sort-btn active" data-sort="default" onclick="setSort('default', this)">Default</button>
@@ -1127,22 +1127,42 @@ function setSort(sortType, btn) {
   currentSort = sortType;
   document.querySelectorAll(".sort-btn").forEach(b => b.classList.remove("active"));
   btn.classList.add("active");
-  filterAndSortProducts();
+  updateProductDisplay();
 }
 
-function filterAndSortProducts() {
+function filterProducts() {
+  updateProductDisplay();
+}
+
+function updateProductDisplay() {
   const searchTerm = document.getElementById("search-input").value.trim().toLowerCase();
   const grid = document.getElementById("product-grid");
+  const noResultsEl = document.getElementById("no-results");
   const items = Array.from(grid.children);
+
+  let visibleCount = 0;
 
   items.forEach(item => {
     const name = item.querySelector(".description")?.innerText.toLowerCase() || "";
     const matches = name.includes(searchTerm);
     item.style.display = matches ? "" : "none";
+    if (matches) visibleCount++;
   });
 
+  if (searchTerm && visibleCount === 0) {
+    document.getElementById("no-results-term").innerText = document.getElementById("search-input").value.trim();
+    noResultsEl.style.display = "block";
+    grid.style.display = "none";
+    return;
+  }
+
+  noResultsEl.style.display = "none";
+  grid.style.display = "grid";
+
   if (currentSort !== "default") {
-    const sorted = items.slice().sort((a, b) => {
+    const visibleItems = items.filter(item => item.style.display !== "none");
+
+    const sorted = visibleItems.slice().sort((a, b) => {
       if (currentSort === "name-asc") {
         const nameA = a.querySelector(".description")?.innerText.trim().toLowerCase() || "";
         const nameB = b.querySelector(".description")?.innerText.trim().toLowerCase() || "";
@@ -1162,31 +1182,6 @@ function filterAndSortProducts() {
     });
 
     sorted.forEach(item => grid.appendChild(item));
-  }
-}
-
-function filterProducts() {
-  const searchTerm = document.getElementById("search-input").value.trim().toLowerCase();
-  const grid = document.getElementById("product-grid");
-  const items = Array.from(grid.children);
-  const noResultsEl = document.getElementById("no-results");
-
-  let visibleCount = 0;
-
-  items.forEach(item => {
-    const name = item.querySelector(".description")?.innerText.toLowerCase() || "";
-    const matches = name.includes(searchTerm);
-    item.style.display = matches ? "" : "none";
-    if (matches) visibleCount++;
-  });
-
-  if (searchTerm && visibleCount === 0) {
-    document.getElementById("no-results-term").innerText = document.getElementById("search-input").value.trim();
-    noResultsEl.style.display = "block";
-    grid.style.display = "none";
-  } else {
-    noResultsEl.style.display = "none";
-    grid.style.display = "grid";
   }
 }
 
