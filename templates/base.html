@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>{% block title %}Ufundi Tools{% endblock %}</title>
+<meta name="description" content="{% block description %}Curated engineering notes, past papers, and study material for university students in Kenya. Instant M-Pesa payment, delivered on Telegram.{% endblock %}">
+
+<!-- Open Graph (Facebook, WhatsApp, Telegram link previews) -->
+<meta property="og:title" content="{% block og_title %}Ufundi Tools{% endblock %}">
+<meta property="og:description" content="{% block og_description %}Curated engineering notes and past papers for Kenyan university students.{% endblock %}">
+<meta property="og:type" content="website">
+<meta property="og:url" content="{{ request.url }}">
+<meta property="og:image" content="{{ url_for('static', filename='images/og-banner.png', _external=True) }}">
+
+<!-- Twitter Card -->
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="{% block twitter_title %}Ufundi Tools{% endblock %}">
+<meta name="twitter:description" content="{% block twitter_description %}Curated engineering notes and past papers for Kenyan university students.{% endblock %}">
+<meta name="twitter:image" content="{{ url_for('static', filename='images/og-banner.png', _external=True) }}">
+
+<link rel="canonical" href="{{ request.url }}">
+
+<link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+<link rel="icon" href="{{ url_for('static', filename='images/favicon.ico') }}" type="image/x-icon">
+</head>
+<body>
+
+<nav class="site-nav">
+  <a href="/" class="site-logo">Ufundi Tools</a>
+  <a href="/about" class="nav-link">About</a>
+</nav>
+
+{% block content %}{% endblock %}
+
+<footer class="site-footer">
+  <div class="footer-links">
+    <a href="/about">About</a>
+    <a href="/faq">FAQ</a>
+    <a href="/products">Browse Notes</a>
+    <a href="/terms">Terms</a>
+    <a href="/privacy">Privacy</a>
+    <a href="/refunds">Refunds</a>
+  </div>
+  <p class="footer-note">&copy; {{ current_year }} Ufundi Tools. All rights reserved.</p>
+</footer>
+
+<p id="status"></p>
+<div class="telegram-wrapper">
+  <a id="telegram-link" href="#" target="_blank" style="display:none;">Open Telegram</a>
+</div>
+
+<div class="request-btn-wrapper">
+  <button class="request-trigger-btn" onclick="openRequestModal()">Request a Topic</button>
+  <button class="request-trigger-btn" onclick="openRecoverModal()">Lost Your Link?</button>
+</div>
+
+<!-- RECOVER LINK POPUP -->
+<div class="overlay" id="recover-overlay">
+<div class="modal">
+<h2>Recover Your Download Link</h2>
+<p>Enter the phone number you paid with, and we'll find your order.</p>
+<label for="recover-phone">Phone number</label>
+<input type="tel" id="recover-phone" placeholder="07XXXXXXXX">
+<p id="recover-status"></p>
+<div class="modal-actions">
+<button class="btn-cancel" onclick="closeRecoverModal()">Cancel</button>
+<button onclick="submitRecover()">Find My Order</button>
+</div>
+</div>
+</div>
+
+<!-- REQUEST TOPIC POPUP -->
+<div class="overlay" id="request-overlay">
+<div class="modal">
+<h2>Don't see a topic you need?</h2>
+<p>Request a topic and we'll research, curate, and upload it to the site. Check back to see when it's ready.</p>
+<label for="topic">Topic / Unit name *</label>
+<input type="text" id="topic" placeholder="e.g. Foundation Engineering 2" maxlength="200">
+<label for="details">Details (optional)</label>
+<textarea id="details" placeholder="Anything specific you want covered?" maxlength="1000"></textarea>
+<label for="contact">Phone or Telegram username (optional, in case we need to contact you)</label>
+<input type="text" id="contact" placeholder="So we can notify you when it's ready" maxlength="200">
+<p id="request-status"></p>
+<div class="modal-actions">
+<button class="btn-cancel" onclick="closeRequestModal()">Cancel</button>
+<button onclick="submitRequest()">Submit</button>
+</div>
+</div>
+</div>
+
+<!-- CHECKOUT POPUP -->
+<div class="overlay" id="overlay">
+<div class="modal">
+<h2>Enter your M-Pesa number</h2>
+<p>We'll send a payment prompt straight to your phone.</p>
+<label for="phone">Phone number</label>
+<input type="tel" id="phone" placeholder="07XXXXXXXX">
+<div class="modal-actions">
+<button class="btn-cancel" onclick="closeCheckout()">Cancel</button>
+<button onclick="submitCheckout()">Pay</button>
+</div>
+</div>
+</div>
+
+<button class="support-fab" onclick="openSupportPanel()">💬 Support</button>
+<div class="support-panel" id="support-panel">
+  <div class="support-panel-header">
+    <span>Need help?</span>
+    <button class="support-close" onclick="closeSupportPanel()">✕</button>
+  </div>
+  <p class="support-panel-sub">Send us a message and we'll get back to you.</p>
+  <textarea id="support-message" placeholder="What's going on?" maxlength="1000"></textarea>
+  <input type="text" id="support-contact" placeholder="Phone or Telegram username" maxlength="200">
+  <button class="support-send-btn" onclick="submitSupportMessage()">Send</button>
+  <p id="support-status"></p>
+</div>
+
+<script>
+{% include "shared.js" %}
+</script>
+
+{% block scripts %}{% endblock %}
+
+</body>
+</html>

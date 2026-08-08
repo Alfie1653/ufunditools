@@ -1,0 +1,72 @@
+{% extends "base.html" %}
+{% block title %}FAQ - Ufundi Tools{% endblock %}
+
+{% block content %}
+<section class="faq-section">
+  <h1>Frequently Asked Questions</h1>
+
+  <div class="faq-item">
+    <button class="faq-question" onclick="toggleFaq(this)">
+      How does buying notes work?
+    </button>
+    <div class="faq-answer">
+      <p>Pick a unit, click BUY, and enter your M-Pesa number. You'll get an STK push prompt on your phone -- enter your PIN to complete payment. Once confirmed, you'll be sent a link to open Telegram, where your file is delivered automatically.</p>
+    </div>
+  </div>
+
+  <div class="faq-item">
+    <button class="faq-question" onclick="toggleFaq(this)">
+      Is paying with M-Pesa safe?
+    </button>
+    <div class="faq-answer">
+      <p>Yes. Payments are processed through IntaSend, a licensed payment provider. We never see or store your M-Pesa PIN -- it's entered directly on your phone through Safaricom's own prompt.</p>
+    </div>
+  </div>
+
+  <div class="faq-item">
+    <button class="faq-question" onclick="toggleFaq(this)">
+      I paid but didn't get my file. What do I do?
+    </button>
+    <div class="faq-answer">
+      <p>First, try the "Lost Your Link?" button on the notes page and enter the phone number you paid with -- this recovers most orders instantly. If that doesn't work, use the Support button in the bottom corner of the site and tell us what happened. We'll sort it out.</p>
+    </div>
+  </div>
+
+  <div class="faq-item">
+    <button class="faq-question" onclick="toggleFaq(this)">
+      Can I get a refund?
+    </button>
+    <div class="faq-answer">
+      <p>If you paid and genuinely never received your file after we've looked into it, we'll make it right -- either by delivering the file or refunding you. Reach out via Support and we'll handle it directly.</p>
+    </div>
+  </div>
+
+  <div class="faq-item">
+    <button class="faq-question" onclick="toggleFaq(this)">
+      I don't see the unit I need. Can you add it?
+    </button>
+    <div class="faq-answer">
+      <p>Yes -- use the "Request a Topic" button on the notes page. Tell us what you need, and we'll research, curate, and upload it. We're actively adding new units regularly.</p>
+    </div>
+  </div>
+
+  <div class="faq-item">
+    <button class="faq-question" onclick="toggleFaq(this)">
+      How is my file delivered?
+    </button>
+    <div class="faq-answer">
+      <p>Through Telegram. After payment, you'll get a link to our bot, which sends your file directly. Keep your Telegram app updated and notifications on so you don't miss it.</p>
+    </div>
+  </div>
+
+  <div class="faq-item">
+    <button class="faq-question" onclick="toggleFaq(this)">
+      Is my phone number or personal info shared with anyone?
+    </button>
+    <div class="faq-answer">
+      <p>No. Your details are used only to process your payment and deliver your file. We don't sell or share your information with third parties.</p>
+    </div>
+  </div>
+
+</section>
+{% endblock %}

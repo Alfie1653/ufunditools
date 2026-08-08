@@ -91,6 +91,44 @@ def is_valid_phone_number(phone_number):
     """Expects the normalized format the frontend sends: 254XXXXXXXXX"""
     return bool(re.match(r"^254[71]\d{8}$", phone_number))
 
+@app.context_processor
+def inject_current_year():
+    return {'current_year': datetime.now().year}
+
+@app.route("/")
+def home():
+    featured_ids = ["ebook5", "ebook6", "ebook7", "ebook4"]
+    featured_products = {pid: products[pid] for pid in featured_ids if pid in products}
+    return render_template("home.html", featured_products=featured_products)
+
+@app.route("/products")
+def products_page():
+    return render_template("products.html", products=products)
+
+@app.route("/about")
+def about():
+    return render_template("about.html")
+
+@app.route("/faq")
+def faq():
+    return render_template("faq.html")
+
+@app.route("/terms")
+def terms():
+    return render_template("terms.html")
+
+@app.route("/privacy")
+def privacy():
+    return render_template("privacy.html")
+
+@app.route("/refunds")
+def refunds():
+    return render_template("refunds.html")
+
+@app.route("/robots.txt")
+def robots():
+    return app.send_static_file("robots.txt")
+
 @app.route("/telegram-webhook", methods=["POST"])
 @limiter.limit("60 per minute")  # Limit to 60 requests per minute per IP
 def telegram_webhook():
@@ -213,14 +251,6 @@ def ratelimit_handler(e):
         "status": "error",
         "message": "Rate limit exceeded. Please try again later."
     }), 429
-
-@app.route("/")
-def index():
-
-    with open("products.json") as file:
-        products = json.load(file)
-
-    return render_template("index.html", products=products)
 
 
 @app.route("/support-message", methods=["POST"])

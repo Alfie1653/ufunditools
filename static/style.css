@@ -1,5 +1,29 @@
+/* ================================================================
+   UFUNDI TOOLS — STORE STYLESHEET
+   ================================================================
+   Sections:
+   1. Root variables & base
+   2. Site navigation
+   3. Hero (home page)
+   4. Featured section (home page)
+   5. Page heading (h1)
+   6. About / Terms / Privacy / Refunds pages
+   7. Store layout — sidebar + product grid container
+   8. Product grid
+   9. Product card
+   10. Coming soon badge
+   11. Status toast
+   12. Telegram link
+   13. Support floating button & panel
+   14. Checkout / Request / Recover modals
+   15. FAQ page
+   16. Footer
+   17. Responsive breakpoints
+   ================================================================ */
+
+
 /* ============================================
-   Ufundi Tools — Store Stylesheet
+   1. ROOT VARIABLES & BASE
    ============================================ */
 
 :root {
@@ -34,8 +58,113 @@ body {
   -webkit-font-smoothing: antialiased;
 }
 
+
 /* ============================================
-   Header
+   2. SITE NAVIGATION
+   ============================================ */
+
+.site-nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  max-width: 1500px;
+  margin: 0 auto 40px;
+  padding: 0 4px;
+}
+
+.site-logo {
+  color: #ffffff;
+  font-size: 20px;
+  font-weight: 700;
+  letter-spacing: -0.01em;
+  text-decoration: none;
+}
+
+.nav-link {
+  color: rgba(255,255,255,0.85);
+  text-decoration: none;
+  font-size: 15px;
+  font-weight: 600;
+  padding: 10px 20px;
+  border-radius: var(--radius-md);
+  border: 1.5px solid rgba(255,255,255,0.3);
+  transition: background 0.25s ease, border-color 0.25s ease;
+}
+
+.nav-link:hover {
+  background: rgba(255,255,255,0.1);
+  border-color: rgba(255,255,255,0.6);
+}
+
+
+/* ============================================
+   3. HERO (HOME PAGE)
+   ============================================ */
+
+.hero {
+  max-width: 700px;
+  margin: 40px auto 70px;
+  text-align: center;
+}
+
+.hero h1 {
+  font-size: 40px;
+  margin-bottom: 14px;
+}
+
+.hero-tagline {
+  color: rgba(255,255,255,0.8);
+  font-size: 17px;
+  line-height: 1.5;
+  margin: 0 0 32px;
+}
+
+.hero-cta {
+  display: inline-block;
+  background: var(--color-primary);
+  color: white;
+  text-decoration: none;
+  font-size: 16px;
+  font-weight: 700;
+  padding: 15px 34px;
+  border-radius: var(--radius-md);
+  box-shadow: var(--shadow-card);
+  transition: background 0.25s ease, transform 0.2s ease, box-shadow 0.3s ease;
+}
+
+.hero-cta:hover {
+  background: var(--color-primary-dark);
+  transform: translateY(-3px);
+  box-shadow: var(--shadow-card-hover);
+}
+
+
+/* ============================================
+   4. FEATURED SECTION (HOME PAGE)
+   ============================================ */
+
+.featured-section {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.featured-section h2 {
+  color: #ffffff;
+  font-size: 22px;
+  font-weight: 700;
+  margin: 0 0 24px;
+  text-align: center;
+}
+
+.featured-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 28px;
+}
+
+
+/* ============================================
+   5. PAGE HEADING (H1)
    ============================================ */
 
 h1 {
@@ -56,9 +185,61 @@ h1::after {
   margin: 18px auto 0;
   border-radius: 2px;
 }
+
+
 /* ============================================
-    Store Layout Sidebar and Products
+   6. ABOUT / TERMS / PRIVACY / REFUNDS PAGES
    ============================================ */
+
+.about-section {
+  max-width: 640px;
+  margin: 40px auto 0;
+  color: rgba(255,255,255,0.9);
+}
+
+.about-section h1 {
+  color: #ffffff;
+  margin-bottom: 20px;
+}
+
+.about-section h2 {
+  color: #ffffff;
+  font-size: 18px;
+  margin: 28px 0 10px;
+}
+
+.about-section p {
+  font-size: 15.5px;
+  line-height: 1.7;
+  margin-bottom: 18px;
+}
+
+.about-section ul {
+  color: rgba(255,255,255,0.85);
+  font-size: 14.5px;
+  line-height: 1.7;
+  padding-left: 20px;
+  margin-bottom: 18px;
+}
+
+.about-cta {
+  margin-top: 32px;
+  text-align: center;
+}
+
+.policy-updated {
+  color: rgba(255,255,255,0.5);
+  font-size: 13px;
+  font-style: italic;
+  margin-bottom: 20px;
+  text-align: center;
+}
+
+
+/* ============================================
+   7. STORE LAYOUT — SIDEBAR + PRODUCTS CONTAINER
+   ============================================ */
+
 .store-layout {
   display: flex;
   align-items: flex-start;
@@ -132,18 +313,16 @@ h1::after {
 
 .products-container {
   margin: 0;
+  margin-top: 0; /* overrides any inherited top margin now that .store-layout controls spacing */
   flex: 1;
   min-width: 0;
 }
 
-/* Remove the old top margin since .store-layout now controls it */
-.products-container {
-  margin-top: 0;
-}
 
 /* ============================================
-   Product Grid
+   8. PRODUCT GRID
    ============================================ */
+
 .product-grid {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
@@ -171,8 +350,9 @@ h1::after {
   color: #ffffff;
 }
 
+
 /* ============================================
-   Product Card
+   9. PRODUCT CARD
    ============================================ */
 
 .product-card {
@@ -211,8 +391,6 @@ h1::after {
   transition: transform 0.4s ease, opacity 0.3s ease;
 }
 
-
-
 .preview::after {
   content: "";
   position: absolute;
@@ -226,7 +404,7 @@ h1::after {
   opacity: 1;
 }
 
-/* Description + Price */
+/* Description + price */
 
 .product-info {
   padding: 18px 18px 4px;
@@ -254,7 +432,7 @@ h1::after {
   border-radius: 20px;
 }
 
-/* BUY Button */
+/* Buy button */
 
 .buy-btn {
   display: block;
@@ -283,12 +461,19 @@ h1::after {
 .buy-btn:disabled {
   opacity: 0.5;
   cursor: not-allowed;
+  background-color: #9ca3af;
 }
 
+.buy-btn:disabled:hover {
+  background-color: #9ca3af;
+}
+
+
 /* ============================================
-    Coming Soon Badge
+   10. COMING SOON BADGE
    ============================================ */
-   .product-card.coming-soon {
+
+.product-card.coming-soon {
   opacity: 0.72;
 }
 
@@ -311,18 +496,9 @@ h1::after {
   z-index: 2;
 }
 
-.buy-btn:disabled {
-  opacity: 0.5;
-  cursor: not-allowed;
-  background-color: #9ca3af;
-}
-
-.buy-btn:disabled:hover {
-  background-color: #9ca3af;
-}
 
 /* ============================================
-   Status text
+   11. STATUS TOAST
    ============================================ */
 
 #status {
@@ -350,8 +526,9 @@ h1::after {
   pointer-events: auto;
 }
 
+
 /* ============================================
-   Telegram link
+   12. TELEGRAM LINK
    ============================================ */
 
 .telegram-wrapper {
@@ -382,8 +559,9 @@ h1::after {
   transform: scale(0.98);
 }
 
+
 /* ============================================
-    Support Floating Action Button & Panel
+   13. SUPPORT FLOATING BUTTON & PANEL
    ============================================ */
 
 .support-fab {
@@ -497,22 +675,9 @@ h1::after {
   min-height: 16px;
 }
 
-@media (max-width: 480px) {
-  .support-fab {
-    bottom: 16px;
-    right: 16px;
-    padding: 12px 18px;
-    font-size: 14px;
-  }
-  .support-panel {
-    bottom: 76px;
-    right: 16px;
-  }
-}
-
 
 /* ============================================
-   Checkout Popup
+   14. CHECKOUT / REQUEST / RECOVER MODALS
    ============================================ */
 
 .overlay {
@@ -675,17 +840,133 @@ h1::after {
   min-height: 18px;
 }
 
+
 /* ============================================
-   Responsive
+   15. FAQ PAGE
    ============================================ */
 
+.faq-section {
+  max-width: 700px;
+  margin: 40px auto 0;
+}
+
+.faq-section h1 {
+  color: #ffffff;
+  margin-bottom: 28px;
+}
+
+.faq-item {
+  background: var(--color-card-bg);
+  border-radius: var(--radius-md);
+  margin-bottom: 12px;
+  overflow: hidden;
+  box-shadow: var(--shadow-card);
+}
+
+.faq-question {
+  width: 100%;
+  text-align: left;
+  background: none;
+  border: none;
+  padding: 18px 20px;
+  font-size: 15.5px;
+  font-weight: 600;
+  color: var(--color-text-dark);
+  cursor: pointer;
+  position: relative;
+}
+
+.faq-question::after {
+  content: "+";
+  position: absolute;
+  right: 20px;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 20px;
+  color: var(--color-primary);
+  transition: transform 0.25s ease;
+}
+
+.faq-question.active::after {
+  transform: translateY(-50%) rotate(45deg);
+}
+
+.faq-answer {
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.3s ease, padding 0.3s ease;
+  padding: 0 20px;
+}
+
+.faq-answer.open {
+  max-height: 300px;
+  padding: 0 20px 18px;
+}
+
+.faq-answer p {
+  color: var(--color-text-muted);
+  font-size: 14.5px;
+  line-height: 1.6;
+  margin: 0;
+}
+
+
+/* ============================================
+   16. FOOTER
+   ============================================ */
+
+.site-footer {
+  max-width: 1500px;
+  margin: 70px auto 0;
+  padding: 30px 4px 0;
+  border-top: 1px solid rgba(255,255,255,0.12);
+  text-align: center;
+}
+
+.footer-links {
+  display: flex;
+  justify-content: center;
+  gap: 24px;
+  margin-bottom: 14px;
+  flex-wrap: wrap;
+}
+
+.footer-links a {
+  color: rgba(255,255,255,0.75);
+  text-decoration: none;
+  font-size: 14px;
+  font-weight: 600;
+  transition: color 0.2s ease;
+}
+
+.footer-links a:hover {
+  color: #ffffff;
+}
+
+.footer-note {
+  color: rgba(255,255,255,0.45);
+  font-size: 12.5px;
+  margin: 0;
+}
+
+
+/* ============================================
+   17. RESPONSIVE BREAKPOINTS
+   ============================================ */
+
+/* ---- ≤1100px: tablets, sidebar stacks above grid ---- */
 @media (max-width: 1100px) {
-  .products-containter {
-    width: 100%;
+  .products-container {
+    width: 100%; /* NOTE: was ".products-containter" (typo) in the original file --
+                     that malformed selector never matched anything and was silently
+                     ignored by the browser. Corrected here; no visual change since
+                     it wasn't applying before either. */
   }
+
   .product-grid {
     grid-template-columns: repeat(2, 1fr);
   }
+
   .preview img {
     height: 100%;
     width: 100%;
@@ -693,9 +974,11 @@ h1::after {
     object-position: center;
     display: block;
   }
+
   .store-layout {
     flex-direction: column;
   }
+
   .sidebar {
     width: 100%;
     position: static;
@@ -708,51 +991,121 @@ h1::after {
     border-radius: var(--radius-lg);
     box-shadow: var(--shadow-card);
   }
+
   .sidebar h3 {
     width: 100%;
     margin: 0;
   }
+
   .sidebar h3:not(:first-child) {
     margin-top: 8px;
   }
+
   #search-input {
     flex: 1;
     min-width: 180px;
   }
+
   .sort-btn {
     width: auto;
   }
+
+  .site-nav {
+    margin-bottom: 28px;
+  }
+
+  .site-logo {
+    font-size: 18px;
+  }
+
+  .nav-link {
+    padding: 8px 16px;
+    font-size: 14px;
+  }
+
+  .hero {
+    margin: 20px auto 50px;
+  }
+
+  .hero h1 {
+    font-size: 30px;
+  }
+
+  .hero-tagline {
+    font-size: 15px;
+  }
+
+  .hero-cta {
+    padding: 13px 28px;
+    font-size: 15px;
+  }
+
+  .featured-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
 }
 
+/* ---- ≤600px: phones ---- */
 @media (max-width: 600px) {
   body {
     padding: 32px 16px 60px;
   }
+
   h1 {
     font-size: 27px;
   }
+
   .products-container {
     width: 100%;
   }
+
   .product-grid {
     grid-template-columns: 1fr;
     gap: 20px;
   }
+
   .preview {
     height: 200px;
   }
-  .product-info {
-    flex-direction: column;
-    align-items: flex-start;
-  }
-  .price {
-    align-self: flex-start;
-  }
+
   .preview img {
     height: 100%;
     width: 100%;
     object-fit: cover;
     object-position: center;
     display: block;
+  }
+
+  .product-info {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .price {
+    align-self: flex-start;
+  }
+
+  .featured-grid {
+    grid-template-columns: 1fr;
+    gap: 20px;
+  }
+
+  .featured-section h2 {
+    font-size: 19px;
+  }
+}
+
+/* ---- ≤480px: small phones, support widget only ---- */
+@media (max-width: 480px) {
+  .support-fab {
+    bottom: 16px;
+    right: 16px;
+    padding: 12px 18px;
+    font-size: 14px;
+  }
+
+  .support-panel {
+    bottom: 76px;
+    right: 16px;
   }
 }

@@ -1,0 +1,724 @@
+{% extends "base.html" %}
+{% block title %}Browse Notes - Ufundi Tools{% endblock %}
+{% block description %}Browse curated notes across Calculus, Structural Design, Fluid Mechanics, and more. Instant M-Pesa checkout.{% endblock %}
+
+{% block content %}
+<h1>Browse Notes</h1>
+
+<div class="store-layout">
+  <aside class="sidebar">
+    <h3>Search</h3>
+    <input type="text" id="search-input" placeholder="Search for a topic..." oninput="filterProducts()">
+    <h3>Sort By</h3>
+    <button class="sort-btn active" data-sort="default" onclick="setSort('default', this)">Default</button>
+    <button class="sort-btn" data-sort="name-asc" onclick="setSort('name-asc', this)">Name A–Z</button>
+    <button class="sort-btn" data-sort="price-asc" onclick="setSort('price-asc', this)">Price: Low to High</button>
+    <button class="sort-btn" data-sort="price-desc" onclick="setSort('price-desc', this)">Price: High to Low</button>
+  </aside>
+
+  <div class="products-container">
+    <div class="product-grid" id="product-grid">
+
+      <!-- ALL PRODUCTS -->
+       <!-- TRANSPORT ENGINEERING -->
+        <div data-priority="2">
+        <div class="product-card">
+        <div class="preview">
+          <img src="{{ url_for('static', filename='images/Transport Engineering 1.png') }}" alt="TRANSPORT ENGINEERING">
+        </div>
+        <div class="product-info">
+        <div class="description">
+        {{ products["ebook1"]["name"] }}
+        </div>
+        <div class="price">
+        KES {{ products["ebook1"]["price"] }}
+        </div>
+        </div>
+        </div>
+        <button class="buy-btn" onclick="openCheckout('ebook1')">
+        BUY
+        </button>
+        </div>
+
+        <!-- TRAFFIC ENGINEERING -->
+        <div data-priority="2">
+        <div class="product-card">
+        <div class="preview">
+          <img src="{{ url_for('static', filename='images/Traffic Engineering 1.png') }}" alt="TRAFFIC ENGINEERING">
+        </div>
+        <div class="product-info">
+        <div class="description">
+        {{ products["ebook2"]["name"] }}
+        </div>
+        <div class="price">
+        KES {{ products["ebook2"]["price"] }}
+        </div>
+        </div>
+        </div>
+        <button class="buy-btn" onclick="openCheckout('ebook2')">
+        BUY
+        </button>
+        </div>
+
+        <!-- OPERATION RESEARCH -->
+        <div data-priority="1">
+        <div class="product-card">
+        <div class="preview">
+          <img src="{{ url_for('static', filename='images/Operation Research 1.png') }}" alt="OPERATION RESEARCH 1">
+        </div>
+        <div class="product-info">
+        <div class="description">
+        {{ products["ebook3"]["name"] }}
+        </div>
+        <div class="price">
+        KES {{ products["ebook3"]["price"] }}
+        </div>
+        </div>
+        </div>
+        <button class="buy-btn" onclick="openCheckout('ebook3')">
+        BUY
+        </button>
+        </div>
+
+        <!-- PAST PAPERS -->
+        <div data-priority="1">
+        <div class="product-card">
+        <div class="preview">
+          <img src="{{ url_for('static', filename='images/Past Papers.png') }}" alt="Past Papers">
+        </div>
+        <div class="product-info">
+        <div class="description">
+        {{ products["ebook4"]["name"] }}
+        </div>
+        <div class="price">
+        KES {{ products["ebook4"]["price"] }}
+        </div>
+        </div>
+        </div>
+        <button class="buy-btn" onclick="openCheckout('ebook4')">
+        BUY
+        </button>
+        </div>
+
+        <!-- CALCULUS 1 -->
+        <div data-priority="1">
+        <div class="product-card">
+        <div class="preview">
+          <img src="{{ url_for('static', filename='images/Calculus 1.png') }}" alt="CALCULUS 1">
+        </div>
+        <div class="product-info">
+        <div class="description">
+        {{ products["ebook5"]["name"] }}
+        </div>
+        <div class="price">
+        KES {{ products["ebook5"]["price"] }}
+        </div>
+        </div>
+        </div>
+        <button class="buy-btn" onclick="openCheckout('ebook5')">
+        BUY
+        </button>
+        </div>
+
+        <!-- CALCULUS II -->
+        <div data-priority="1">
+        <div class="product-card">
+        <div class="preview">
+          <img src="{{ url_for('static', filename='images/Calculus 2.png') }}" alt="CALCULUS 2">
+        </div>
+        <div class="product-info">
+        <div class="description">
+        {{ products["ebook6"]["name"] }}
+        </div>
+        <div class="price">
+        KES {{ products["ebook6"]["price"] }}
+        </div>
+        </div>
+        </div>
+        <button class="buy-btn" onclick="openCheckout('ebook6')">
+        BUY
+        </button>
+        </div>
+
+          <!-- COMING SOON: CHEMISTRY I -->
+      <div data-priority="3">
+      <div class="product-card coming-soon">
+      <div class="preview">
+        <img src="{{ url_for('static', filename='images/Chemistry 1.png') }}" alt="CHEMISTRY 1">
+        <span class="coming-soon-badge">Coming Soon</span>
+      </div>
+      <div class="product-info">
+      <div class="description">
+      CHEMISTRY I
+      </div>
+      <div class="price">
+      --
+      </div>
+      </div>
+      </div>
+      <button class="buy-btn" disabled>
+      BUY
+      </button>
+      </div>
+
+      <!-- COMING SOON: PHYSICS I -->
+      <div data-priority="3">
+      <div class="product-card coming-soon">
+      <div class="preview">
+        <img src="{{ url_for('static', filename='images/Physics 1.png') }}" alt="Physics 1">
+        <span class="coming-soon-badge">Coming Soon</span>
+      </div>
+      <div class="product-info">
+      <div class="description">
+      PHYSICS I
+      </div>
+      <div class="price">
+      --
+      </div>
+      </div>
+      </div>
+      <button class="buy-btn" disabled>
+      BUY
+      </button>
+      </div>
+
+      <!-- COMING SOON: GEOMETRY -->
+      <div data-priority="1">
+      <div class="product-card coming-soon">
+      <div class="preview">
+        <img src="{{ url_for('static', filename='images/Geometry.png') }}" alt="GEOMETRY">
+        <span class="coming-soon-badge">Coming Soon</span>
+      </div>
+      <div class="product-info">
+      <div class="description">
+      GEOMETRY
+      </div>
+      <div class="price">
+      --
+      </div>
+      </div>
+      </div>
+      <button class="buy-btn" disabled>
+      BUY
+      </button>
+      </div>
+
+      <!-- COMING SOON: CHEMISTRY II -->
+      <div data-priority="3">
+      <div class="product-card coming-soon">
+      <div class="preview">
+        <img src="{{ url_for('static', filename='images/Chemistry II.png') }}" alt="CHEMISTRY II">
+        <span class="coming-soon-badge">Coming Soon</span>
+      </div>
+      <div class="product-info">
+      <div class="description">
+      CHEMISTRY II
+      </div>
+      <div class="price">
+      --
+      </div>
+      </div>
+      </div>
+      <button class="buy-btn" disabled>
+      BUY
+      </button>
+      </div>
+
+      <!-- COMING SOON: PHYSICS II -->
+      <div data-priority="3">
+      <div class="product-card coming-soon">
+      <div class="preview">
+        <img src="{{ url_for('static', filename='images/Physics 2.png') }}" alt="PHYSICS II">
+        <span class="coming-soon-badge">Coming Soon</span>
+      </div>
+      <div class="product-info">
+      <div class="description">
+      PHYSICS II
+      </div>
+      <div class="price">
+      --
+      </div>
+      </div>
+      </div>
+      <button class="buy-btn" disabled>
+      BUY
+      </button>
+      </div>
+
+      <!-- COMING SOON: ALGEBRA -->
+      <div data-priority="1">
+      <div class="product-card coming-soon">
+      <div class="preview">
+        <img src="{{ url_for('static', filename='images/Algebra.png') }}" alt="ALGEBRA">
+        <span class="coming-soon-badge">Coming Soon</span>
+      </div>
+      <div class="product-info">
+      <div class="description">
+      ALGEBRA
+      </div>
+      <div class="price">
+      --
+      </div>
+      </div>
+      </div>
+      <button class="buy-btn" disabled>
+      BUY
+      </button>
+      </div>
+
+      <!-- COMING SOON: LAW FOR ENGINEERS -->
+      <div data-priority="3">
+      <div class="product-card coming-soon">
+      <div class="preview">
+        <img src="{{ url_for('static', filename='images/Law for Engineers.png') }}" alt="LAW FOR ENGINEERS">
+        <span class="coming-soon-badge">Coming Soon</span>
+      </div>
+      <div class="product-info">
+      <div class="description">
+      LAW FOR ENGINEERS
+      </div>
+      <div class="price">
+      --
+      </div>
+      </div>
+      </div>
+      <button class="buy-btn" disabled>
+      BUY
+      </button>
+      </div>
+
+      <!-- COMING SOON: ORDINARY DIFFERENTIAL EQUATIONS -->
+      <div data-priority="1">
+      <div class="product-card coming-soon">
+      <div class="preview">
+        <img src="{{ url_for('static', filename='images/Ordinary Differential Equations.png') }}" alt="ORDINARY DIFFERENTIAL EQUATIONS">
+        <span class="coming-soon-badge">Coming Soon</span>
+      </div>
+      <div class="product-info">
+      <div class="description">
+      ORDINARY DIFFERENTIAL EQUATIONS
+      </div>
+      <div class="price">
+      --
+      </div>
+      </div>
+      </div>
+      <button class="buy-btn" disabled>
+      BUY
+      </button>
+      </div>
+
+      <!-- COMING SOON: CALCULUS III -->
+      <div data-priority="1">
+      <div class="product-card coming-soon">
+      <div class="preview">
+        <img src="{{ url_for('static', filename='images/Calculus 3.png') }}" alt="CALCULUS III">
+        <span class="coming-soon-badge">Coming Soon</span>
+      </div>
+      <div class="product-info">
+      <div class="description">
+      CALCULUS III
+      </div>
+      <div class="price">
+      --
+      </div>
+      </div>
+      </div>
+      <button class="buy-btn" disabled>
+      BUY
+      </button>
+      </div>
+
+      <!-- COMING SOON: STATISTICS -->
+      <div data-priority="1">
+      <div class="product-card coming-soon">
+      <div class="preview">
+        <img src="{{ url_for('static', filename='images/Statistics.png') }}" alt="STATISTICS">
+        <span class="coming-soon-badge">Coming Soon</span>
+      </div>
+      <div class="product-info">
+      <div class="description">
+      STATISTICS
+      </div>
+      <div class="price">
+      --
+      </div>
+      </div>
+      </div>
+      <button class="buy-btn" disabled>
+      BUY
+      </button>
+      </div>
+
+      <!-- COMING SOON: COMPUTER PROGRAMMING -->
+      <div data-priority="1">
+      <div class="product-card coming-soon">
+      <div class="preview">
+        <img src="{{ url_for('static', filename='images/Computer Programming.png') }}" alt="COMPUTER PROGRAMMING">
+        <span class="coming-soon-badge">Coming Soon</span>
+      </div>
+      <div class="product-info">
+      <div class="description">
+      COMPUTER PROGRAMMING
+      </div>
+      <div class="price">
+      --
+      </div>
+      </div>
+      </div>
+      <button class="buy-btn" disabled>
+      BUY
+      </button>
+      </div>
+
+      <!-- COMING SOON: CALCULUS IV -->
+      <div data-priority="1">
+      <div class="product-card coming-soon">
+      <div class="preview">
+        <img src="{{ url_for('static', filename='images/Calculus 4.png') }}" alt="CALCULUS IV">
+        <span class="coming-soon-badge">Coming Soon</span>
+      </div>
+      <div class="product-info">
+      <div class="description">
+      CALCULUS IV
+      </div>
+      <div class="price">
+      --
+      </div>
+      </div>
+      </div>
+      <button class="buy-btn" disabled>
+      BUY
+      </button>
+      </div>
+
+      <!-- COMING SOON: ECONOMICS AND ACCOUNTING -->
+      <div data-priority="3">
+      <div class="product-card coming-soon">
+      <div class="preview">
+        <img src="{{ url_for('static', filename='images/Economics and Accounting.png') }}" alt="ECONOMICS AND ACCOUNTING">
+        <span class="coming-soon-badge">Coming Soon</span>
+      </div>
+      <div class="product-info">
+      <div class="description">
+      ECONOMICS AND ACCOUNTING
+      </div>
+      <div class="price">
+      --
+      </div>
+      </div>
+      </div>
+      <button class="buy-btn" disabled>
+      BUY
+      </button>
+      </div>
+
+      <!-- COMING SOON: INSURANCE FOR ENGINEERS -->
+      <div data-priority="2">
+      <div class="product-card coming-soon">
+      <div class="preview">
+        <img src="{{ url_for('static', filename='images/Insurance for Engineers.png') }}" alt="INSURANCE FOR ENGINEERS">
+        <span class="coming-soon-badge">Coming Soon</span>
+      </div>
+      <div class="product-info">
+      <div class="description">
+      INSURANCE FOR ENGINEERS
+      </div>
+      <div class="price">
+      --
+      </div>
+      </div>
+      </div>
+      <button class="buy-btn" disabled>
+      BUY
+      </button>
+      </div>
+
+      <!-- COMING SOON: FLUID MECHANICS I -->
+      <div data-priority="1">
+      <div class="product-card coming-soon">
+      <div class="preview">
+        <img src="{{ url_for('static', filename='images/Fluid Mechanics 1.png') }}" alt="FLUID MECHANICS I">
+        <span class="coming-soon-badge">Coming Soon</span>
+      </div>
+      <div class="product-info">
+      <div class="description">
+      FLUID MECHANICS I
+      </div>
+      <div class="price">
+      --
+      </div>
+      </div>
+      </div>
+      <button class="buy-btn" disabled>
+      BUY
+      </button>
+      </div>
+
+      <!-- COMING SOON: THEORY OF STRUCTURES I -->
+      <div data-priority="1">
+      <div class="product-card coming-soon">
+      <div class="preview">
+        <img src="{{ url_for('static', filename='images/Theory of Structures 1.png') }}" alt="THEORY OF STRUCTURES I">
+        <span class="coming-soon-badge">Coming Soon</span>
+      </div>
+      <div class="product-info">
+      <div class="description">
+      THEORY OF STRUCTURES I
+      </div>
+      <div class="price">
+      --
+      </div>
+      </div>
+      </div>
+      <button class="buy-btn" disabled>
+      BUY
+      </button>
+      </div>
+
+      <!-- COMING SOON: STRENGTH OF MATERIALS -->
+      <div data-priority="1">
+      <div class="product-card coming-soon">
+      <div class="preview">
+        <img src="{{ url_for('static', filename='images/Strength of Materials.png') }}" alt="STRENGTH OF MATERIALS">
+        <span class="coming-soon-badge">Coming Soon</span>
+      </div>
+      <div class="product-info">
+      <div class="description">
+      STRENGTH OF MATERIALS
+      </div>
+      <div class="price">
+      --
+      </div>
+      </div>
+      </div>
+      <button class="buy-btn" disabled>
+      BUY
+      </button>
+      </div>
+
+      <!-- COMING SOON: SOIL MECHANICS I -->
+      <div data-priority="1">
+      <div class="product-card coming-soon">
+      <div class="preview">
+        <img src="{{ url_for('static', filename='images/Soil Mechanics 1.png') }}" alt="SOIL MECHANICS I">
+        <span class="coming-soon-badge">Coming Soon</span>
+      </div>
+      <div class="product-info">
+      <div class="description">
+      SOIL MECHANICS I
+      </div>
+      <div class="price">
+      --
+      </div>
+      </div>
+      </div>
+      <button class="buy-btn" disabled>
+      BUY
+      </button>
+      </div>
+
+      <!-- COMING SOON: THEORY OF STRUCTURES II -->
+      <div data-priority="1">
+      <div class="product-card coming-soon">
+      <div class="preview">
+        <img src="{{ url_for('static', filename='images/Theory of Structures 2.png') }}" alt="THEORY OF STRUCTURES II">
+        <span class="coming-soon-badge">Coming Soon</span>
+      </div>
+      <div class="product-info">
+      <div class="description">
+      THEORY OF STRUCTURES II
+      </div>
+      <div class="price">
+      --
+      </div>
+      </div>
+      </div>
+      <button class="buy-btn" disabled>
+      BUY
+      </button>
+      </div>
+
+      <!-- COMING SOON: FLUID MECHANICS II -->
+      <div data-priority="1">
+      <div class="product-card coming-soon">
+      <div class="preview">
+        <img src="{{ url_for('static', filename='images/Fluid Mechanics 2.png') }}" alt="FLUID MECHANICS II">
+        <span class="coming-soon-badge">Coming Soon</span>
+      </div>
+      <div class="product-info">
+      <div class="description">
+      FLUID MECHANICS II
+      </div>
+      <div class="price">
+      --
+      </div>
+      </div>
+      </div>
+      <button class="buy-btn" disabled>
+      BUY
+      </button>
+      </div>
+
+      <!-- COMING SOON: SOIL MECHANICS II -->
+      <div data-priority="1">
+      <div class="product-card coming-soon">
+      <div class="preview">
+        <img src="{{ url_for('static', filename='images/Soil Mechanics 2.png') }}" alt="SOIL MECHANICS II">
+        <span class="coming-soon-badge">Coming Soon</span>
+      </div>
+      <div class="product-info">
+      <div class="description">
+      SOIL MECHANICS II
+      </div>
+      <div class="price">
+      --
+      </div>
+      </div>
+      </div>
+      <button class="buy-btn" disabled>
+      BUY
+      </button>
+      </div>
+
+      <!-- COMING SOON: FOUNDATION ENGINEERING I -->
+      <div data-priority="1">
+      <div class="product-card coming-soon">
+      <div class="preview">
+        <img src="{{ url_for('static', filename='images/Foundation Engineering 1.png') }}" alt="FOUNDATION ENGINEERING I">
+        <span class="coming-soon-badge">Coming Soon</span>
+      </div>
+      <div class="product-info">
+      <div class="description">
+      FOUNDATION ENGINEERING I
+      </div>
+      <div class="price">
+      --
+      </div>
+      </div>
+      </div>
+      <button class="buy-btn" disabled>
+      BUY
+      </button>
+      </div>
+
+      <!-- COMING SOON: THEORY OF STRUCTURES III -->
+      <div data-priority="1">
+      <div class="product-card coming-soon">
+      <div class="preview">
+        <img src="{{ url_for('static', filename='images/Theory of Structures 3.png') }}" alt="THEORY OF STRUCTURES III">
+        <span class="coming-soon-badge">Coming Soon</span>
+      </div>
+      <div class="product-info">
+      <div class="description">
+      THEORY OF STRUCTURES III
+      </div>
+      <div class="price">
+      --
+      </div>
+      </div>
+      </div>
+      <button class="buy-btn" disabled>
+      BUY
+      </button>
+      </div>
+
+      <!-- COMING SOON: FOUNDATION ENGINEERING II -->
+      <div data-priority="1">
+      <div class="product-card coming-soon">
+      <div class="preview">
+        <img src="{{ url_for('static', filename='images/Foundation Engineering 2.png') }}" alt="FOUNDATION ENGINEERING II">
+        <span class="coming-soon-badge">Coming Soon</span>
+      </div>
+      <div class="product-info">
+      <div class="description">
+      FOUNDATION ENGINEERING II
+      </div>
+      <div class="price">
+      --
+      </div>
+      </div>
+      </div>
+      <button class="buy-btn" disabled>
+      BUY
+      </button>
+      </div>
+
+      <!-- COMING SOON: THEORY OF STRUCTURES IV -->
+      <div data-priority="1">
+      <div class="product-card coming-soon">
+      <div class="preview">
+        <img src="{{ url_for('static', filename='images/Theory of Structures 4.png') }}" alt="THEORY OF STRUCTURES IV">
+        <span class="coming-soon-badge">Coming Soon</span>
+      </div>
+      <div class="product-info">
+      <div class="description">
+      THEORY OF STRUCTURES IV
+      </div>
+      <div class="price">
+      --
+      </div>
+      </div>
+      </div>
+      <button class="buy-btn" disabled>
+      BUY
+      </button>
+      </div>
+
+      <!-- NUMERICAL ANALYSIS -->
+      <div data-priority="1">
+      <div class="product-card">
+      <div class="preview">
+        <img src="{{ url_for('static', filename='images/Numerical Analysis.png') }}" alt="NUMERICAL ANALYSIS">
+      </div>
+      <div class="product-info">
+      <div class="description">
+      {{ products["ebook7"]["name"] }}
+      </div>
+      <div class="price">
+      KES {{ products["ebook7"]["price"] }}
+      </div>
+      </div>
+      </div>
+      <button class="buy-btn" onclick="openCheckout('ebook7')">
+      BUY
+      </button>
+      </div>
+
+      <!-- COMING SOON: THEORY OF STRUCTURES V -->
+      <div data-priority="1">
+      <div class="product-card coming-soon">
+      <div class="preview">
+        <img src="{{ url_for('static', filename='images/Theory of Structures 5.png') }}" alt="THEORY OF STRUCTURES V">
+        <span class="coming-soon-badge">Coming Soon</span>
+      </div>
+      <div class="product-info">
+      <div class="description">
+      THEORY OF STRUCTURES V
+      </div>
+      <div class="price">
+      --
+      </div>
+      </div>
+      </div>
+      <button class="buy-btn" disabled>
+      BUY
+      </button>
+      </div>
+
+    </div>
+    <div class="no-results" id="no-results" style="display:none;">
+      <p>No products found for <span id="no-results-term"></span>.</p>
+      <button class="request-trigger-btn" onclick="openRequestModal()">Request a Topic</button>
+    </div>
+  </div>
+</div>
+{% endblock %}
+
+{% block scripts %}
+<script>
+document.addEventListener("DOMContentLoaded", () => {
+  updateProductDisplay();
+});
+</script>
+{% endblock %}

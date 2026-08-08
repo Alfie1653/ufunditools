@@ -1,0 +1,29 @@
+{% extends "base.html" %}
+{% block title %}Refund Policy - Ufundi Tools{% endblock %}
+
+{% block content %}
+<section class="about-section">
+  <h1>Refund Policy</h1>
+  <p class="policy-updated">Last updated: {{ current_year }}</p>
+
+  <h2>1. Successful purchases</h2>
+  <p>Once your file has been delivered via Telegram, the sale is final. Digital products cannot be "returned" the way physical goods can.</p>
+
+  <h2>2. If you paid but didn't receive your file</h2>
+  <p>This can happen occasionally due to payment processing delays. Before contacting us, try:</p>
+  <ul>
+    <li>Waiting a few minutes and checking Telegram again</li>
+    <li>Using the "Lost Your Link?" button on the notes page with the phone number you paid with</li>
+  </ul>
+  <p>If neither works, contact us through the Support button and include your phone number and roughly when you paid. We'll look into it and either deliver your file or refund you.</p>
+
+  <h2>3. If your M-Pesa was charged but the order shows as failed or pending</h2>
+  <p>Occasionally M-Pesa and our payment provider can be out of sync. If this happens to you, contact Support with your M-Pesa confirmation message -- we'll verify with our payment provider and make it right.</p>
+
+  <h2>4. How refunds are issued</h2>
+  <p>Refunds, when applicable, are sent back to the M-Pesa number used for the original payment.</p>
+
+  <h2>5. Contact</h2>
+  <p>All refund and delivery issues are handled through the Support button on the site.</p>
+</section>
+{% endblock %}

@@ -1,0 +1,3 @@
+User-agent: *
+Allow: /
+Sitemap: https://ufunditools.onrender.com/sitemap.xml

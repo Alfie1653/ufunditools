@@ -2,42 +2,49 @@
     "ebook1": {
         "name": "TRANSPORT ENGINEERING I",
         "price": 1,
-        "telegram_file_id": "BQACAgQAAyEFAAT7S9BIAAMLamDP4sbQBOY6HiMRS5u9ku8Gq5kAApwbAAIPPghTLmvxhXjvfCo9BA"
+        "telegram_file_id": "BQACAgQAAyEFAAT7S9BIAAMLamDP4sbQBOY6HiMRS5u9ku8Gq5kAApwbAAIPPghTLmvxhXjvfCo9BA",
+        "image":"Transport Engineering 1.png"
     },
 
     "ebook2": {
         "name": "TRAFFIC ENGINEERING I",
         "price": 1,
-        "telegram_file_id": "BQACAgQAAyEFAAT7S9BIAAMJamDNxX6iII5RhYjuAhN-R1Y5kT4AApkbAAIPPghT_hJpwngV3fs9BA"
+        "telegram_file_id": "BQACAgQAAyEFAAT7S9BIAAMJamDNxX6iII5RhYjuAhN-R1Y5kT4AApkbAAIPPghT_hJpwngV3fs9BA",
+        "image":"Traffic Engineering 1.png"
     },
 
     "ebook3": {
         "name": "OPERATION RESEARCH",
         "price": 1,
-        "telegram_file_id": "BQACAgQAAyEFAAT7S9BIAAMMamDQaHGRtKtK_ncT4PldyAjNy3UAAp0bAAIPPghTpWs05JOGgC09BA"
+        "telegram_file_id": "BQACAgQAAyEFAAT7S9BIAAMMamDQaHGRtKtK_ncT4PldyAjNy3UAAp0bAAIPPghTpWs05JOGgC09BA",
+        "image":"Operation Research 1.png"
     },
 
     "ebook4": {
         "name": "PAST PAPERS",
         "price": 1,
-        "telegram_file_id": "BQACAgQAAyEFAAT7S9BIAAMHaldJFLCI7d-BV2GJi6I1vdqSZT4AAvsgAAJvu7hSwfnxqfEF5qU9BA"
+        "telegram_file_id": "BQACAgQAAyEFAAT7S9BIAAMHaldJFLCI7d-BV2GJi6I1vdqSZT4AAvsgAAJvu7hSwfnxqfEF5qU9BA",
+        "image":"Past Papers.png"
     },
 
     "ebook5": {
         "name": "CALCULUS I",
         "price": 1,
-        "telegram_file_id": "BQACAgQAAyEFAAT7S9BIAAMQanPTb92xr6Hodr-spRk1dbCtq6EAAk0cAAIZ-qBTSR-kmydShIo9BA"
+        "telegram_file_id": "BQACAgQAAyEFAAT7S9BIAAMQanPTb92xr6Hodr-spRk1dbCtq6EAAk0cAAIZ-qBTSR-kmydShIo9BA",
+        "image":"Calculus 1.png"
     },
 
     "ebook6": {
         "name": "CALCULUS II",
         "price": 1,
-        "telegram_file_id": "BQACAgQAAyEFAAT7S9BIAAMPamXVP3vLYASYKDNQCU59dfoVhe8AAq0eAAJnoShTCSeLMUcMy4Y9BA"
+        "telegram_file_id": "BQACAgQAAyEFAAT7S9BIAAMPamXVP3vLYASYKDNQCU59dfoVhe8AAq0eAAJnoShTCSeLMUcMy4Y9BA",
+        "image":"Calculus 2.png"
     },
 
     "ebook7": {
         "name": "NUMERICAL ANALYSIS ",
         "price": 1,
-        "telegram_file_id": "BQACAgQAAyEFAAT7S9BIAAMTanUXNJioSolAZJKpVV_zqCnMnVYAAgcgAAL2jalTlHPaFHcCpAABPQQ"
+        "telegram_file_id": "BQACAgQAAyEFAAT7S9BIAAMTanUXNJioSolAZJKpVV_zqCnMnVYAAgcgAAL2jalTlHPaFHcCpAABPQQ",
+        "image":"Numerical Analysis.png"
     }
 }

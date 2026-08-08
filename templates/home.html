@@ -1,0 +1,31 @@
+{% extends "base.html" %}
+{% block title %}Ufundi Tools - Curated Study Notes for Campus Students{% endblock %}
+{% block description %}Buy curated engineering notes, past papers, and study material. Pay instantly via M-Pesa, get your file delivered on Telegram in seconds.{% endblock %}
+
+{% block content %}
+<section class="hero">
+  <h1>Ufundi Tools</h1>
+  <p class="hero-tagline">Curated notes and past papers for engineering students in Kenya.</p>
+  <a href="/products" class="hero-cta">Browse All Notes</a>
+</section>
+
+<section class="featured-section">
+  <h2>Popular Right Now</h2>
+  <div class="product-grid featured-grid">
+    {% for pid, product in featured_products.items() %}
+    <div>
+    <div class="product-card">
+    <div class="preview">
+      <img src="{{ url_for('static', filename='images/' + product['image']) }}" alt="{{ product['name'] }}">
+    </div>
+    <div class="product-info">
+    <div class="description">{{ product['name'] }}</div>
+    <div class="price">KES {{ product['price'] }}</div>
+    </div>
+    </div>
+    <button class="buy-btn" onclick="openCheckout('{{ pid }}')">BUY</button>
+    </div>
+    {% endfor %}
+  </div>
+</section>
+{% endblock %}

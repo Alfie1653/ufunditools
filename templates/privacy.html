@@ -1,0 +1,35 @@
+{% extends "base.html" %}
+{% block title %}Privacy Policy - Ufundi Tools{% endblock %}
+
+{% block content %}
+<section class="about-section">
+  <h1>Privacy Policy</h1>
+
+  <h2>1. What we collect</h2>
+  <p>When you make a purchase, we collect your phone number (to process payment and identify your order) and, once you open our Telegram bot, your Telegram user ID and username (to deliver your file and prevent duplicate downloads).</p>
+  <p>If you use our Support or Request a Topic features, we collect whatever you choose to enter, including an optional contact method.</p>
+
+  <h2>2. How we use it</h2>
+  <p>Your information is used only to:</p>
+  <ul>
+    <li>Process your payment</li>
+    <li>Deliver your purchased file</li>
+    <li>Respond to support requests or topic requests</li>
+    <li>Investigate and resolve payment issues if something goes wrong</li>
+  </ul>
+
+  <h2>3. What we don't do</h2>
+  <p>We do not sell, rent, or share your personal information with third parties for marketing purposes. Your payment details (M-Pesa PIN) are never seen or stored by us -- they're entered directly through Safaricom's own prompt on your phone.</p>
+
+  <h2>4. Where your data is stored</h2>
+  <p>Order and request data is stored securely in our database. Access is restricted and not publicly accessible.</p>
+
+  <h2>5. Your rights</h2>
+  <p>You can contact us through the Support button to ask what information we hold about you, or to request it be deleted, subject to any records we're required to keep for payment/legal purposes.</p>
+
+  <h2>6. Changes to this policy</h2>
+  <p>We may update this policy occasionally. Continued use of the site means you accept the current version.</p>
+
+  <p class="policy-updated">Last updated: {{ current_year }}</p>
+</section>
+{% endblock %}

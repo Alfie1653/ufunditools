@@ -1,0 +1,31 @@
+{% extends "base.html" %}
+{% block title %}Terms of Service - Ufundi Tools{% endblock %}
+
+{% block content %}
+<section class="about-section">
+  <h1>Terms of Service</h1>
+
+  <h2>1. What we offer</h2>
+  <p>Ufundi Tools sells digital study notes, past papers, and curated academic material for engineering students. These materials are independently researched and prepared by us -- they are study aids, not official course material, and are not affiliated with or endorsed by any university.</p>
+
+  <h2>2. Personal use only</h2>
+  <p>All notes purchased through Ufundi Tools are for your personal study use. You may not resell, redistribute, or share purchased files with others outside your own use.</p>
+
+  <h2>3. No guarantee of academic outcomes</h2>
+  <p>Our notes are intended to support your studies. We do not guarantee any specific grade, exam result, or academic outcome from using them.</p>
+
+  <h2>4. Payment</h2>
+  <p>Payments are processed via M-Pesa through IntaSend, a licensed third-party payment provider. By making a purchase, you agree to their applicable terms as well as ours.</p>
+
+  <h2>5. Delivery</h2>
+  <p>Files are delivered via Telegram after payment is confirmed. It's your responsibility to have an active Telegram account able to receive the file. See our <a href="/refunds" style="color: var(--color-primary); font-weight: 600; text-decoration: none;">Refund Policy</a> for what happens if delivery fails.</p>
+
+  <h2>6. Changes to these terms</h2>
+  <p>We may update these terms from time to time. Continued use of the site after changes means you accept the updated terms.</p>
+
+  <h2>7. Contact</h2>
+  <p>Questions about these terms can be sent through the Support button on the site.</p>
+
+  <p class="policy-updated">Last updated: {{ current_year }}</p>
+</section>
+{% endblock %}
