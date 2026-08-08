@@ -1,50 +1,57 @@
 {
     "ebook1": {
-        "name": "TRANSPORT ENGINEERING I",
+        "name": "TRANSPORT ENGINEERING III",
         "price": 1,
-        "telegram_file_id": "BQACAgQAAyEFAAT7S9BIAAMLamDP4sbQBOY6HiMRS5u9ku8Gq5kAApwbAAIPPghTLmvxhXjvfCo9BA",
-        "image":"Transport Engineering 1.png"
+        "telegram_file_id": "BQACAgQAAyEFAAT7S9BIAAMaanepXBIIiES5tuxwmbB4awTb7EsAAg0gAALN3LhTjQG7L8CRzeU9BA",
+        "image":"Transport Engineering 3.png"
     },
 
     "ebook2": {
-        "name": "TRAFFIC ENGINEERING I",
+        "name": "TRAFFIC ENGINEERING III",
         "price": 1,
-        "telegram_file_id": "BQACAgQAAyEFAAT7S9BIAAMJamDNxX6iII5RhYjuAhN-R1Y5kT4AApkbAAIPPghT_hJpwngV3fs9BA",
-        "image":"Traffic Engineering 1.png"
+        "telegram_file_id": "BQACAgQAAyEFAAT7S9BIAAMdanezVH3tyhH-F7BL8u3ZNOxtLcAAAiIgAALN3LhTQuOgSmqxwWU9BA",
+        "image":"Traffic Engineering 3.png"
     },
 
     "ebook3": {
         "name": "OPERATION RESEARCH",
         "price": 1,
-        "telegram_file_id": "BQACAgQAAyEFAAT7S9BIAAMMamDQaHGRtKtK_ncT4PldyAjNy3UAAp0bAAIPPghTpWs05JOGgC09BA",
+        "telegram_file_id": "BQACAgQAAyEFAAT7S9BIAAMcanet2auohYUEICyrZFKFqoLznK8AAhogAALN3LhTgWKkiz__RIc9BA",
         "image":"Operation Research 1.png"
     },
 
     "ebook4": {
-        "name": "PAST PAPERS",
+        "name": "Y5 CIV ENG PAST PAPERS",
         "price": 1,
-        "telegram_file_id": "BQACAgQAAyEFAAT7S9BIAAMHaldJFLCI7d-BV2GJi6I1vdqSZT4AAvsgAAJvu7hSwfnxqfEF5qU9BA",
-        "image":"Past Papers.png"
+        "telegram_file_id": "BQACAgQAAyEFAAT7S9BIAAMaanepXBIIiES5tuxwmbB4awTb7EsAAg0gAALN3LhTjQG7L8CRzeU9BA",
+        "image":"Y5 Past Papers.png"
     },
 
     "ebook5": {
         "name": "CALCULUS I",
         "price": 1,
-        "telegram_file_id": "BQACAgQAAyEFAAT7S9BIAAMQanPTb92xr6Hodr-spRk1dbCtq6EAAk0cAAIZ-qBTSR-kmydShIo9BA",
+        "telegram_file_id": "BQACAgQAAyEFAAT7S9BIAAMXanei6j6mvxvTSJfUA6EfqA_VLh0AAgkgAALN3LhTRu_IsRJy_Eg9BA",
         "image":"Calculus 1.png"
     },
 
     "ebook6": {
-        "name": "CALCULUS II",
+        "name": "PUBLIC HEALTH ENGINEERING III",
         "price": 1,
-        "telegram_file_id": "BQACAgQAAyEFAAT7S9BIAAMPamXVP3vLYASYKDNQCU59dfoVhe8AAq0eAAJnoShTCSeLMUcMy4Y9BA",
-        "image":"Calculus 2.png"
+        "telegram_file_id": "BQACAgQAAyEFAAT7S9BIAAMeane4N5b437FEgd-8hjFT2aPAW_AAAiQgAALN3LhT92t3wCi_Q-g9BA",
+        "image":"Public Health Engineering 3.png"
     },
 
     "ebook7": {
         "name": "NUMERICAL ANALYSIS ",
         "price": 1,
-        "telegram_file_id": "BQACAgQAAyEFAAT7S9BIAAMTanUXNJioSolAZJKpVV_zqCnMnVYAAgcgAAL2jalTlHPaFHcCpAABPQQ",
+        "telegram_file_id": "BQACAgQAAyEFAAT7S9BIAAMZanel7iido9FXX79T2zPt4rQbOOMAAgsgAALN3LhTbANdhgyp3J09BA",
         "image":"Numerical Analysis.png"
+    },
+
+    "ebook8": {
+        "name": "INSURANCE FOR ENGINEERS",
+        "price": 1,
+        "telegram_file_id": "BQACAgQAAyEFAAT7S9BIAAMYanekGYpnDjct4_I8uCXjUKI1eNAAAgogAALN3LhTGaWPDSdP2hY9BA",
+        "image":"Insurance for Engineers.png"
     }
 }

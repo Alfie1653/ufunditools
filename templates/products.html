@@ -20,11 +20,11 @@
     <div class="product-grid" id="product-grid">
 
       <!-- ALL PRODUCTS -->
-       <!-- TRANSPORT ENGINEERING -->
+       <!-- TRANSPORT ENGINEERING III -->
         <div data-priority="2">
         <div class="product-card">
         <div class="preview">
-          <img src="{{ url_for('static', filename='images/Transport Engineering 1.png') }}" alt="TRANSPORT ENGINEERING">
+          <img src="{{ url_for('static', filename='images/Transport Engineering 3.png') }}" alt="TRANSPORT ENGINEERING III">
         </div>
         <div class="product-info">
         <div class="description">
@@ -40,11 +40,11 @@
         </button>
         </div>
 
-        <!-- TRAFFIC ENGINEERING -->
+        <!-- TRAFFIC ENGINEERING III -->
         <div data-priority="2">
         <div class="product-card">
         <div class="preview">
-          <img src="{{ url_for('static', filename='images/Traffic Engineering 1.png') }}" alt="TRAFFIC ENGINEERING">
+          <img src="{{ url_for('static', filename='images/Traffic Engineering 3.png') }}" alt="TRAFFIC ENGINEERING III">
         </div>
         <div class="product-info">
         <div class="description">
@@ -84,7 +84,7 @@
         <div data-priority="1">
         <div class="product-card">
         <div class="preview">
-          <img src="{{ url_for('static', filename='images/Past Papers.png') }}" alt="Past Papers">
+          <img src="{{ url_for('static', filename='images/Y5 Past Papers.png') }}" alt="Past Papers">
         </div>
         <div class="product-info">
         <div class="description">
@@ -120,11 +120,11 @@
         </button>
         </div>
 
-        <!-- CALCULUS II -->
-        <div data-priority="1">
+        <!-- PUBLIC HEALTH ENGINEERING III -->
+        <div data-priority="3">
         <div class="product-card">
         <div class="preview">
-          <img src="{{ url_for('static', filename='images/Calculus 2.png') }}" alt="CALCULUS 2">
+          <img src="{{ url_for('static', filename='images/Public Health Engineering 3.png') }}" alt="PUBLIC HEALTH ENGINEERING III">
         </div>
         <div class="product-info">
         <div class="description">
@@ -413,23 +413,22 @@
       </button>
       </div>
 
-      <!-- COMING SOON: INSURANCE FOR ENGINEERS -->
+      <!-- INSURANCE FOR ENGINEERS -->
       <div data-priority="2">
-      <div class="product-card coming-soon">
+      <div class="product-card">
       <div class="preview">
         <img src="{{ url_for('static', filename='images/Insurance for Engineers.png') }}" alt="INSURANCE FOR ENGINEERS">
-        <span class="coming-soon-badge">Coming Soon</span>
       </div>
       <div class="product-info">
       <div class="description">
-      INSURANCE FOR ENGINEERS
+      {{ products["ebook8"]["name"] }}
       </div>
       <div class="price">
-      --
+      {{ products["ebook8"]["price"] }}
       </div>
       </div>
       </div>
-      <button class="buy-btn" disabled>
+      <button class="buy-btn" onclick="openCheckout('ebook8')">
       BUY
       </button>
       </div>

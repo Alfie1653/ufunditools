@@ -97,7 +97,7 @@ def inject_current_year():
 
 @app.route("/")
 def home():
-    featured_ids = ["ebook5", "ebook6", "ebook7", "ebook4"]
+    featured_ids = ["ebook5", "ebook3", "ebook7", "ebook4"]
     featured_products = {pid: products[pid] for pid in featured_ids if pid in products}
     return render_template("home.html", featured_products=featured_products)
 
