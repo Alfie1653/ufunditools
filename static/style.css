@@ -700,6 +700,7 @@ h1::after {
     flex-wrap: wrap;
     align-items: center;
     gap: 10px 16px;
+    padding: 16px;
   }
   .sidebar h3 {
     width: 100%;
