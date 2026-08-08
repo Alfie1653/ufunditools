@@ -730,6 +730,9 @@ h1::after {
   h1 {
     font-size: 27px;
   }
+  .products-container {
+    width: 100%;
+  }
   .product-grid {
     grid-template-columns: 1fr;
     gap: 20px;
