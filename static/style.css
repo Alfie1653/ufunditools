@@ -703,7 +703,7 @@ h1::after {
     flex-wrap: wrap;
     align-items: center;
     gap: 10px 16px;
-    padding: 16px 0;
+    padding: 16px 12px;
     background: var(--color-card-bg);
     border-radius: var(--radius-lg);
     box-shadow: var(--shadow-card);
