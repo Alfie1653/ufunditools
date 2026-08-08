@@ -1159,10 +1159,21 @@ function updateProductDisplay() {
   noResultsEl.style.display = "none";
   grid.style.display = "grid";
 
-  if (currentSort !== "default") {
-    const visibleItems = items.filter(item => item.style.display !== "none");
+  const visibleItems = items.filter(item => item.style.display !== "none");
 
-    const sorted = visibleItems.slice().sort((a, b) => {
+  const isComingSoon = el => el.querySelector(".product-card")?.classList.contains("coming-soon") || false;
+
+  let sorted;
+
+  if (currentSort === "default") {
+    sorted = visibleItems.slice().sort((a, b) => {
+      const aComing = isComingSoon(a);
+      const bComing = isComingSoon(b);
+      if (aComing === bComing) return 0; // preserve original relative order
+      return aComing ? 1 : -1; // coming-soon sinks below buyable
+    });
+  } else {
+    sorted = visibleItems.slice().sort((a, b) => {
       if (currentSort === "name-asc") {
         const nameA = a.querySelector(".description")?.innerText.trim().toLowerCase() || "";
         const nameB = b.querySelector(".description")?.innerText.trim().toLowerCase() || "";
@@ -1172,7 +1183,7 @@ function updateProductDisplay() {
       const getPrice = el => {
         const text = el.querySelector(".price")?.innerText || "";
         const num = parseFloat(text.replace(/[^0-9.]/g, ""));
-        return isNaN(num) ? Infinity : num; // "Coming soon" (--) sinks to the bottom
+        return isNaN(num) ? Infinity : num;
       };
 
       const priceA = getPrice(a);
@@ -1180,9 +1191,9 @@ function updateProductDisplay() {
 
       return currentSort === "price-asc" ? priceA - priceB : priceB - priceA;
     });
-
-    sorted.forEach(item => grid.appendChild(item));
   }
+
+  sorted.forEach(item => grid.appendChild(item));
 }
 
 function openRequestModalWithTopic() {
