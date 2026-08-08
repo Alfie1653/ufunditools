@@ -173,7 +173,7 @@ fetch(url)
 
 if(data.status==="paid"){
   clearInterval(interval);
-  setStatusTemporary("Payment confirmed! Redirecting...");
+  setStatusTemporary("Payment confirmed! Redirecting. If you are not redirected, click the button below.");
   window.open(data.telegram_link, "_blank");
   setButtonsDisabled(false);
 
