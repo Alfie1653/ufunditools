@@ -680,7 +680,7 @@ h1::after {
    ============================================ */
 
 @media (max-width: 1100px) {
-  .product-containter {
+  .products-containter {
     width: 100%;
   }
   .product-grid {
