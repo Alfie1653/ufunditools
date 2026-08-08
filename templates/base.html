@@ -33,6 +33,11 @@
 
 {% block content %}{% endblock %}
 
+<p id="status"></p>
+<div class="telegram-wrapper">
+  <a id="telegram-link" href="#" target="_blank" style="display:none;">Open Telegram</a>
+</div>
+
 <footer class="site-footer">
   <div class="footer-links">
     <a href="/about">About</a>
@@ -45,10 +50,6 @@
   <p class="footer-note">&copy; {{ current_year }} Ufundi Tools. All rights reserved.</p>
 </footer>
 
-<p id="status"></p>
-<div class="telegram-wrapper">
-  <a id="telegram-link" href="#" target="_blank" style="display:none;">Open Telegram</a>
-</div>
 
 <div class="request-btn-wrapper">
   <button class="request-trigger-btn" onclick="openRequestModal()">Request a Topic</button>
