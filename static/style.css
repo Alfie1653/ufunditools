@@ -680,6 +680,9 @@ h1::after {
    ============================================ */
 
 @media (max-width: 1100px) {
+  .product-containter {
+    width: 100%;
+  }
   .product-grid {
     grid-template-columns: repeat(2, 1fr);
   }
