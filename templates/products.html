@@ -308,23 +308,22 @@
       </button>
       </div>
 
-      <!-- COMING SOON: CALCULUS III -->
+      <!-- CALCULUS III -->
       <div data-priority="1">
-      <div class="product-card coming-soon">
+      <div class="product-card">
       <div class="preview">
         <img src="{{ url_for('static', filename='images/Calculus 3.png') }}" alt="CALCULUS III">
-        <span class="coming-soon-badge">Coming Soon</span>
       </div>
       <div class="product-info">
       <div class="description">
-      CALCULUS III
+      {{ products["ebook9"]["name"] }}
       </div>
       <div class="price">
-      --
+      KES {{ products["ebook9"]["price"] }}
       </div>
       </div>
       </div>
-      <button class="buy-btn" disabled>
+      <button class="buy-btn" onclick="openCheckout('ebook9')">
       BUY
       </button>
       </div>

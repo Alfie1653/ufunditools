@@ -53,5 +53,12 @@
         "price": 1,
         "telegram_file_id": "BQACAgQAAyEFAAT7S9BIAAMYanekGYpnDjct4_I8uCXjUKI1eNAAAgogAALN3LhTGaWPDSdP2hY9BA",
         "image":"Insurance for Engineers.png"
+    },
+
+    "ebook9": {
+        "name": "CALCULUS III",
+        "price": 1,
+        "telegram_file_id": "BQACAgQAAyEFAAT7S9BIAAMfanjBAaQEhvy9VqEo90OKY7r_sAIAAugeAALN3MBT1r7F7kFyhig9BA",
+        "image":"Calculus 3.png"
     }
 }
