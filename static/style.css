@@ -235,6 +235,114 @@ h1::after {
   text-align: center;
 }
 
+/* ============================================
+   How It Works Page
+   ============================================ */
+
+.howto-section {
+  max-width: 680px;
+  margin: 40px auto 0;
+}
+
+.howto-section h1 {
+  color: #ffffff;
+  margin-bottom: 12px;
+}
+
+.howto-intro {
+  color: rgba(255,255,255,0.75);
+  font-size: 15.5px;
+  line-height: 1.6;
+  margin-bottom: 36px;
+}
+
+.howto-step {
+  display: flex;
+  gap: 18px;
+  margin-bottom: 28px;
+  align-items: flex-start;
+}
+
+.howto-step-number {
+  flex-shrink: 0;
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  background: var(--color-primary);
+  color: white;
+  font-weight: 700;
+  font-size: 16px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.howto-step-body h3 {
+  color: #ffffff;
+  font-size: 16.5px;
+  margin: 4px 0 8px;
+}
+
+.howto-step-body p {
+  color: rgba(255,255,255,0.75);
+  font-size: 14.5px;
+  line-height: 1.6;
+  margin: 0;
+}
+
+.howto-step-body a {
+  color: var(--color-primary);
+  font-weight: 600;
+  text-decoration: none;
+}
+
+.howto-step-body a:hover {
+  text-decoration: underline;
+}
+
+.howto-divider {
+  height: 1px;
+  background: rgba(255,255,255,0.12);
+  margin: 36px 0 28px;
+}
+
+.howto-section h2 {
+  color: #ffffff;
+  font-size: 19px;
+  margin-bottom: 20px;
+}
+
+.howto-note {
+  background: var(--color-card-bg);
+  border-radius: var(--radius-md);
+  padding: 16px 18px;
+  margin-bottom: 12px;
+  box-shadow: var(--shadow-card);
+}
+
+.howto-note strong {
+  display: block;
+  color: var(--color-text-dark);
+  font-size: 14.5px;
+  margin-bottom: 4px;
+}
+
+.howto-note p {
+  color: var(--color-text-muted);
+  font-size: 14px;
+  line-height: 1.55;
+  margin: 0;
+}
+
+.howto-note a {
+  color: var(--color-primary);
+  font-weight: 600;
+  text-decoration: none;
+}
+
+.howto-note a:hover {
+  text-decoration: underline;
+}
 
 /* ============================================
    7. STORE LAYOUT — SIDEBAR + PRODUCTS CONTAINER

@@ -129,6 +129,10 @@ def refunds():
 def robots():
     return app.send_static_file("robots.txt")
 
+@app.route("/howto")
+def how_to():
+    return render_template("how_to.html")
+
 @app.route("/telegram-webhook", methods=["POST"])
 @limiter.limit("60 per minute")  # Limit to 60 requests per minute per IP
 def telegram_webhook():
