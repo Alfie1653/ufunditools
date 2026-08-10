@@ -34,7 +34,7 @@ with open("products.json") as file:
 
 DATABASE_URL = os.environ["DATABASE_URL"]
 INTASEND_TOKEN = os.environ["INTASEND_API_TOKEN"]
-INTASEND_PUBLISHABLE_KEY = os.environ["INTASEND_PUBLISHABLE_KEY"]
+INTASEND_PUBLISHABLE_LIVE_KEY = os.environ["INTASEND_PUBLISHABLE_LIVE_KEY"]
 INTASEND_WEBHOOK_CHALLENGE = os.environ["INTASEND_WEBHOOK_CHALLENGE"]
 TELEGRAM_BOT_TOKEN = os.environ["TELEGRAM_BOT_TOKEN"]
 TELEGRAM_WEBHOOK_SECRET = os.environ["TELEGRAM_WEBHOOK_SECRET"]
@@ -43,7 +43,7 @@ ADMIN_TELEGRAM_CHAT_ID = os.environ["ADMIN_TELEGRAM_CHAT_ID"]
 
 service = APIService(
     token=INTASEND_TOKEN,
-    publishable_key=INTASEND_PUBLISHABLE_KEY,
+    publishable_key=INTASEND_PUBLISHABLE_LIVE_KEY,
     test=False,  # flip to False (or remove) when you go live
 )
 

@@ -1,11 +1,28 @@
 {% extends "base.html" %}
 {% block title %}About - Ufundi Tools{% endblock %}
+{% block description %}The story behind Ufundi Tools, and why curated notes matter for engineering students in Kenya.{% endblock %}
+
 
 {% block content %}
 <section class="about-section">
   <h1>About Ufundi Tools</h1>
 
-  <p>Ufundi Tools is a small, student-run platform curating engineering notes, past papers, and study material for university students in Kenya.</p>
+  <div class="founder-block">
+    <img src="{{ url_for('static', filename='images/founder.jpg') }}" alt="Josam, founder of Ufundi Tools" class="founder-photo">
+    <div class="founder-caption">Josam, Creator</div>
+  </div>
+
+  <p>Ufundi Tools is a small, student-run platform curating engineering notes, past papers, and study material for university students.</p>
+
+  <p>As a civil engineering graduate,  Ufundi Tools started from something that actually happened on campus.</p>
+
+  <p>In the course of my studies, I took a Computer Programming course where we were taught C, but the exam tested us on C++. I remember being genuinely angry -- not at anyone in particular, just at the gap between what we were taught and what we were expected to know. So I went out and taught myself.</p>
+
+    <p class="howto-step-body"><a href="https://www.w3schools.com/" target="_blank">w3Schools</a> first, then YouTube, hours of it, filling in what the classroom notes never covered. That's actually where my programming journey properly started despite never learning it in class. I am not yet a proficient programmer, but I am committed to continuous learning and improvement.</p>
+
+  <p>That experience repeated itself more than once. Class notes were a guide, not the full picture. After lectures, I'd go find the rest -- watch videos, read further, cross-reference until a topic actually made sense.</p>
+
+  <p>Ufundi Tools exists because I don't think every student should have to go through that scramble alone, especially not the night before an exam. The notes here are curated the way I wish notes had been curated for me -- researched properly, explained clearly.</p>
 
   <p>Every unit on this site is researched, written, and organized by hand -- not scraped or resold. If you don't see a topic you need, you can request it, and we'll work on curating it for you.</p>
 

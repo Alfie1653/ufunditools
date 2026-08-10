@@ -49,3 +49,6 @@ ngrok
 
 # Local-only admin tool, not part of the deployed app
 uploads.py
+
+#ignore the following files
+about.html
