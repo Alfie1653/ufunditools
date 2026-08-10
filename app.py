@@ -14,6 +14,7 @@ import re
 import requests
 import psycopg2
 import psycopg2.extras
+import hmac
 
 load_dotenv()
 
@@ -45,7 +46,6 @@ service = APIService(
     publishable_key=INTASEND_PUBLISHABLE_KEY,
     test=False,  # flip to False (or remove) when you go live
 )
-
 
 def get_db():
     conn = psycopg2.connect(DATABASE_URL, cursor_factory=psycopg2.extras.RealDictCursor)
@@ -90,6 +90,14 @@ def send_telegram_message(chat_id, text):
 def is_valid_phone_number(phone_number):
     """Expects the normalized format the frontend sends: 254XXXXXXXXX"""
     return bool(re.match(r"^254[71]\d{8}$", phone_number))
+
+def sanitize_text(value, max_length=1000):
+    """Strip HTML tags and excess whitespace from free-text input."""
+    if not value:
+        return ""
+    value = value.strip()
+    value = re.sub(r"<[^>]*>", "", value)  # strip anything that looks like an HTML tag
+    return value[:max_length]
 
 @app.context_processor
 def inject_current_year():
@@ -138,7 +146,7 @@ def how_to():
 def telegram_webhook():
 
     incoming_secret = request.headers.get("X-Telegram-Bot-Api-Secret-Token")
-    if incoming_secret != TELEGRAM_WEBHOOK_SECRET:
+    if not hmac.compare_digest(incoming_secret or "", TELEGRAM_WEBHOOK_SECRET):
         print("TELEGRAM WEBHOOK REJECTED: bad or missing secret token")
         return jsonify({"ok": False}), 401
 
@@ -262,8 +270,8 @@ def ratelimit_handler(e):
 def support_message():
     data = request.json or {}
 
-    message = (data.get("message") or "").strip()
-    contact = (data.get("contact") or "").strip()
+    message = sanitize_text(data.get("message") or "").strip()
+    contact = sanitize_text(data.get("contact") or "").strip()
 
     if not message:
         return jsonify({"status": "error", "message": "Please enter a message."}), 400
@@ -466,7 +474,7 @@ def intasend_webhook():
 
     # Reject anything that doesn't carry our shared secret challenge --
     # this is what proves the request actually came from IntaSend.
-    if data.get("challenge") != INTASEND_WEBHOOK_CHALLENGE:
+    if not hmac.compare_digest(data.get("challenge") or "", INTASEND_WEBHOOK_CHALLENGE):
         print("WEBHOOK REJECTED: bad or missing challenge")
         return jsonify({"status": "unauthorized"}), 401
 
@@ -558,9 +566,9 @@ def recover_link():
 def request_note():
     data = request.json or {}
 
-    topic = (data.get("topic") or "").strip()
-    details = (data.get("details") or "").strip()
-    contact = (data.get("contact") or "").strip()
+    topic = sanitize_text(data.get("topic") or "").strip()
+    details = sanitize_text(data.get("details") or "").strip()
+    contact = sanitize_text(data.get("contact") or "").strip()
 
     if not topic:
         return jsonify({"status": "error", "message": "Please tell us what topic you need."}), 400
