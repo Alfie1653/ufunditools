@@ -1,63 +1,63 @@
 {
     "ebook1": {
         "name": "TRANSPORT ENGINEERING III",
-        "price": 1,
+        "price": 150,
         "telegram_file_id": "BQACAgQAAyEFAAT7S9BIAAMaanepXBIIiES5tuxwmbB4awTb7EsAAg0gAALN3LhTjQG7L8CRzeU9BA",
         "image":"Transport Engineering 3.png"
     },
 
     "ebook2": {
         "name": "TRAFFIC ENGINEERING III",
-        "price": 1,
+        "price": 100,
         "telegram_file_id": "BQACAgQAAyEFAAT7S9BIAAMdanezVH3tyhH-F7BL8u3ZNOxtLcAAAiIgAALN3LhTQuOgSmqxwWU9BA",
         "image":"Traffic Engineering 3.png"
     },
 
     "ebook3": {
         "name": "OPERATION RESEARCH",
-        "price": 1,
+        "price": 250,
         "telegram_file_id": "BQACAgQAAyEFAAT7S9BIAAMcanet2auohYUEICyrZFKFqoLznK8AAhogAALN3LhTgWKkiz__RIc9BA",
         "image":"Operation Research 1.png"
     },
 
     "ebook4": {
         "name": "Y5 CIV ENG PAST PAPERS",
-        "price": 50,
+        "price": 500,
         "telegram_file_id": "BQACAgQAAyEFAAT7S9BIAAMaanepXBIIiES5tuxwmbB4awTb7EsAAg0gAALN3LhTjQG7L8CRzeU9BA",
         "image":"Y5 Past Papers.png"
     },
 
     "ebook5": {
         "name": "CALCULUS I",
-        "price": 1,
+        "price": 250,
         "telegram_file_id": "BQACAgQAAyEFAAT7S9BIAAMXanei6j6mvxvTSJfUA6EfqA_VLh0AAgkgAALN3LhTRu_IsRJy_Eg9BA",
         "image":"Calculus 1.png"
     },
 
     "ebook6": {
         "name": "PUBLIC HEALTH ENGINEERING III",
-        "price": 1,
+        "price": 250,
         "telegram_file_id": "BQACAgQAAyEFAAT7S9BIAAMeane4N5b437FEgd-8hjFT2aPAW_AAAiQgAALN3LhT92t3wCi_Q-g9BA",
         "image":"Public Health Engineering 3.png"
     },
 
     "ebook7": {
         "name": "NUMERICAL ANALYSIS ",
-        "price": 1,
+        "price": 650,
         "telegram_file_id": "BQACAgQAAyEFAAT7S9BIAAMZanel7iido9FXX79T2zPt4rQbOOMAAgsgAALN3LhTbANdhgyp3J09BA",
         "image":"Numerical Analysis.png"
     },
 
     "ebook8": {
         "name": "INSURANCE FOR ENGINEERS",
-        "price": 1,
+        "price": 200,
         "telegram_file_id": "BQACAgQAAyEFAAT7S9BIAAMYanekGYpnDjct4_I8uCXjUKI1eNAAAgogAALN3LhTGaWPDSdP2hY9BA",
         "image":"Insurance for Engineers.png"
     },
 
     "ebook9": {
         "name": "CALCULUS III",
-        "price": 1,
+        "price": 450,
         "telegram_file_id": "BQACAgQAAyEFAAT7S9BIAAMfanjBAaQEhvy9VqEo90OKY7r_sAIAAugeAALN3MBT1r7F7kFyhig9BA",
         "image":"Calculus 3.png"
     }
