@@ -8,7 +8,7 @@
 
 <!-- Open Graph (Facebook, WhatsApp, Telegram link previews) -->
 <meta property="og:title" content="{% block og_title %}Ufundi Tools{% endblock %}">
-<meta property="og:description" content="{% block og_description %}Curated engineering notes and past papers for Kenyan university students.{% endblock %}">
+<meta property="og:description" content="{% block og_description %}Curated engineering notes and past papers for campus students.{% endblock %}">
 <meta property="og:type" content="website">
 <meta property="og:url" content="{{ request.url }}">
 <meta property="og:image" content="{{ url_for('static', filename='images/og-banner.png', _external=True) }}">
@@ -16,7 +16,7 @@
 <!-- Twitter Card -->
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="{% block twitter_title %}Ufundi Tools{% endblock %}">
-<meta name="twitter:description" content="{% block twitter_description %}Curated engineering notes and past papers for Kenyan university students.{% endblock %}">
+<meta name="twitter:description" content="{% block twitter_description %}Curated engineering notes and past papers for campus students.{% endblock %}">
 <meta name="twitter:image" content="{{ url_for('static', filename='images/og-banner.png', _external=True) }}">
 
 <link rel="canonical" href="{{ request.url }}">
