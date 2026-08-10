@@ -43,7 +43,7 @@ ADMIN_TELEGRAM_CHAT_ID = os.environ["ADMIN_TELEGRAM_CHAT_ID"]
 service = APIService(
     token=INTASEND_TOKEN,
     publishable_key=INTASEND_PUBLISHABLE_KEY,
-    test=True,  # flip to False (or remove) when you go live
+    test=False,  # flip to False (or remove) when you go live
 )
 
 
