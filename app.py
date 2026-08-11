@@ -71,8 +71,8 @@ def init_db():
             used INTEGER DEFAULT 0,
             telegram_user_id TEXT,
             username TEXT,
-            downloaded_at TEXT
-            web_download_used INTEGER DEFAULT 0
+            downloaded_at TEXT,
+            web_download_used INTEGER DEFAULT 0,
             web_download_used_at TEXT
         )
     """)
