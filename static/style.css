@@ -392,6 +392,31 @@ h1::after {
   border: 0;
 }
 
+.howto-videos-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 24px;
+  margin-bottom: 36px;
+}
+
+.howto-video-card h3 {
+  color: #ffffff;
+  font-size: 15px;
+  font-weight: 600;
+  margin: 0 0 10px;
+  text-align: center;
+}
+
+.howto-video-card .howto-video-wrapper {
+  margin-bottom: 0; /* the grid's own gap handles spacing now */
+}
+
+@media (max-width: 700px) {
+  .howto-videos-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
 /* ============================================
    7. STORE LAYOUT — SIDEBAR + PRODUCTS CONTAINER
    ============================================ */
