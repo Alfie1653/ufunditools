@@ -786,10 +786,13 @@ h1::after {
 .telegram-wrapper {
   display: flex;
   justify-content: center;
+  gap: 16px;
   margin-top: 20px;
+  flex-wrap: wrap;
 }
 
-#telegram-link {
+#telegram-link,
+#download-link {
   text-decoration: none;
   background: var(--color-primary);
   color: white;
@@ -801,13 +804,15 @@ h1::after {
   transition: transform 0.2s ease, box-shadow 0.3s ease, background 0.3s ease;
 }
 
-#telegram-link:hover {
+#telegram-link:hover,
+#download-link:hover {
   background: var(--color-primary-dark);
   transform: translateY(-3px);
   box-shadow: var(--shadow-card-hover);
 }
 
-#telegram-link:active {
+#telegram-link:active,
+#download-link:active {
   transform: scale(0.98);
 }
 
