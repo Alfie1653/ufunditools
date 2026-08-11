@@ -293,7 +293,7 @@ def download_file(order_token):
         if row["web_download_used"] == 1:
             return jsonify({
                 "status": "error",
-                "message": "This download link has already been used. If you still have the file on Telegram, use that. Otherwise, contact Support."
+                "message": "This download link has already been used. Use 'Lost Your Link?' to get your Telegram link instead."
             }), 400
 
         product = products.get(row["product_id"])
@@ -303,7 +303,6 @@ def download_file(order_token):
         file_id = product["telegram_file_id"]
 
         file_info = requests.get(f"{TELEGRAM_API_URL}/getFile", params={"file_id": file_id}).json()
-
         if not file_info.get("ok"):
             print("DOWNLOAD getFile ERROR:", file_info)
             return jsonify({"status": "error", "message": "Could not prepare file for download."}), 500
@@ -318,24 +317,41 @@ def download_file(order_token):
         file_path = file_info["result"]["file_path"]
         telegram_file_url = f"https://api.telegram.org/file/bot{TELEGRAM_BOT_TOKEN}/{file_path}"
 
-        # Mark it used now, before streaming -- same timing logic as the
-        # Telegram delivery flow (mark used right after we're confident
-        # delivery will succeed, not after every byte is confirmed received).
+        # Actually fetch the file bytes FIRST, before claiming the single-use slot --
+        # this way a transient failure here never burns the user's one attempt.
+        telegram_response = requests.get(telegram_file_url)
+        if telegram_response.status_code != 200:
+            print("DOWNLOAD file fetch ERROR:", telegram_response.status_code)
+            return jsonify({"status": "error", "message": "Download failed. Please try again."}), 500
+
+        # Atomic claim: only succeeds if web_download_used is STILL 0 right now.
+        # If two requests race, only one of them will actually update a row --
+        # the second gets rowcount == 0 and is correctly rejected here.
         cur.execute(
-            "UPDATE purchases SET web_download_used = 1, web_downloaded_at = %s WHERE token = %s",
+            """
+            UPDATE purchases
+            SET web_download_used = 1, web_downloaded_at = %s
+            WHERE token = %s AND web_download_used = 0
+            """,
             (datetime.now().isoformat(), order_token)
         )
+
+        if cur.rowcount == 0:
+            conn.rollback()
+            return jsonify({
+                "status": "error",
+                "message": "This download link has already been used. Use 'Lost Your Link?' to get your Telegram link instead."
+            }), 400
+
         conn.commit()
 
     finally:
         cur.close()
         conn.close()
 
-    telegram_response = requests.get(telegram_file_url, stream=True)
     filename = product["name"] + ".pdf"
-
     return Response(
-        telegram_response.iter_content(chunk_size=8192),
+        telegram_response.content,
         content_type=telegram_response.headers.get("Content-Type", "application/pdf"),
         headers={"Content-Disposition": f'attachment; filename="{filename}"'}
     )
