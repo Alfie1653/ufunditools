@@ -330,21 +330,20 @@
 
       <!-- COMING SOON: STATISTICS -->
       <div data-priority="1">
-      <div class="product-card coming-soon">
+      <div class="product-card {% if products['ebook9'].get('preview_images') %}has-preview{% endif %}" {%if products['ebook9'].get('preview_images') %}onclick='openPreview({{ products['ebook9']['preview_images'] | tojson }}, "{{ products['ebook9']['name'] }}")' {% endif %}>
       <div class="preview">
         <img src="{{ url_for('static', filename='images/Statistics.png') }}" alt="STATISTICS">
-        <span class="coming-soon-badge">Coming Soon</span>
       </div>
       <div class="product-info">
       <div class="description">
-      STATISTICS
+      {{ products["ebook10"]["name"] }}
       </div>
       <div class="price">
-      --
+      KES {{ products["ebook10"]["price"] }}
       </div>
       </div>
       </div>
-      <button class="buy-btn" disabled>
+      <button class="buy-btn" onclick="event.stopPropagation(); openCheckout('ebook10')">
       BUY
       </button>
       </div>
