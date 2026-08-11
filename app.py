@@ -41,6 +41,7 @@ TELEGRAM_BOT_TOKEN = os.environ["TELEGRAM_BOT_TOKEN"]
 TELEGRAM_WEBHOOK_SECRET = os.environ["TELEGRAM_WEBHOOK_SECRET"]
 TELEGRAM_API_URL = f"https://api.telegram.org/bot{TELEGRAM_BOT_TOKEN}"
 ADMIN_TELEGRAM_CHAT_ID = os.environ["ADMIN_TELEGRAM_CHAT_ID"]
+SITE_URL = os.environ["SITE_URL"]
 
 service = APIService(
     token=INTASEND_TOKEN,
@@ -235,7 +236,8 @@ def telegram_webhook():
             "Thanks for your purchase! 🎓\n\n"
             "Happy studying, and all the best.\n\n"
             "If these notes helped, tell a classmate about Ufundi Tools -- "
-            "it genuinely helps us keep curating more units."
+            "it genuinely helps us keep curating more units.\n\n"
+            f"{SITE_URL}/products"
         )
         send_telegram_message(chat_id, thank_you_message)
 
