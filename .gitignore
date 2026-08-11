@@ -49,3 +49,7 @@ ngrok
 
 # Local-only admin tool, not part of the deployed app
 uploads.py
+make_preview.py
+
+# Source PDFs -- never commit, these are the actual product being sold
+source-notes/

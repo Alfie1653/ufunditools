@@ -6,3 +6,5 @@ gunicorn==22.0.0
 flask-limiter==3.8.0
 python-telegram-bot==20.3
 psycopg2-binary==2.9.12
+PyMupdf==1.26.4
+Pillow==11.3.0

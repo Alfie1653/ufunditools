@@ -22,7 +22,7 @@
       <!-- ALL PRODUCTS -->
        <!-- TRANSPORT ENGINEERING III -->
         <div data-priority="2">
-        <div class="product-card">
+        <div class="product-card {% if products['ebook1'].get('preview_images') %}has-preview{% endif %}" {%if products['ebook1'].get('preview_images') %}onclick='openPreview({{ products['ebook1']['preview_images'] | tojson }}, "{{ products['ebook1']['name'] }}")' {% endif %}>
         <div class="preview">
           <img src="{{ url_for('static', filename='images/Transport Engineering 3.png') }}" alt="TRANSPORT ENGINEERING III">
         </div>
@@ -42,7 +42,7 @@
 
         <!-- TRAFFIC ENGINEERING III -->
         <div data-priority="2">
-        <div class="product-card">
+        <div class="product-card {% if products['ebook2'].get('preview_images') %}has-preview{% endif %}" {%if products['ebook2'].get('preview_images') %}onclick='openPreview({{ products['ebook2']['preview_images'] | tojson }}, "{{ products['ebook2']['name'] }}")' {% endif %}>
         <div class="preview">
           <img src="{{ url_for('static', filename='images/Traffic Engineering 3.png') }}" alt="TRAFFIC ENGINEERING III">
         </div>
@@ -62,7 +62,7 @@
 
         <!-- OPERATION RESEARCH -->
         <div data-priority="1">
-        <div class="product-card">
+        <div class="product-card {% if products['ebook3'].get('preview_images') %}has-preview{% endif %}" {%if products['ebook3'].get('preview_images') %}onclick='openPreview({{ products['ebook3']['preview_images'] | tojson }}, "{{ products['ebook3']['name'] }}")' {% endif %}>
         <div class="preview">
           <img src="{{ url_for('static', filename='images/Operation Research 1.png') }}" alt="OPERATION RESEARCH 1">
         </div>
@@ -82,7 +82,7 @@
 
         <!-- PAST PAPERS -->
         <div data-priority="1">
-        <div class="product-card">
+        <div class="product-card {% if products['ebook4'].get('preview_images') %}has-preview{% endif %}" {%if products['ebook4'].get('preview_images') %}onclick='openPreview({{ products['ebook4']['preview_images'] | tojson }}, "{{ products['ebook4']['name'] }}")' {% endif %}>
         <div class="preview">
           <img src="{{ url_for('static', filename='images/Y5 Past Papers.png') }}" alt="Past Papers">
         </div>
@@ -102,7 +102,7 @@
 
         <!-- CALCULUS 1 -->
         <div data-priority="1">
-        <div class="product-card">
+        <div class="product-card {% if products['ebook5'].get('preview_images') %}has-preview{% endif %}" {%if products['ebook5'].get('preview_images') %}onclick='openPreview({{ products['ebook5']['preview_images'] | tojson }}, "{{ products['ebook5']['name'] }}")' {% endif %}>
         <div class="preview">
           <img src="{{ url_for('static', filename='images/Calculus 1.png') }}" alt="CALCULUS 1">
         </div>
@@ -115,14 +115,14 @@
         </div>
         </div>
         </div>
-        <button class="buy-btn" onclick="openCheckout('ebook5')">
+        <button class="buy-btn" onclick="event.stopPropagation(); openCheckout('ebook5')">
         BUY
         </button>
         </div>
 
         <!-- PUBLIC HEALTH ENGINEERING III -->
         <div data-priority="3">
-        <div class="product-card">
+        <div class="product-card {% if products['ebook6'].get('preview_images') %}has-preview{% endif %}" {%if products['ebook6'].get('preview_images') %}onclick='openPreview({{ products['ebook6']['preview_images'] | tojson }}, "{{ products['ebook6']['name'] }}")' {% endif %}>
         <div class="preview">
           <img src="{{ url_for('static', filename='images/Public Health Engineering 3.png') }}" alt="PUBLIC HEALTH ENGINEERING III">
         </div>
@@ -310,7 +310,7 @@
 
       <!-- CALCULUS III -->
       <div data-priority="1">
-      <div class="product-card">
+      <div class="product-card {% if products['ebook9'].get('preview_images') %}has-preview{% endif %}" {%if products['ebook9'].get('preview_images') %}onclick='openPreview({{ products['ebook9']['preview_images'] | tojson }}, "{{ products['ebook9']['name'] }}")' {% endif %}>
       <div class="preview">
         <img src="{{ url_for('static', filename='images/Calculus 3.png') }}" alt="CALCULUS III">
       </div>
@@ -414,7 +414,7 @@
 
       <!-- INSURANCE FOR ENGINEERS -->
       <div data-priority="2">
-      <div class="product-card">
+      <div class="product-card {% if products['ebook8'].get('preview_images') %}has-preview{% endif %}" {%if products['ebook8'].get('preview_images') %}onclick='openPreview({{ products['ebook8']['preview_images'] | tojson }}, "{{ products['ebook8']['name'] }}")' {% endif %}>
       <div class="preview">
         <img src="{{ url_for('static', filename='images/Insurance for Engineers.png') }}" alt="INSURANCE FOR ENGINEERS">
       </div>
@@ -665,7 +665,7 @@
 
       <!-- NUMERICAL ANALYSIS -->
       <div data-priority="1">
-      <div class="product-card">
+      <div class="product-card {% if products['ebook7'].get('preview_images') %}has-preview{% endif %}" {%if products['ebook7'].get('preview_images') %}onclick='openPreview({{ products['ebook7']['preview_images'] | tojson }}, "{{ products['ebook7']['name'] }}")' {% endif %}>
       <div class="preview">
         <img src="{{ url_for('static', filename='images/Numerical Analysis.png') }}" alt="NUMERICAL ANALYSIS">
       </div>

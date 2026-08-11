@@ -13,19 +13,22 @@
   <h2>Featured</h2>
   <div class="product-grid featured-grid">
     {% for pid, product in featured_products.items() %}
-    <div>
-    <div class="product-card">
-    <div class="preview">
-      <img src="{{ url_for('static', filename='images/' + product['image']) }}" alt="{{ product['name'] }}">
-    </div>
-    <div class="product-info">
-    <div class="description">{{ product['name'] }}</div>
-    <div class="price">KES {{ product['price'] }}</div>
-    </div>
-    </div>
-    <button class="buy-btn" onclick="openCheckout('{{ pid }}')">BUY</button>
-    </div>
-    {% endfor %}
+<div>
+<div class="product-card{% if product.get('preview_images') %} has-preview{% endif %}"
+     {% if product.get('preview_images') %}
+     onclick='openPreview({{ product.preview_images | tojson }}, {{ product.name | tojson }})'
+     {% endif %}>
+<div class="preview">
+  <img src="{{ url_for('static', filename='images/' + product['image']) }}" alt="{{ product['name'] }}">
+</div>
+<div class="product-info">
+<div class="description">{{ product['name'] }}</div>
+<div class="price">KES {{ product['price'] }}</div>
+</div>
+</div>
+<button class="buy-btn" onclick="event.stopPropagation(); openCheckout('{{ pid }}')">BUY</button>
+</div>
+{% endfor %}
   </div>
 </section>
 {% endblock %}

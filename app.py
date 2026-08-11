@@ -16,6 +16,7 @@ import psycopg2
 import psycopg2.extras
 import hmac
 
+
 load_dotenv()
 
 app = Flask(__name__)
@@ -599,4 +600,4 @@ def request_note():
     return jsonify({"status": "ok", "message": "Thanks! We'll get to work on it and upload it once it's ready."})
 
 if __name__ == "__main__":
-    app.run(debug=False)
+    app.run(debug=True)

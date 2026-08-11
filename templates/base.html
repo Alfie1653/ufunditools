@@ -33,6 +33,23 @@
 
 {% block content %}{% endblock %}
 
+<div class="overlay" id="preview-overlay">
+<div class="modal preview-modal">
+  <h2 id="preview-title"></h2>
+  <div class="preview-image-wrapper">
+    <img id="preview-image" src="" alt="Document preview">
+  </div>
+  <div class="preview-nav">
+    <button class="preview-nav-btn" onclick="prevPreviewImage()">Prev</button>
+    <span id="preview-counter" class="preview-counter-badge"></span>
+    <button class="preview-nav-btn" onclick="nextPreviewImage()">Next</button>
+  </div>
+  <div class="modal-actions">
+    <button class="btn-cancel" onclick="closePreview()">Close</button>
+  </div>
+</div>
+</div>
+
 <p id="status"></p>
 <div class="telegram-wrapper">
   <a id="telegram-link" href="#" target="_blank" style="display:none;">Open Telegram</a>

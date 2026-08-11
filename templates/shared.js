@@ -40,6 +40,63 @@ function setButtonsDisabled(disabled) {
   document.querySelectorAll("button").forEach(btn => btn.disabled = disabled);
 }
 
+let currentPreviewImages = [];
+let currentPreviewIndex = 0;
+
+function openPreview(images, productName) {
+  currentPreviewImages = images;
+  currentPreviewIndex = 0;
+  document.getElementById("preview-title").innerText = productName + " - Preview";
+  setPreviewImage(currentPreviewIndex, null);
+  document.getElementById("preview-overlay").classList.add("open");
+}
+
+function closePreview() {
+  document.getElementById("preview-overlay").classList.remove("open");
+}
+
+function setPreviewImage(index, direction) {
+  const img = document.getElementById("preview-image");
+
+  document.getElementById("preview-counter").innerText =
+    (index + 1) + " / " + currentPreviewImages.length;
+
+  if (!direction) {
+    // First load -- no animation, just set it
+    img.src = "/static/images/previews/" + currentPreviewImages[index];
+    return;
+  }
+
+  // Slide the current image out, then swap and slide the new one in
+  img.classList.add(direction === "next" ? "slide-out-left" : "slide-out-right");
+
+  setTimeout(() => {
+    img.src = "/static/images/previews/" + currentPreviewImages[index];
+    img.classList.remove("slide-out-left", "slide-out-right");
+    img.classList.add(direction === "next" ? "slide-in-right" : "slide-in-left");
+
+    setTimeout(() => {
+      img.classList.remove("slide-in-right", "slide-in-left");
+    }, 250);
+  }, 200);
+}
+
+function nextPreviewImage() {
+  if (currentPreviewIndex < currentPreviewImages.length - 1) {
+    currentPreviewIndex++;
+    setPreviewImage(currentPreviewIndex, "next");
+  }
+}
+
+function prevPreviewImage() {
+  if (currentPreviewIndex > 0) {
+    currentPreviewIndex--;
+    setPreviewImage(currentPreviewIndex, "prev");
+  }
+}
+
+
+
 function openRequestModal() {
   document.getElementById("topic").value = "";
   document.getElementById("details").value = "";
