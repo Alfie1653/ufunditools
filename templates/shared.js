@@ -239,9 +239,15 @@ if(data.status==="paid"){
   link.style.display = "inline-block";
   link.scrollIntoView({ behavior: "smooth", block: "center" });
 
+  const downloadLink = document.getElementById("download-link");
+  downloadLink.href = '/download/${token}';
+  downloadLink.style.display = "inline-block";
+  downloadLink.scrollIntoView({ behavior: "smooth", block: "center" });
+  
   setTimeout(() => {
     link.style.display = "none";
-  }, 10000);
+    downloadLink.style.display = "none";
+  }, 15000);
 }
 
 else if(data.status==="pending"){

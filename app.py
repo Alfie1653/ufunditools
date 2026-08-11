@@ -15,6 +15,7 @@ import requests
 import psycopg2
 import psycopg2.extras
 import hmac
+from flask import Response
 
 
 load_dotenv()
@@ -71,6 +72,8 @@ def init_db():
             telegram_user_id TEXT,
             username TEXT,
             downloaded_at TEXT
+            web_download_used INTEGER DEFAULT 0
+            web_download_used_at TEXT
         )
     """)
     conn.commit()
@@ -266,6 +269,76 @@ def ratelimit_handler(e):
         "status": "error",
         "message": "Rate limit exceeded. Please try again later."
     }), 429
+
+from flask import Response
+
+@app.route("/download/<order_token>")
+@limiter.limit("10 per minute")
+def download_file(order_token):
+    conn = get_db()
+    try:
+        cur = conn.cursor()
+        cur.execute(
+            "SELECT product_id, status, web_download_used FROM purchases WHERE token = %s",
+            (order_token,)
+        )
+        row = cur.fetchone()
+
+        if not row:
+            return jsonify({"status": "error", "message": "Order not found."}), 404
+
+        if row["status"] != "paid":
+            return jsonify({"status": "error", "message": "This order hasn't been paid yet."}), 400
+
+        if row["web_download_used"] == 1:
+            return jsonify({
+                "status": "error",
+                "message": "This download link has already been used. If you still have the file on Telegram, use that. Otherwise, contact Support."
+            }), 400
+
+        product = products.get(row["product_id"])
+        if not product:
+            return jsonify({"status": "error", "message": "Product not found."}), 404
+
+        file_id = product["telegram_file_id"]
+
+        file_info = requests.get(f"{TELEGRAM_API_URL}/getFile", params={"file_id": file_id}).json()
+
+        if not file_info.get("ok"):
+            print("DOWNLOAD getFile ERROR:", file_info)
+            return jsonify({"status": "error", "message": "Could not prepare file for download."}), 500
+
+        file_size = file_info["result"].get("file_size", 0)
+        if file_size > 20 * 1024 * 1024:
+            return jsonify({
+                "status": "error",
+                "message": "This file is too large for browser download. Please use the Telegram link instead."
+            }), 400
+
+        file_path = file_info["result"]["file_path"]
+        telegram_file_url = f"https://api.telegram.org/file/bot{TELEGRAM_BOT_TOKEN}/{file_path}"
+
+        # Mark it used now, before streaming -- same timing logic as the
+        # Telegram delivery flow (mark used right after we're confident
+        # delivery will succeed, not after every byte is confirmed received).
+        cur.execute(
+            "UPDATE purchases SET web_download_used = 1, web_downloaded_at = %s WHERE token = %s",
+            (datetime.now().isoformat(), order_token)
+        )
+        conn.commit()
+
+    finally:
+        cur.close()
+        conn.close()
+
+    telegram_response = requests.get(telegram_file_url, stream=True)
+    filename = product["name"] + ".pdf"
+
+    return Response(
+        telegram_response.iter_content(chunk_size=8192),
+        content_type=telegram_response.headers.get("Content-Type", "application/pdf"),
+        headers={"Content-Disposition": f'attachment; filename="{filename}"'}
+    )
 
 
 @app.route("/support-message", methods=["POST"])
