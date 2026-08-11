@@ -240,7 +240,7 @@ if(data.status==="paid"){
   link.scrollIntoView({ behavior: "smooth", block: "center" });
 
   const downloadLink = document.getElementById("download-link");
-  downloadLink.href = '/download/${token}';
+  downloadLink.href = `/download/${token}`;
   downloadLink.style.display = "inline-block";
   downloadLink.scrollIntoView({ behavior: "smooth", block: "center" });
   
