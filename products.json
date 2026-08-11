@@ -32,7 +32,7 @@
 
     "ebook5": {
         "name": "CALCULUS I",
-        "price": 1,
+        "price": 150,
         "telegram_file_id": "BQACAgQAAyEFAAT7S9BIAAMXanei6j6mvxvTSJfUA6EfqA_VLh0AAgkgAALN3LhTRu_IsRJy_Eg9BA",
         "image":"Calculus 1.png",
         "preview_images": ["Calc 1 preview 1.jpg", "Calc 1 preview 2.jpg", "Calc 1 preview 3.jpg"]
@@ -56,7 +56,7 @@
 
     "ebook8": {
         "name": "INSURANCE FOR ENGINEERS",
-        "price": 50,
+        "price": 80,
         "telegram_file_id": "BQACAgQAAyEFAAT7S9BIAAMYanekGYpnDjct4_I8uCXjUKI1eNAAAgogAALN3LhTGaWPDSdP2hY9BA",
         "image":"Insurance for Engineers.png",
         "preview_images": ["Insurance preview 1.jpg", "Insurance preview 2.jpg", "Insurance preview 3.jpg"]
