@@ -37,7 +37,10 @@ function setStatusTemporary(text, ms=5000) {
   }
 
 function setButtonsDisabled(disabled) {
-  document.querySelectorAll("button").forEach(btn => btn.disabled = disabled);
+  document.querySelectorAll("button").forEach(btn => {
+    if (btn.closest(".product-card.coming-soon")) return; // never touch permanently-disabled buttons
+    btn.disabled = disabled;
+  });
 }
 
 let currentPreviewImages = [];

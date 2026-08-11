@@ -32,7 +32,7 @@
 
     "ebook5": {
         "name": "CALCULUS I",
-        "price": 1,
+        "price": 150,
         "telegram_file_id": "BQACAgQAAyEFAAT7S9BIAAMXanei6j6mvxvTSJfUA6EfqA_VLh0AAgkgAALN3LhTRu_IsRJy_Eg9BA",
         "image":"Calculus 1.png",
         "preview_images": ["Calc 1 preview 1.jpg", "Calc 1 preview 2.jpg", "Calc 1 preview 3.jpg"]
@@ -64,7 +64,7 @@
 
     "ebook9": {
         "name": "CALCULUS III",
-        "price": 1,
+        "price": 150,
         "telegram_file_id": "BQACAgQAAyEFAAT7S9BIAAMfanjBAaQEhvy9VqEo90OKY7r_sAIAAugeAALN3MBT1r7F7kFyhig9BA",
         "image":"Calculus 3.png",
         "preview_images": ["Calc 3 preview 1.jpg", "Calc 3 preview 2.jpg", "Calc 3 preview 3.jpg"]
