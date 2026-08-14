@@ -76,5 +76,13 @@
         "telegram_file_id": "BQACAgQAAyEFAAT7S9BIAAMganuW55aTE8LwhHPOxbKQ6t_sMHwAAkIbAAJ1xuBTPAe_JXwvfr49BA",
         "image":"Statistics.png",
         "preview_images": ["Statistics preview 1.jpg", "Statistics preview 2.jpg", "Statistics preview 3.jpg"]
+    },
+
+    "ebook11": {
+        "name": "Engineering Survey II",
+        "price": 200,
+        "telegram_file_id": "BQACAgQAAyEFAAT7S9BIAAMhan65nzKK__frvPmV9uWzQ-1vjVwAAkomAALzQ_lT6S6ZupiW6cA9BA",
+        "image":"Engineering Survey II.png",
+        "preview_images": ["Engineering Survey II preview 1.jpg", "Engineering Survey II preview 2.jpg", "Engineering Survey II preview 3.jpg"]
     }
 }

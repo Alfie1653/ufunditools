@@ -328,7 +328,7 @@
       </button>
       </div>
 
-      <!-- COMING SOON: STATISTICS -->
+      <!-- STATISTICS -->
       <div data-priority="1">
       <div class="product-card {% if products['ebook10'].get('preview_images') %}has-preview{% endif %}" {%if products['ebook10'].get('preview_images') %}onclick='openPreview({{ products['ebook10']['preview_images'] | tojson }}, "{{ products['ebook10']['name'] }}")' {% endif %}>
       <div class="preview">
@@ -702,6 +702,27 @@
       BUY
       </button>
       </div>
+
+      <!-- ENGINEERING SURVEY II -->
+      <div data-priority="2">
+      <div class="product-card {% if products['ebook11'].get('preview_images') %}has-preview{% endif %}" {%if products['ebook11'].get('preview_images') %}onclick='openPreview({{ products['ebook11']['preview_images'] | tojson }}, "{{ products['ebook11']['name'] }}")' {% endif %}>
+      <div class="preview">
+        <img src="{{ url_for('static', filename='images/Engineering Survey II.png') }}" alt="ENGINEERING SURVEY II">
+      </div>
+      <div class="product-info">
+      <div class="description">
+      {{ products["ebook11"]["name"] }}
+      </div>
+      <div class="price">
+      KES {{ products["ebook11"]["price"] }}
+      </div>
+      </div>
+      </div>
+      <button class="buy-btn" onclick="event.stopPropagation(); openCheckout('ebook7')">
+      BUY
+      </button>
+      </div>
+      
 
     </div>
     <div class="no-results" id="no-results" style="display:none;">
