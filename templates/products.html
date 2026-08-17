@@ -452,23 +452,23 @@
       </button>
       </div>
 
-      <!-- COMING SOON: THEORY OF STRUCTURES I -->
+      <!-- THEORY OF STRUCTURES I -->
       <div data-priority="1">
-      <div class="product-card coming-soon">
+      <div class="product-card {% if products['ebook12'].get('preview_images') %}has-preview{% endif %}" {%if products['ebook12'].get('preview_images') %}onclick='openPreview({{ products['ebook12']['preview_images'] | tojson }}, "{{ products['ebook8']['name'] }}")' {% endif %}>
       <div class="preview">
         <img src="{{ url_for('static', filename='images/Theory of Structures 1.png') }}" alt="THEORY OF STRUCTURES I">
         <span class="coming-soon-badge">Coming Soon</span>
       </div>
       <div class="product-info">
       <div class="description">
-      THEORY OF STRUCTURES I
+      {{ products["ebook12"]["name"] }}
       </div>
       <div class="price">
-      --
+      {{ products["ebook12"]["price"] }}
       </div>
       </div>
       </div>
-      <button class="buy-btn" disabled>
+      <button class="buy-btn" onclick="event.stopPropagation(); openCheckout('ebook12')">
       BUY
       </button>
       </div>
