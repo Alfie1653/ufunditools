@@ -233,24 +233,11 @@ fetch(url)
 
 if(data.status==="paid"){
   clearInterval(interval);
-  setStatusTemporary("Payment confirmed! Redirecting. If you are not redirected, click the button below.");
-  window.open(data.telegram_link, "_blank");
   setButtonsDisabled(false);
 
-  const link = document.getElementById("telegram-link");
-  link.href = data.telegram_link;
-  link.style.display = "inline-block";
-  link.scrollIntoView({ behavior: "smooth", block: "center" });
-
-  const downloadLink = document.getElementById("download-link");
-  downloadLink.href = `/download/${token}`;
-  downloadLink.style.display = "inline-block";
-  downloadLink.scrollIntoView({ behavior: "smooth", block: "center" });
-  
-  setTimeout(() => {
-    link.style.display = "none";
-    downloadLink.style.display = "none";
-  }, 15000);
+  document.getElementById("modal-telegram-link").href = data.telegram_link;
+  document.getElementById("modal-download-link").href = `/download/${token}`;
+  document.getElementById("success-overlay").classList.add("open");
 }
 
 else if(data.status==="pending"){

@@ -745,6 +745,67 @@ h1::after {
   background-color: #9ca3af;
 }
 
+/* ============================================
+   Payment Success Modal
+   ============================================ */
+
+.success-modal h2 {
+  text-align: center;
+}
+
+.success-modal > p {
+  text-align: center;
+}
+
+.success-actions {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  margin-top: 20px;
+}
+
+.success-btn {
+  display: block;
+  text-align: center;
+  text-decoration: none;
+  padding: 14px 20px;
+  border-radius: var(--radius-md);
+  font-size: 15px;
+  font-weight: 600;
+  transition: background 0.25s ease, transform 0.15s ease;
+}
+
+.success-btn-primary {
+  background: var(--color-primary);
+  color: white;
+}
+
+.success-btn-primary:hover {
+  background: var(--color-primary-dark);
+}
+
+.success-btn-secondary {
+  background: rgba(0,137,123,0.1);
+  color: var(--color-primary);
+  border: 1.5px solid var(--color-primary);
+}
+
+.success-btn-secondary:hover {
+  background: rgba(0,137,123,0.18);
+}
+
+.success-btn:active {
+  transform: scale(0.98);
+}
+
+.success-note {
+  font-size: 12.5px;
+  color: var(--color-text-muted);
+  text-align: center;
+  margin-top: 16px;
+  margin-bottom: 0;
+  line-height: 1.5;
+}
 
 /* ============================================
    10. COMING SOON BADGE

@@ -33,6 +33,22 @@
 
 {% block content %}{% endblock %}
 
+<!-- PAYMENT SUCCESS POPUP -->
+<div class="overlay" id="success-overlay">
+<div class="modal success-modal">
+<h2>Payment Confirmed!</h2>
+<p>Your notes are ready. Choose how you'd like to get them:</p>
+<div class="success-actions">
+  <a id="modal-telegram-link" href="#" target="_blank" class="success-btn success-btn-primary">Open Telegram</a>
+  <a id="modal-download-link" href="#" class="success-btn success-btn-secondary">Download PDF</a>
+</div>
+<p class="success-note">Download PDF works once. If you miss it, use "Lost Your Link?" anytime to get your Telegram link back.</p>
+<div class="modal-actions">
+<button class="btn-cancel" onclick="closeSuccessModal()">Close</button>
+</div>
+</div>
+</div>
+
 <div class="overlay" id="preview-overlay">
 <div class="modal preview-modal">
   <h2 id="preview-title"></h2>
