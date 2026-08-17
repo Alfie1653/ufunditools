@@ -234,6 +234,7 @@ fetch(url)
 if(data.status==="paid"){
   clearInterval(interval);
   setButtonsDisabled(false);
+  setStatus("");
 
   document.getElementById("modal-telegram-link").href = data.telegram_link;
   document.getElementById("modal-download-link").href = `/download/${token}`;
@@ -319,6 +320,10 @@ function openSupportPanel() {
 
 function closeSupportPanel() {
   document.getElementById("support-panel").classList.remove("open");
+}
+
+function closeSuccessModal() {
+  document.getElementById("success-overlay").classList.remove("open");
 }
 
 function submitSupportMessage() {
