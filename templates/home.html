@@ -26,7 +26,8 @@
 <div class="price">KES {{ product['price'] }}</div>
 </div>
 </div>
-<button class="buy-btn" disabled>BUY</button>
+<button class="buy-btn" onclick="event.stopPropagation(); openCheckout('{{ pid }}')"
+>BUY</button>
 </div>
 {% endfor %}
   </div>
