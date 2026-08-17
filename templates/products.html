@@ -457,7 +457,6 @@
       <div class="product-card {% if products['ebook12'].get('preview_images') %}has-preview{% endif %}" {%if products['ebook12'].get('preview_images') %}onclick='openPreview({{ products['ebook12']['preview_images'] | tojson }}, "{{ products['ebook8']['name'] }}")' {% endif %}>
       <div class="preview">
         <img src="{{ url_for('static', filename='images/Theory of Structures 1.png') }}" alt="THEORY OF STRUCTURES I">
-        <span class="coming-soon-badge">Coming Soon</span>
       </div>
       <div class="product-info">
       <div class="description">
