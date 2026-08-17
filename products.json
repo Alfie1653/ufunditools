@@ -2,7 +2,7 @@
     "ebook1": {
         "name": "TRANSPORT ENGINEERING III",
         "price": 50,
-        "telegram_file_id": "BQACAgQAAyEFAAT7S9BIAAMaanepXBIIiES5tuxwmbB4awTb7EsAAg0gAALN3LhTjQG7L8CRzeU9BA",
+        "telegram_file_id": "",
         "image":"Transport Engineering 3.png",
         "preview_images": ["Transport Engineering III preview 1.jpg", "Transport Engineering III preview 2.jpg", "Transport Engineering III preview 3.jpg"]
     },
@@ -10,7 +10,7 @@
     "ebook2": {
         "name": "TRAFFIC ENGINEERING III",
         "price": 70,
-        "telegram_file_id": "BQACAgQAAyEFAAT7S9BIAAMdanezVH3tyhH-F7BL8u3ZNOxtLcAAAiIgAALN3LhTQuOgSmqxwWU9BA",
+        "telegram_file_id": "",
         "image":"Traffic Engineering 3.png",
         "preview_images": ["Traffic Engineering III preview 1.jpg", "Traffic Engineering III preview 2.jpg", "Traffic Engineering III preview 3.jpg"]
     },
@@ -18,7 +18,7 @@
     "ebook3": {
         "name": "OPERATION RESEARCH",
         "price": 150,
-        "telegram_file_id": "BQACAgQAAyEFAAT7S9BIAAMcanet2auohYUEICyrZFKFqoLznK8AAhogAALN3LhTgWKkiz__RIc9BA",
+        "telegram_file_id": "",
         "image":"Operation Research 1.png",
         "preview_images": ["OR preview 1.jpg", "OR preview 2.jpg", "OR preview 3.jpg"]
     },
@@ -26,14 +26,14 @@
     "ebook4": {
         "name": "Y5 CIV ENG PAST PAPERS",
         "price": 1,
-        "telegram_file_id": "BQACAgQAAyEFAAT7S9BIAAMaanepXBIIiES5tuxwmbB4awTb7EsAAg0gAALN3LhTjQG7L8CRzeU9BA",
+        "telegram_file_id": "BQACAgQAAyEFAAT7S9BIAAMjaoN7YT6APyvk409a5xqZ5pXIB4QAAmweAAIEOiBQ7ynED5wJvT89BA",
         "image":"Y5 Past Papers.png"
     },
 
     "ebook5": {
         "name": "CALCULUS I",
         "price": 1,
-        "telegram_file_id": "BQACAgQAAyEFAAT7S9BIAAMiaoMTD41xFNivPv5ac_7HEcw7lmUAAqQdAAIEOhhQYI0ZtUcr-UQ9BA",
+        "telegram_file_id": "",
         "image":"Calculus 1.png",
         "preview_images": ["Calc 1 preview 1.jpg", "Calc 1 preview 2.jpg", "Calc 1 preview 3.jpg"]
     },
@@ -41,7 +41,7 @@
     "ebook6": {
         "name": "PUBLIC HEALTH ENGINEERING III",
         "price": 80,
-        "telegram_file_id": "BQACAgQAAyEFAAT7S9BIAAMeane4N5b437FEgd-8hjFT2aPAW_AAAiQgAALN3LhT92t3wCi_Q-g9BA",
+        "telegram_file_id": "",
         "image":"Public Health Engineering 3.png",
         "preview_images": ["PHE III preview 1.jpg", "PHE III preview 2.jpg", "PHE III preview 3.jpg"]
     },
@@ -49,7 +49,7 @@
     "ebook7": {
         "name": "NUMERICAL ANALYSIS ",
         "price": 250,
-        "telegram_file_id": "BQACAgQAAyEFAAT7S9BIAAMZanel7iido9FXX79T2zPt4rQbOOMAAgsgAALN3LhTbANdhgyp3J09BA",
+        "telegram_file_id": "",
         "image":"Numerical Analysis.png",
         "preview_images": ["Numerical Analysis preview 1.jpg", "Numerical Analysis preview 2.jpg", "Numerical Analysis preview 3.jpg"]
     },
@@ -57,7 +57,7 @@
     "ebook8": {
         "name": "INSURANCE FOR ENGINEERS",
         "price": 80,
-        "telegram_file_id": "BQACAgQAAyEFAAT7S9BIAAMYanekGYpnDjct4_I8uCXjUKI1eNAAAgogAALN3LhTGaWPDSdP2hY9BA",
+        "telegram_file_id": "",
         "image":"Insurance for Engineers.png",
         "preview_images": ["Insurance preview 1.jpg", "Insurance preview 2.jpg", "Insurance preview 3.jpg"]
     },
@@ -65,7 +65,7 @@
     "ebook9": {
         "name": "CALCULUS III",
         "price": 150,
-        "telegram_file_id": "BQACAgQAAyEFAAT7S9BIAAMfanjBAaQEhvy9VqEo90OKY7r_sAIAAugeAALN3MBT1r7F7kFyhig9BA",
+        "telegram_file_id": "",
         "image":"Calculus 3.png",
         "preview_images": ["Calc 3 preview 1.jpg", "Calc 3 preview 2.jpg", "Calc 3 preview 3.jpg"]
     },
@@ -73,7 +73,7 @@
     "ebook10": {
         "name": "STATISTICS",
         "price": 250,
-        "telegram_file_id": "BQACAgQAAyEFAAT7S9BIAAMganuW55aTE8LwhHPOxbKQ6t_sMHwAAkIbAAJ1xuBTPAe_JXwvfr49BA",
+        "telegram_file_id": "",
         "image":"Statistics.png",
         "preview_images": ["Statistics preview 1.jpg", "Statistics preview 2.jpg", "Statistics preview 3.jpg"]
     },
@@ -81,7 +81,7 @@
     "ebook11": {
         "name": "Engineering Survey II",
         "price": 200,
-        "telegram_file_id": "BQACAgQAAyEFAAT7S9BIAAMhan65nzKK__frvPmV9uWzQ-1vjVwAAkomAALzQ_lT6S6ZupiW6cA9BA",
+        "telegram_file_id": "",
         "image":"Engineering Survey II.png",
         "preview_images": ["Engineering Survey II preview 1.jpg", "Engineering Survey II preview 2.jpg", "Engineering Survey II preview 3.jpg"]
     }
