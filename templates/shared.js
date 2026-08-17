@@ -314,8 +314,8 @@ function submitRecover() {
     });
 }
 
-function openSupportPanel() {
-  document.getElementById("support-panel").classList.add("open");
+function toggleSupportPanel() {
+  document.getElementById("support-panel").classList.toggle("open");
 }
 
 function closeSupportPanel() {
