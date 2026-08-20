@@ -22,7 +22,7 @@ load_dotenv()
 
 app = Flask(__name__)
 app.config['SEND_FILE_MAX_AGE_DEFAULT'] = 60 * 60 * 24 * 30  # cache static files for 30 days
-allowed_origins = os.environ["ALLOWED_ORIGINS"].split(",")
+allowed_origins = os.environ["ALLOWED_ORIGINS"].split(",") 
 CORS(app, origins=allowed_origins)
 
 limiter = Limiter (
