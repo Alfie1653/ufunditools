@@ -1,6 +1,6 @@
 {
     "ebook1": {
-        "name": "TRANSPORT ENGINEERING III",
+        "name": "Transport Engineering III",
         "price": 50,
         "telegram_file_id": "BQACAgQAAyEFAAT7S9BIAAMkaoN_uU_IuU-TfofMhrJMn0sjd2cAAnIeAAIEOiBQOSjcQVJV7Gg9BA",
         "image":"Transport Engineering 3.png",
@@ -8,7 +8,7 @@
     },
 
     "ebook2": {
-        "name": "TRAFFIC ENGINEERING III",
+        "name": "Traffic Engineering III",
         "price": 70,
         "telegram_file_id": "BQACAgQAAyEFAAT7S9BIAAMmaoOAAAEUDI0_oTLxecEDKZOQlfVtAAJ0HgACBDogUMVaU2rSvgv2PQQ",
         "image":"Traffic Engineering 3.png",
@@ -16,7 +16,7 @@
     },
 
     "ebook3": {
-        "name": "OPERATION RESEARCH I",
+        "name": "Operation Research I",
         "price": 150,
         "telegram_file_id": "BQACAgQAAyEFAAT7S9BIAAMpaoOAUZWI4O3wnoX-K6sHbKNrHNEAAnceAAIEOiBQS8uj_qkh5A89BA",
         "image":"Operation Research 1.png",
@@ -24,14 +24,14 @@
     },
 
     "ebook4": {
-        "name": "Y5 CIV ENG PAST PAPERS",
+        "name": "Y5 BSCE PAST PAPERS",
         "price": 350,
         "telegram_file_id": "BQACAgQAAyEFAAT7S9BIAAMjaoN7YT6APyvk409a5xqZ5pXIB4QAAmweAAIEOiBQ7ynED5wJvT89BA",
         "image":"Y5 Past Papers.png"
     },
 
     "ebook5": {
-        "name": "CALCULUS I",
+        "name": "Calculus I",
         "price": 150,
         "telegram_file_id": "BQACAgQAAyEFAAT7S9BIAAMsaoOAtWeXuBHejGaUsMs5fIEcKY4AAnseAAIEOiBQjSqZLvVS6cU9BA",
         "image":"Calculus 1.png",
@@ -39,7 +39,7 @@
     },
 
     "ebook6": {
-        "name": "PUBLIC HEALTH ENGINEERING III",
+        "name": "Public Health Engineering III",
         "price": 80,
         "telegram_file_id": "BQACAgQAAyEFAAT7S9BIAAMnaoOAHGrYDGKAftP_DOTgZ078ym0AAnUeAAIEOiBQKnOIbMxcuFA9BA",
         "image":"Public Health Engineering 3.png",
@@ -47,7 +47,7 @@
     },
 
     "ebook7": {
-        "name": "NUMERICAL ANALYSIS ",
+        "name": "Numerical Analysis",
         "price": 250,
         "telegram_file_id": "BQACAgQAAyEFAAT7S9BIAAMoaoOANlTuA8nP5gE1BCas7KyMKZ0AAnYeAAIEOiBQnRxoxDFt-W09BA",
         "image":"Numerical Analysis.png",
@@ -55,7 +55,7 @@
     },
 
     "ebook8": {
-        "name": "INSURANCE FOR ENGINEERS",
+        "name": "Insurance for Engineers",
         "price": 80,
         "telegram_file_id": "BQACAgQAAyEFAAT7S9BIAAMraoOAmPhG7L7Uo9lmEdEtTiLe1m8AAnoeAAIEOiBQa6MrLjRlLDA9BA",
         "image":"Insurance for Engineers.png",
@@ -63,7 +63,7 @@
     },
 
     "ebook9": {
-        "name": "CALCULUS III",
+        "name": "Calculus III",
         "price": 150,
         "telegram_file_id": "BQACAgQAAyEFAAT7S9BIAAMtaoOBLIIexinxgApqtsCRVpYvTpYAAn0eAAIEOiBQ61aObHO8A2Q9BA",
         "image":"Calculus 3.png",
@@ -71,7 +71,7 @@
     },
 
     "ebook10": {
-        "name": "STATISTICS",
+        "name": "Statistics",
         "price": 250,
         "telegram_file_id": "BQACAgQAAyEFAAT7S9BIAAMlaoN_3obsg37j5_R8NKNJPuubrxUAAnMeAAIEOiBQdpGmGaMKkBo9BA",
         "image":"Statistics.png",
@@ -92,5 +92,13 @@
         "telegram_file_id": "BQACAgQAAyEFAAT7S9BIAAMuaoODUuoj-4Q7wu9N7rHpkX9dhbsAAoAeAAIEOiBQYdaD083BLuI9BA",
         "image":"Theory of Structures 1.png",
         "preview_images": ["Theory of Structures 1 preview 1.jpg", "Theory of Structures 1 preview 2.jpg", "Theory of Structures 1 preview 3.jpg"]
+    },
+
+    "ebook13":{
+        "name": "Economics and Accounts for Engineers",
+        "price": 200,
+        "telegram_file_id": "BQACAgQAAyEFAAT7S9BIAAMvaoZDzbkAAUN-eYVjbDH0N-S0twjKAAIlIAACfwQwUCnEqC6ju04QPQQ",
+        "image": "Economics and Accounting.png",
+        "preview_images":["Economics and Accounts for Engineers preview 1.jpg", "Economics and Accounts for Engineers preview 2.jpg", "Economics and Accounts for Engineers preview 3.jpg"]
     }
 }

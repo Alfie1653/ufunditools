@@ -390,23 +390,22 @@
       </button>
       </div>
 
-      <!-- COMING SOON: ECONOMICS AND ACCOUNTING -->
+      <!-- ECONOMICS AND ACCOUNTING -->
       <div data-priority="3">
-      <div class="product-card coming-soon">
+      <div class="product-card {% if products['ebook13'].get('preview_images') %}has-preview{% endif %}" {%if products['ebook13'].get('preview_images') %}onclick='openPreview({{ products['ebook13']['preview_images'] | tojson }}, "{{ products['ebook13']['name'] }}")' {% endif %}">
       <div class="preview">
         <img src="{{ url_for('static', filename='images/Economics and Accounting.png') }}" alt="ECONOMICS AND ACCOUNTING">
-        <span class="coming-soon-badge">Coming Soon</span>
       </div>
       <div class="product-info">
       <div class="description">
-      ECONOMICS AND ACCOUNTING
+      {{ products["ebook13"]["name"] }}
       </div>
       <div class="price">
-      --
+      KES {{ products["ebook13"]["price"] }}
       </div>
       </div>
       </div>
-      <button class="buy-btn" disabled>
+      <button class="buy-btn" onclick="event.stopPropagation(); openCheckout('ebook13')">
       BUY
       </button>
       </div>
