@@ -25,14 +25,14 @@
 
     "ebook4": {
         "name": "Y5 BSCE PAST PAPERS",
-        "price": 350,
+        "price": 0,
         "telegram_file_id": "BQACAgQAAyEFAAT7S9BIAAMjaoN7YT6APyvk409a5xqZ5pXIB4QAAmweAAIEOiBQ7ynED5wJvT89BA",
         "image":"Y5 Past Papers.png"
     },
 
     "ebook5": {
         "name": "Calculus I",
-        "price": 150,
+        "price": 0,
         "telegram_file_id": "BQACAgQAAyEFAAT7S9BIAAMsaoOAtWeXuBHejGaUsMs5fIEcKY4AAnseAAIEOiBQjSqZLvVS6cU9BA",
         "image":"Calculus 1.png",
         "preview_images": ["Calc 1 preview 1.jpg", "Calc 1 preview 2.jpg", "Calc 1 preview 3.jpg"]
