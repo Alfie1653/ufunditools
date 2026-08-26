@@ -25,7 +25,7 @@
 
     "ebook4": {
         "name": "Y5 BSCE PAST PAPERS",
-        "price": 0,
+        "price": 250,
         "telegram_file_id": "BQACAgQAAyEFAAT7S9BIAAMjaoN7YT6APyvk409a5xqZ5pXIB4QAAmweAAIEOiBQ7ynED5wJvT89BA",
         "image":"Y5 Past Papers.png"
     },
@@ -100,5 +100,13 @@
         "telegram_file_id": "BQACAgQAAyEFAAT7S9BIAAMvaoZDzbkAAUN-eYVjbDH0N-S0twjKAAIlIAACfwQwUCnEqC6ju04QPQQ",
         "image": "Economics and Accounting.png",
         "preview_images":["Economics and Accounts for Engineers preview 1.jpg", "Economics and Accounts for Engineers preview 2.jpg", "Economics and Accounts for Engineers preview 3.jpg"]
+    },
+
+    "ebook14": {
+        "name": "Engineering Geology",
+        "price": 75,
+        "telegram_file_id": "BQACAgQAAyEFAAT7S9BIAAMwao5mm1BnLsmV9MIlnMMMUDRPZh0AApUjAAIcQHlQAAH5wsMifRrCPQQ",
+        "image": "Engineering Geology.png",
+        "preview_images": ["Engineering Geology preview 1.jpg", "Engineering Geology preview 2.jpg"]
     }
 }
