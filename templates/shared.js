@@ -462,3 +462,8 @@ function toggleFaq(button) {
     button.classList.add("active");
   }
 }
+
+/*===========================
+           ICONS
+============================*/
+lucide.createIcons();
