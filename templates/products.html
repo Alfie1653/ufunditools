@@ -40,6 +40,27 @@
         </button>
         </div>
 
+        <!-- TRANSPORT ENGINEERING II -->
+        <div data-priority="2">
+        <div class="product-card {% if products['ebook16'].get('preview_images') %}has-preview{% endif %}" {%if products['ebook16'].get('preview_images') %}onclick='openPreview({{ products['ebook16']['preview_images'] | tojson }}, "{{ products['ebook16']['name'] }}")' {% endif %}>
+        <div class="preview">
+          <img src="{{ url_for('static', filename='images/Transport Engineering 2.png') }}" alt="TRANSPORT ENGINEERING II">
+        </div>
+        <div class="product-info">
+        <div class="description">
+        {{ products["ebook16"]["name"] }}
+        </div>
+        <div class="price">
+        KES {{ products["ebook16"]["price"] }}
+        </div>
+        </div>
+        </div>
+        <button class="buy-btn" onclick="event.stopPropagation(); openCheckout('ebook16')">
+        BUY
+        </button>
+        </div>
+
+
         <!-- TRAFFIC ENGINEERING III -->
         <div data-priority="2">
         <div class="product-card {% if products['ebook2'].get('preview_images') %}has-preview{% endif %}" {%if products['ebook2'].get('preview_images') %}onclick='openPreview({{ products['ebook2']['preview_images'] | tojson }}, "{{ products['ebook2']['name'] }}")' {% endif %}>

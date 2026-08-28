@@ -116,5 +116,13 @@
         "telegram_file_id": "BQACAgQAAyEFAAT7S9BIAAMxao6oTixy4yjk0pQmX4pccRpZaygAAr4jAAIcQHlQivk0xJF4Q2M9BA",
         "image": "Algebra.png",
         "preview_images": ["Algebra preview 1.jpg", "Algebra preview 2.jpg", "Algebra preview 3.jpg"]
+    },
+
+    "ebook16": {
+        "name": "Transport Engineering II",
+        "price": 75,
+        "telegram_file_id": "BQACAgQAAyEFAAT7S9BIAAM0apFrKH_c-OUVKes3R2-8ehfI25cAAtseAAKNVolQIiFmn0ChGwk9BA",
+        "image": "Transport Engineering 2.png",
+        "preview_images": ["Transport Engineering II preview 1.jpg", "Transport Engineering II preview 2.jpg", "Transport Engineering II preview 3.jpg"]
     }
 }
