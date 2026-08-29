@@ -124,5 +124,13 @@
         "telegram_file_id": "BQACAgQAAyEFAAT7S9BIAAM0apFrKH_c-OUVKes3R2-8ehfI25cAAtseAAKNVolQIiFmn0ChGwk9BA",
         "image": "Transport Engineering 2.png",
         "preview_images": ["Transport Engineering II preview 1.jpg", "Transport Engineering II preview 2.jpg", "Transport Engineering II preview 3.jpg"]
+    },
+
+    "ebook17": {
+        "name": "Construction Technology III",
+        "price": 175,
+        "telegram_file_id": "BQACAgQAAyEFAAT7S9BIAAM1apMW9sTVrxG0xGteroS3hB9KrWoAAgYiAAKt85lQltQaHaakiGs9BA",
+        "image": "Construction Technology III.png",
+        "preview_images": ["Construction Technology III preview 1.jpg", "Construction Technology III preview 2.jpg", "Construction Technology III preview 3.jpg"]
     }
 }
