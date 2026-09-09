@@ -140,5 +140,13 @@
         "telegram_file_id":"BQACAgQAAyEFAAT7S9BIAAM2apWuHAmhigckyNTMaIYSqY86-AUAAs4gAAJcJalQi35phwKy_449BA",
         "image": "Professional Ethics and Human Values in Engineering.png",
         "preview_images": ["Professional Ethics and Human Values in Engineering preview 1.jpg", "Professional Ethics and Human Values in Engineering preview 2.jpg", "Professional Ethics and Human Values in Engineering preview 3.jpg"]
+    },
+
+    "ebook19": {
+        "name":"Engineering Materials I",
+        "price": 180,
+        "telegram_file_id":"BQACAgQAAyEFAAT7S9BIAAM3aqFxfaD5Pox0JStgYll7gPU8WEsAAtseAAJKixBRZgABNsnm0mV_PQQ",
+        "image": "Engineering Materials I.png",
+        "preview_images": ["Engineering Materials I preview 1.jpg", "Engineering Materials I preview 2.jpg", "Engineering Materials I preview 3.jpg"]
     }
 }

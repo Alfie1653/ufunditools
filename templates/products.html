@@ -801,6 +801,26 @@
       </button>
       </div>
 
+      <!-- ENGINEERING MATERIALS I -->
+      <div data-priority="2">
+      <div class="product-card {% if products['ebook19'].get('preview_images') %}has-preview{% endif %}" {%if products['ebook19'].get('preview_images') %}onclick='openPreview({{ products['ebook19']['preview_images'] | tojson }}, "{{ products['ebook19']['name'] }}")' {% endif %}>
+      <div class="preview">
+        <img src="{{ url_for('static', filename='images/Engineering Materials I.png') }}" alt="Engineering Materials I">
+      </div>
+      <div class="product-info">
+      <div class="description">
+      {{ products["ebook19"]["name"] }}
+      </div>
+      <div class="price">
+      KES {{ products["ebook19"]["price"] }}
+      </div>
+      </div>
+      </div>
+      <button class="buy-btn" onclick="event.stopPropagation(); openCheckout('ebook19')">
+      BUY
+      </button>
+      </div>
+
     </div>
     <div class="no-results" id="no-results" style="display:none;">
       <p>No products found for <span id="no-results-term"></span>.</p>
