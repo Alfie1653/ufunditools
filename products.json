@@ -1,7 +1,7 @@
 {
     "ebook1": {
         "name": "Transport Engineering III",
-        "price": 50,
+        "price": 20,
         "telegram_file_id": "BQACAgQAAyEFAAT7S9BIAAMkaoN_uU_IuU-TfofMhrJMn0sjd2cAAnIeAAIEOiBQOSjcQVJV7Gg9BA",
         "image":"Transport Engineering 3.png",
         "preview_images": ["Transport Engineering III preview 1.jpg", "Transport Engineering III preview 2.jpg", "Transport Engineering III preview 3.jpg"]
@@ -9,7 +9,7 @@
 
     "ebook2": {
         "name": "Traffic Engineering III",
-        "price": 70,
+        "price": 20,
         "telegram_file_id": "BQACAgQAAyEFAAT7S9BIAAMmaoOAAAEUDI0_oTLxecEDKZOQlfVtAAJ0HgACBDogUMVaU2rSvgv2PQQ",
         "image":"Traffic Engineering 3.png",
         "preview_images": ["Traffic Engineering III preview 1.jpg", "Traffic Engineering III preview 2.jpg", "Traffic Engineering III preview 3.jpg"]
@@ -17,7 +17,7 @@
 
     "ebook3": {
         "name": "Operation Research I",
-        "price": 150,
+        "price": 40,
         "telegram_file_id": "BQACAgQAAyEFAAT7S9BIAAMpaoOAUZWI4O3wnoX-K6sHbKNrHNEAAnceAAIEOiBQS8uj_qkh5A89BA",
         "image":"Operation Research 1.png",
         "preview_images": ["OR preview 1.jpg", "OR preview 2.jpg", "OR preview 3.jpg"]
@@ -25,14 +25,14 @@
 
     "ebook4": {
         "name": "Y5 BSCE PAST PAPERS",
-        "price": 250,
+        "price": 50,
         "telegram_file_id": "BQACAgQAAyEFAAT7S9BIAAMjaoN7YT6APyvk409a5xqZ5pXIB4QAAmweAAIEOiBQ7ynED5wJvT89BA",
         "image":"Y5 Past Papers.png"
     },
 
     "ebook5": {
         "name": "Calculus I",
-        "price": 10,
+        "price": 20,
         "telegram_file_id": "BQACAgQAAyEFAAT7S9BIAAMsaoOAtWeXuBHejGaUsMs5fIEcKY4AAnseAAIEOiBQjSqZLvVS6cU9BA",
         "image":"Calculus 1.png",
         "preview_images": ["Calc 1 preview 1.jpg", "Calc 1 preview 2.jpg", "Calc 1 preview 3.jpg"]
@@ -40,7 +40,7 @@
 
     "ebook6": {
         "name": "Public Health Engineering III",
-        "price": 80,
+        "price": 30,
         "telegram_file_id": "BQACAgQAAyEFAAT7S9BIAAMnaoOAHGrYDGKAftP_DOTgZ078ym0AAnUeAAIEOiBQKnOIbMxcuFA9BA",
         "image":"Public Health Engineering 3.png",
         "preview_images": ["PHE III preview 1.jpg", "PHE III preview 2.jpg", "PHE III preview 3.jpg"]
@@ -48,7 +48,7 @@
 
     "ebook7": {
         "name": "Numerical Analysis",
-        "price": 250,
+        "price": 30,
         "telegram_file_id": "BQACAgQAAyEFAAT7S9BIAAMoaoOANlTuA8nP5gE1BCas7KyMKZ0AAnYeAAIEOiBQnRxoxDFt-W09BA",
         "image":"Numerical Analysis.png",
         "preview_images": ["Numerical Analysis preview 1.jpg", "Numerical Analysis preview 2.jpg", "Numerical Analysis preview 3.jpg"]
@@ -56,7 +56,7 @@
 
     "ebook8": {
         "name": "Insurance for Engineers",
-        "price": 80,
+        "price": 20,
         "telegram_file_id": "BQACAgQAAyEFAAT7S9BIAAMraoOAmPhG7L7Uo9lmEdEtTiLe1m8AAnoeAAIEOiBQa6MrLjRlLDA9BA",
         "image":"Insurance for Engineers.png",
         "preview_images": ["Insurance preview 1.jpg", "Insurance preview 2.jpg", "Insurance preview 3.jpg"]
@@ -64,7 +64,7 @@
 
     "ebook9": {
         "name": "Calculus III",
-        "price": 150,
+        "price": 30,
         "telegram_file_id": "BQACAgQAAyEFAAT7S9BIAAMtaoOBLIIexinxgApqtsCRVpYvTpYAAn0eAAIEOiBQ61aObHO8A2Q9BA",
         "image":"Calculus 3.png",
         "preview_images": ["Calc 3 preview 1.jpg", "Calc 3 preview 2.jpg", "Calc 3 preview 3.jpg"]
@@ -72,7 +72,7 @@
 
     "ebook10": {
         "name": "Statistics",
-        "price": 250,
+        "price": 40,
         "telegram_file_id": "BQACAgQAAyEFAAT7S9BIAAMlaoN_3obsg37j5_R8NKNJPuubrxUAAnMeAAIEOiBQdpGmGaMKkBo9BA",
         "image":"Statistics.png",
         "preview_images": ["Statistics preview 1.jpg", "Statistics preview 2.jpg", "Statistics preview 3.jpg"]
@@ -80,7 +80,7 @@
 
     "ebook11": {
         "name": "Engineering Survey II",
-        "price": 200,
+        "price": 20,
         "telegram_file_id": "BQACAgQAAyEFAAT7S9BIAAMqaoOAe1BEaYyF7admH6s9N9Yplw0AAngeAAIEOiBQLYmds7p76Xo9BA",
         "image":"Engineering Survey II.png",
         "preview_images": ["Engineering Survey II preview 1.jpg", "Engineering Survey II preview 2.jpg", "Engineering Survey II preview 3.jpg"]
@@ -88,7 +88,7 @@
 
     "ebook12": {
         "name": "Theory of Structures I",
-        "price": 250,
+        "price": 25,
         "telegram_file_id": "BQACAgQAAyEFAAT7S9BIAAMuaoODUuoj-4Q7wu9N7rHpkX9dhbsAAoAeAAIEOiBQYdaD083BLuI9BA",
         "image":"Theory of Structures 1.png",
         "preview_images": ["Theory of Structures 1 preview 1.jpg", "Theory of Structures 1 preview 2.jpg", "Theory of Structures 1 preview 3.jpg"]
@@ -96,7 +96,7 @@
 
     "ebook13":{
         "name": "Economics and Accounts for Engineers",
-        "price": 200,
+        "price": 15,
         "telegram_file_id": "BQACAgQAAyEFAAT7S9BIAAMvaoZDzbkAAUN-eYVjbDH0N-S0twjKAAIlIAACfwQwUCnEqC6ju04QPQQ",
         "image": "Economics and Accounting.png",
         "preview_images":["Economics and Accounts for Engineers preview 1.jpg", "Economics and Accounts for Engineers preview 2.jpg", "Economics and Accounts for Engineers preview 3.jpg"]
@@ -104,7 +104,7 @@
 
     "ebook14": {
         "name": "Engineering Geology",
-        "price": 75,
+        "price": 5,
         "telegram_file_id": "BQACAgQAAyEFAAT7S9BIAAMwao5mm1BnLsmV9MIlnMMMUDRPZh0AApUjAAIcQHlQAAH5wsMifRrCPQQ",
         "image": "Engineering Geology.png",
         "preview_images": ["Engineering Geology preview 1.jpg", "Engineering Geology preview 2.jpg"]
@@ -112,7 +112,7 @@
 
     "ebook15": {
         "name": "Algebra",
-        "price": 150,
+        "price": 15,
         "telegram_file_id": "BQACAgQAAyEFAAT7S9BIAAMxao6oTixy4yjk0pQmX4pccRpZaygAAr4jAAIcQHlQivk0xJF4Q2M9BA",
         "image": "Algebra.png",
         "preview_images": ["Algebra preview 1.jpg", "Algebra preview 2.jpg", "Algebra preview 3.jpg"]
@@ -120,7 +120,7 @@
 
     "ebook16": {
         "name": "Transport Engineering II",
-        "price": 75,
+        "price": 15,
         "telegram_file_id": "BQACAgQAAyEFAAT7S9BIAAM0apFrKH_c-OUVKes3R2-8ehfI25cAAtseAAKNVolQIiFmn0ChGwk9BA",
         "image": "Transport Engineering 2.png",
         "preview_images": ["Transport Engineering II preview 1.jpg", "Transport Engineering II preview 2.jpg", "Transport Engineering II preview 3.jpg"]
@@ -128,7 +128,7 @@
 
     "ebook17": {
         "name": "Construction Technology III",
-        "price": 175,
+        "price": 15,
         "telegram_file_id": "BQACAgQAAyEFAAT7S9BIAAM1apMW9sTVrxG0xGteroS3hB9KrWoAAgYiAAKt85lQltQaHaakiGs9BA",
         "image": "Construction Technology III.png",
         "preview_images": ["Construction Technology III preview 1.jpg", "Construction Technology III preview 2.jpg", "Construction Technology III preview 3.jpg"]
@@ -136,7 +136,7 @@
 
     "ebook18": {
         "name":"Professional Ethics and Human Values in Engineering",
-        "price": 55,
+        "price": 12,
         "telegram_file_id":"BQACAgQAAyEFAAT7S9BIAAM2apWuHAmhigckyNTMaIYSqY86-AUAAs4gAAJcJalQi35phwKy_449BA",
         "image": "Professional Ethics and Human Values in Engineering.png",
         "preview_images": ["Professional Ethics and Human Values in Engineering preview 1.jpg", "Professional Ethics and Human Values in Engineering preview 2.jpg", "Professional Ethics and Human Values in Engineering preview 3.jpg"]
@@ -144,7 +144,7 @@
 
     "ebook19": {
         "name":"Engineering Materials I",
-        "price": 180,
+        "price": 20,
         "telegram_file_id":"BQACAgQAAyEFAAT7S9BIAAM3aqFxfaD5Pox0JStgYll7gPU8WEsAAtseAAJKixBRZgABNsnm0mV_PQQ",
         "image": "Engineering Materials I.png",
         "preview_images": ["Engineering Materials I preview 1.jpg", "Engineering Materials I preview 2.jpg", "Engineering Materials I preview 3.jpg"]
